@@ -10,7 +10,7 @@
     placeholder="name"
 
     [ngClass]="
-    name.touched && name.invalid ? 'input-text__inavlid' : ''"
+    name.touched && name.invalid ? '.input-text__Invalid' : ''"
     >
      <span>username</span>
 
@@ -32,7 +32,7 @@
     formControlName="password"
     placeholder="password"
     [ngClass]="
-    password.touched && password.invalid ? 'input-text__inavlid' : ''"
+    password.touched && password.invalid ? '.input-text__Invalid' : ''"
     >
     <span>password</span>
     <div *ngIf="password.touched && password.invalid" class="invalid-message">
@@ -49,7 +49,7 @@
     formControlName="email"
     placeholder="email"
     [ngClass]="
-    email.touched && email.invalid ? 'input-text__inavlid' : ''
+    email.touched && email.invalid ? '.input-text__Invalid' : ''
       "
     >
     <span>email</span>

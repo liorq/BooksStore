@@ -2,7 +2,7 @@
   background: url('https://images.pexels.com/photos/1624496/pexels-photo-1624496.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
   background-size: cover;
 }
-.input-text__inavlid {
+.input-text__Invalid {
   border: 1px solid #d90429;
 }
 .invalid-message {
