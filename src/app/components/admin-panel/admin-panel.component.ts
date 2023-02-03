@@ -51,16 +51,14 @@ export class AdminPanelComponent implements OnInit{
    async editBook(book:book){
     const form=editBookForm(book)
     const { value: formValues } = await Swal.fire(form);
-    if (formValues)
-    this.updateBookDetails(book,formValues)
-
-    this.localService.setLocalProperty('allBooks',JSON.stringify(this.booksToDisplay))
-  }
-  updateBookDetails(book:book,formValues:any){
+    if (formValues){
       book.name=formValues[0];
       book.price=formValues[1];
-      book.id=formValues[2];
-      book.author=formValues[3];
+      book.author=formValues[2];
+
+      this.localService.setLocalProperty('allBooks',JSON.stringify(this.booksToDisplay))
+    }
   }
+
 
 }

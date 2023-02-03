@@ -29,16 +29,21 @@ ngOnInit(): void {
    const currentUser= this.localService.getUserObj();
    const form= editUserForm(currentUser)
    const {value:formValues}=await Swal.fire(form)
+
+
    const isValidateForm=formValues![1]==currentUser.password&&formValues;
 
    if(isValidateForm){
     currentUser.email=formValues[0];
-    currentUser.password=formValues[1];
+    currentUser.password=formValues[2];
+
     const index:any=this.localService.getLocalProperty('index')
-    this.booksService.usersData[index]=currentUser
+    this.booksService.usersData[index]=currentUser;
+    console.log(this.booksService.usersData)
+
     this.localService.setLocalProperty('usersData',JSON.stringify([...this.booksService.usersData]))
   }
-  
+
    Swal.fire(isValidateForm?messages.changeSuccessfully:messages.passwordIncorrect)
   }
 
