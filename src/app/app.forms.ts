@@ -1,20 +1,13 @@
 import Swal from "sweetalert2"
 
-// export function editBookForm(book:any){
-//   return genericForm(book,'Edit book','book')
-// }
 
-// export function editUserForm(user:any){
-//   return genericForm(user,'Edit user details','user')
-//   }
-
-  export function genericForm(user:any,title:string,property:string){
+  export function genericForm(parameter:any,title:string,property:string){
     return{
       title: `${title}`,
           html:
-            `<div>Please enter  ${property=='user'?'your new userName':'the name of the new book.'}.</div>  <input id="swal-input1" class="swal2-input" value=${property=='user'?user.email:user.name}>` +
-            `<div>Please enter  ${property=='user'?'your old password':'the new price of the book.'}.</div> <input id="swal-input2" class="swal2-input" value=${property=='user'?'':user.price}>` +
-            `<div>Please enter  ${property=='user'?'your new password':'the new author name for the book.'}.</div>   <input id="swal-input3" class="swal2-input"  value=${property=='user'?'':user.author}>` ,
+            `<div>Please enter  ${property=='user'?'your new userName':'the name of the new book.'}.</div>  <input id="swal-input1" class="swal2-input" value=${property=='user'?parameter.email:parameter.name}>` +
+            `<div>Please enter  ${property=='user'?'your old password':'the new price of the book.'}.</div> <input id="swal-input2" class="swal2-input" value=${property=='user'?'':parameter.price}>` +
+            `<div>Please enter  ${property=='user'?'your new password':'the new author name for the book.'}.</div>   <input id="swal-input3" class="swal2-input"  value=${property=='user'?'':parameter.author}>` ,
           focusConfirm: false,
           preConfirm: () => {
             return [
@@ -26,8 +19,6 @@ import Swal from "sweetalert2"
       }
 
     }
-
-
 
 
   export async function DeleteUserForm(){
