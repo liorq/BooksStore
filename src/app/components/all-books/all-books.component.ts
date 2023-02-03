@@ -19,9 +19,9 @@ booksToDisplay:book[]=[...this.allBooks];
 
 
 ngOnInit(){
-if(this.localService.isUserLogged()){
+if(this.localService.isUserLogged())
   this.userInfoService.isUserLogged.next(true)
-}
+
 }
 
 

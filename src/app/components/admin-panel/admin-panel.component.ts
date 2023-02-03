@@ -3,6 +3,7 @@ import {  genericForm } from 'src/app/app.forms';
 import { book } from 'src/app/app.interfaces';
 import { messages } from 'src/app/app.messages';
 import { LocalService } from 'src/app/service/local.service';
+import { UserInfoService } from 'src/app/service/user-info.service';
 import Swal from 'sweetalert2';
 
 
@@ -20,11 +21,14 @@ export class AdminPanelComponent implements OnInit{
   isBooksPanelOpen=false;
   booksToDisplay:book[]=[];
   ngOnInit(){
+    if(this.localService.isUserLogged())
+      this.userInfoService.isUserLogged.next(true)
+    
     const allBooks=JSON.parse(this.localService.getLocalProperty('allBooks')||"[]")
     this.booksToDisplay=allBooks;
   }
 
-   constructor(private localService:LocalService){}
+   constructor(private localService:LocalService,private userInfoService:UserInfoService){}
    addBook(){
    const newBook:any= this.createNewBook()
   //  this.localService.setLocalProperty('allBooks',JSON.stringify(getAllBooks()))

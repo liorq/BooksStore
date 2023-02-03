@@ -35,10 +35,9 @@ ngOnInit(): void {
    if(isValidateForm){
     currentUser.email=formValues[0];
     currentUser.password=formValues[2];
-
     const index:any=this.localService.getLocalProperty('index')
     this.booksService.usersData[index]=currentUser;
-    console.log(this.booksService.usersData)
+    
     this.localService.setLocalProperty('usersData',JSON.stringify([...this.booksService.usersData]))
   }
 
