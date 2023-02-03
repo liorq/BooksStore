@@ -39,7 +39,7 @@ export const messages:any={
   changeSuccessfully: {
     title: 'Details successfully updated.',
     icon: 'question',
-    iconHtml: '=(',
+    iconHtml: '=)',
     confirmButtonText: 'ok',
     showCloseButton: true,
   },

@@ -55,6 +55,7 @@ export class LocalService {
       this.initialLocalProperty('isUserLogged',true)
       this.initialLocalProperty('currentUserName',"")
   }
+  
   isUserLogged(){
     if(this.getLocalProperty('currentUserName')!="")
       return true

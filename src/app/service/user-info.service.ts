@@ -10,8 +10,6 @@ export class UserInfoService {
 isPaymentModalClose=new Subject<boolean>()
 isUserLogged=new Subject<boolean>()
 
-  constructor() { }
-
   isValidUserInfo(userName: string, password: string, usersData: any[]) {
     for (let user of usersData) {
       if (userName == user.email && password == user.password)
