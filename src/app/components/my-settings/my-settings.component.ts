@@ -20,6 +20,7 @@ ngOnInit(): void {
   }
 }
  async deleteUser(){
+  
    const isUserConfirmDelete:any=await DeleteUserForm()
     if(isUserConfirmDelete)
    this.localService.deleteUser(this.localService.getLocalProperty('currentUserName'))
@@ -37,7 +38,7 @@ ngOnInit(): void {
     currentUser.password=formValues[2];
     const index:any=this.localService.getLocalProperty('index')
     this.booksService.usersData[index]=currentUser;
-    
+
     this.localService.setLocalProperty('usersData',JSON.stringify([...this.booksService.usersData]))
   }
 

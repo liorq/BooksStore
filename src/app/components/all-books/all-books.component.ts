@@ -24,16 +24,16 @@ if(this.localService.isUserLogged())
 }
 
 showMatchingBooks(){
-  let capitalizedString=this.PrepareTheSearchValueForUse()
+  const capitalizedString=this.PrepareTheSearchValueForUse()
   const bookToDisplay= this.allBooks.filter
   ((book)=>{return  book.name.includes(capitalizedString)})
   this.booksToDisplay=[...bookToDisplay]
 }
 
 PrepareTheSearchValueForUse(){
-  let capitalizedString = this.searchValue.trim().toLowerCase().replaceAll(' ','_')
-  capitalizedString = capitalizedString.charAt(0).toUpperCase() +capitalizedString.slice(1);
-  return capitalizedString;
+  const capitalizedString = this.searchValue.trim().toLowerCase().replaceAll(' ','_')
+  return capitalizedString.charAt(0).toUpperCase() +capitalizedString.slice(1);
+
 }
 
 addBooksToCart(book:book){
