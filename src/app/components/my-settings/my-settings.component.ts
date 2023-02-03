@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { DeleteUserForm, genericForm } from 'src/app/app.forms';
 import { messages } from 'src/app/app.messages';
 import { BooksService } from 'src/app/service/books.service';
@@ -13,17 +14,21 @@ import Swal from 'sweetalert2';
   styleUrls: ['./my-settings.component.css']
 })
 export class MySettingsComponent implements OnInit{
-constructor(public localService:LocalService,private userInfoService:UserInfoService,private booksService:BooksService){}
+constructor(private  router: Router,public localService:LocalService,private userInfoService:UserInfoService,private booksService:BooksService){}
 ngOnInit(): void {
   if(this.localService.isUserLogged()){
     this.userInfoService.isUserLogged.next(true)
   }
 }
  async deleteUser(){
-  
+
    const isUserConfirmDelete:any=await DeleteUserForm()
-    if(isUserConfirmDelete)
-   this.localService.deleteUser(this.localService.getLocalProperty('currentUserName'))
+    if(isUserConfirmDelete){
+        this.localService.deleteUser(this.localService.getLocalProperty('currentUserName'))
+        this.localService.deleteUserInfo();
+        this.userInfoService.isUserLogged.next(false);
+        this.router.navigate(['/SignIn']);
+    }
   }
 
   async changePropertyOfUser(){
