@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { editBookForm } from 'src/app/app.forms';
+import {  genericForm } from 'src/app/app.forms';
 import { book } from 'src/app/app.interfaces';
 import { messages } from 'src/app/app.messages';
 import { LocalService } from 'src/app/service/local.service';
@@ -49,7 +49,8 @@ export class AdminPanelComponent implements OnInit{
   }
 
    async editBook(book:book){
-    const form=editBookForm(book)
+    const form=genericForm(book,'Edit book','book')
+
     const { value: formValues } = await Swal.fire(form);
     if (formValues){
       book.name=formValues[0];

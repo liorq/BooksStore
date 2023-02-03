@@ -1,12 +1,12 @@
 import Swal from "sweetalert2"
 
-export function editBookForm(book:any){
-  return genericForm(book,'Edit book','book')
-}
+// export function editBookForm(book:any){
+//   return genericForm(book,'Edit book','book')
+// }
 
-export function editUserForm(user:any){
-  return genericForm(user,'Edit user details','user')
-  }
+// export function editUserForm(user:any){
+//   return genericForm(user,'Edit user details','user')
+//   }
 
   export function genericForm(user:any,title:string,property:string){
     return{

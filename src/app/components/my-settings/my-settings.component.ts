@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DeleteUserForm, editUserForm } from 'src/app/app.forms';
+import { DeleteUserForm, genericForm } from 'src/app/app.forms';
 import { messages } from 'src/app/app.messages';
 import { BooksService } from 'src/app/service/books.service';
 import { LocalService } from 'src/app/service/local.service';
@@ -27,7 +27,8 @@ ngOnInit(): void {
 
   async changePropertyOfUser(){
    const currentUser= this.localService.getUserObj();
-   const form= editUserForm(currentUser)
+   const form=genericForm(currentUser,'Edit user details','user')
+
    const {value:formValues}=await Swal.fire(form)
    const isValidateForm=formValues![1]==currentUser.password&&formValues;
 
