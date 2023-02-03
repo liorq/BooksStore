@@ -23,12 +23,13 @@ export class AdminPanelComponent implements OnInit{
   ngOnInit(){
     if(this.localService.isUserLogged())
       this.userInfoService.isUserLogged.next(true)
-    
+
     const allBooks=JSON.parse(this.localService.getLocalProperty('allBooks')||"[]")
     this.booksToDisplay=allBooks;
   }
 
    constructor(private localService:LocalService,private userInfoService:UserInfoService){}
+   
    addBook(){
    const newBook:any= this.createNewBook()
   //  this.localService.setLocalProperty('allBooks',JSON.stringify(getAllBooks()))
@@ -39,7 +40,6 @@ export class AdminPanelComponent implements OnInit{
    Swal.fire(messages.BookAddedToLocalStorage)
   }
   createNewBook(){
-
   return{
     id:this.BookId,
    name:this.BookName,
@@ -47,6 +47,7 @@ export class AdminPanelComponent implements OnInit{
   author: this.authorName,
   }
   }
+
   deleteBook(book:book){
     this.booksToDisplay = this.booksToDisplay.filter(b => b !== book);
     this.localService.setLocalProperty('allBooks',JSON.stringify(this.booksToDisplay))
@@ -64,6 +65,5 @@ export class AdminPanelComponent implements OnInit{
       this.localService.setLocalProperty('allBooks',JSON.stringify(this.booksToDisplay))
     }
   }
-
 
 }

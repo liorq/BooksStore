@@ -21,9 +21,7 @@ booksToDisplay:book[]=[...this.allBooks];
 ngOnInit(){
 if(this.localService.isUserLogged())
   this.userInfoService.isUserLogged.next(true)
-
 }
-
 
 showMatchingBooks(){
   let capitalizedString=this.PrepareTheSearchValueForUse()
