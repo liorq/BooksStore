@@ -49,8 +49,10 @@ export class SignUpComponent  implements OnInit{
     newUser,
     this.booksService.usersData
   );
-  if (!isUserNameAvailable)
-        return;
+  if (!isUserNameAvailable){
+    Swal.fire(messages.usernameIsntAvailable)
+    return;
+  }
 
   this.addNewUserPropertyToLocalService(newUser)
   this.userInfoService.isUserLogged.next(true)
