@@ -38,12 +38,9 @@ constructor(private userInfoService:UserInfoService,private booksService:BooksSe
 
   }
   isValidPayment(){
-    if(this.isValidCard)
-    Swal.fire(messages.purchasedSuccessfully)
-    else
-    Swal.fire(messages.invalidCreditCardDetails)
-
-     return this.isValidCard
+    Swal.fire(this.isValidCard?messages.purchasedSuccessfully:messages.invalidCreditCardDetails)
+     return this.isValidCard;
+     
 }
 
 }

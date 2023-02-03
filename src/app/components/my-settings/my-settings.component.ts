@@ -34,14 +34,12 @@ ngOnInit(): void {
    if(isValidateForm){
     currentUser.email=formValues[0];
     currentUser.password=formValues[1];
-
     const index:any=this.localService.getLocalProperty('index')
     this.booksService.usersData[index]=currentUser
     this.localService.setLocalProperty('usersData',JSON.stringify([...this.booksService.usersData]))
-    Swal.fire(messages.changeSuccessfully)
+  }
+  
+   Swal.fire(isValidateForm?messages.changeSuccessfully:messages.passwordIncorrect)
+  }
 
-  }
-  else
-   Swal.fire(messages.passwordIncorrect)
-  }
 }
