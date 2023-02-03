@@ -1,0 +1,78 @@
+<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+
+<div class="login" id="background">
+  <h2 class="active"> sign up </h2>
+
+  <form [formGroup]="subscribeForm">
+
+    <input id="input" type="text" class="text" name="name"
+    formControlName="name"
+    placeholder="name"
+
+    [ngClass]="
+    name.touched && name.invalid ? 'input-text__inavlid' : ''"
+    >
+     <span>username</span>
+
+    <div *ngIf="name.touched && name.invalid" class="invalid-message">
+      {{
+        this.userInfoService.getInvalidMessage(
+          name.errors,
+          "name",
+          "minlength",
+          this.errorMessages.name
+        )
+      }}
+
+
+    </div>
+    <br>
+    <br>
+    <input id="input" type="password" class="text" name="password"
+    formControlName="password"
+    placeholder="password"
+    [ngClass]="
+    password.touched && password.invalid ? 'input-text__inavlid' : ''"
+    >
+    <span>password</span>
+    <div *ngIf="password.touched && password.invalid" class="invalid-message">
+      {{
+        this.userInfoService.getInvalidMessage(
+          password.errors,
+          "password",
+          "minlength",
+          this.errorMessages.password
+        )
+      }}
+      </div>
+    <input  id="input" type="email" class="text" name="email"
+    formControlName="email"
+    placeholder="email"
+    [ngClass]="
+    email.touched && email.invalid ? 'input-text__inavlid' : ''
+      "
+    >
+    <span>email</span>
+    <div *ngIf="email.touched && email.invalid" class="invalid-message">
+      {{
+        this.userInfoService.getInvalidMessage(
+          email.errors,
+          "email",
+          "email",
+          this.errorMessages.email
+        )
+      }}
+    </div>
+    <br>
+    <label class="typeOfUser">Please choose a user type.</label>
+    <select id="typeOfUser"  formControlName="typeOfUser">
+      <option value="user">user</option>
+      <option value="admin">admin</option>
+    </select>
+
+    <button class="button-submit" [disabled]="subscribeForm.invalid" class="signin" (click)="signUp();">
+      Sign Up
+    </button>
+    <hr>
+  </form>
+</div>

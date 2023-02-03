@@ -1,0 +1,33 @@
+#background{
+  background: url('https://images.pexels.com/photos/1624496/pexels-photo-1624496.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+  background-size: cover;
+}
+.input-text__inavlid {
+  border: 1px solid #d90429;
+}
+.invalid-message {
+  color: #d90429;
+  font-size: 1.2rem;
+  font-family: 'Montserrat';
+}
+
+#input{
+  height: 40px;
+  width: 300px;
+}
+.typeOfUser{
+  color: #18a832;
+  font-size: 18px;
+}
+select{
+  border-radius: 10px;
+  height: 40px;
+  font-weight: 500;
+  width: 67px;
+  margin-left: 5px;
+  font-size: 15px;
+}
+.button-submit:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}

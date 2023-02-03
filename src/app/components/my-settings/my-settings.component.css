@@ -1,0 +1,31 @@
+.delete-User,.log-out,.change{
+color:#fff ;
+font-size: 28px;
+text-shadow:  0 0 5px #ffffff2c, 0 0 10px #ffffff93, 0 0 20px #fff, 0 0 40px rgba(5, 75, 75, 0.778), 0 0 80px rgb(38, 142, 142), 0 0 90px rgb(35, 119, 119), 0 0 100px rgb(37, 72, 72), 0 0 150px rgb(12, 51, 51);
+margin-bottom: 5px;
+cursor: pointer;
+
+
+}
+
+.container{
+  height: 300px;
+  font-family: 'Roboto', sans-serif;
+}
+.container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(rgb(12, 96, 96),#5b8e7d);
+  border-radius: 15px;
+  max-width: 290px;
+}
+.delete-User:hover,.log-out:hover,.change:hover{
+background: #a099991f;
+border-radius: 15px;
+width: 100%;
+display: flex;
+align-items: center;
+justify-content: center;
+}

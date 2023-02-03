@@ -1,0 +1,42 @@
+
+<div id="big-container" class="big-container">
+  <div class="container-gif-and-options">
+<div class="admin-gif"></div>
+<div class="containerAdmin" id="containerAdmin">
+
+<div class="container">
+<div class="hover-btn" (click)="this.isBooksPanelOpen=true">
+  Delete or Edit book
+</div>
+<div class="hover-btn" (click)="this.isAddBookModalOpen=true">  Add book
+</div>
+<div *ngIf="this.isBooksPanelOpen" class="hover-btn" (click)="this.isBooksPanelOpen=false">
+  Close open panel
+</div>
+</div>
+</div>
+
+<div class="gray-background"  *ngIf="this.isAddBookModalOpen" >
+
+<div class="modal-addBook" *ngIf="this.isAddBookModalOpen">
+  <div class="x" (click)="this.isAddBookModalOpen=false;">x</div>
+<div class="message">Please enter the name of the book</div>
+<input type="text" [(ngModel)]="BookName">
+<div  class="message">Please enter the price of the book</div>
+
+<input type="text" [(ngModel)]="price">
+<div  class="message">Please enter the author name of the book</div>
+
+<input type="text" [(ngModel)]="authorName">
+<div  class="message">Please enter the ID of the book.</div>
+
+<input type="text" [(ngModel)]="BookId">
+
+<button class="glow-on-hover" (click)="addBook();this.isAddBookModalOpen=false;">Add book</button>
+</div>
+</div>
+
+
+
+<app-books-list *ngIf="this.isBooksPanelOpen" [booksToDisplay]="booksToDisplay" [clickHandler]="deleteBook" [secondClickHandler]="editBook" [secondBtnTitle]="'Edit book'" [btnTitle]="'Delete book'"></app-books-list>
+</div>

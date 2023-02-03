@@ -1,0 +1,56 @@
+<div class="header-container">
+  <div class="option-container">
+<div *ngIf="isUserLogged" class="Setting" routerLink="mySetting">Setting</div>
+<div *ngIf="!isUserLogged" class="Sign-in" routerLink="signIn">Sign-in</div>
+<div *ngIf="!isUserLogged" class="Sign-up" routerLink="signUp">Sign-up</div>
+<div *ngIf="isUserLogged" class="Log-out" (click)="deleteUserInfo()" routerLink="signIn" >Log-out</div>
+ <div *ngIf="isUserLogged" class="My-cart" routerLink="myCart"></div >
+  <div  class="allBooks" routerLink="allBooks">allBooks</div >
+
+
+  <span  *ngIf="isUserLogged" id="cart" class=" material-symbols-outlined " routerLink="myCart">
+  shopping_cart_checkout
+  </span>
+
+</div>
+
+
+</div>
+<div class="title1">
+
+  <section class="container ">
+    <div class="words word-1">
+      <span class="neon">B</span>
+      <span class="neon">O</span>
+      <span class="neon">O</span>
+      <span class="neon">K</span>
+
+    </div>
+
+    <div class="words word-2">
+      <span class="neon">S</span>
+      <span class="neon">T</span>
+      <span class="neon">O</span>
+      <span class="neon">R</span>
+      <span class="neon">E</span>
+    </div>
+
+    <div class="words word-3">
+      <span class="neon">H</span>
+      <span class="neon">O</span>
+      <span class="neon">T</span>
+      <span class="neon">S</span>
+      <span class="neon">A</span>
+      <span class="neon">L</span>
+      <span class="neon">E</span>
+
+    </div>
+
+  </section>
+
+
+
+</div>
+
+
+

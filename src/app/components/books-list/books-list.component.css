@@ -1,0 +1,334 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap');
+
+.defaultPic{
+background: url('../../../assets/images/defualtPic.png');
+}
+
+@property --rotate {
+  syntax: "<angle>";
+  initial-value: 132deg;
+  inherits: false;
+}
+
+
+
+
+body {
+  font-family: 'Lato', sans-serif;
+  min-height: 100vh;
+  background: #212534;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  box-sizing: border-box;
+}
+
+
+.card {
+
+
+
+  width:200px;
+  height:367px;
+  padding: 5px;
+  position: relative;
+  border-radius: 6px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  display: flex;
+  font-size: 0.7rem;
+  color:black;
+
+  cursor: pointer;
+  font-family: cursive;
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+
+
+.card::before {
+  content: "";
+  width: 104%;
+  height: 102%;
+  border-radius: 8px;
+  background-image: linear-gradient(
+    var(--rotate)
+    , #5ddcff, #3c67e3 43%, #4e00c2);
+    position: absolute;
+    z-index: -1;
+    top: -1%;
+    left: -2%;
+    animation: spin 2.5s linear infinite;
+}
+
+
+.div-name{
+  width:200px;
+  height: 50px;
+}
+@keyframes spin {
+  0% {
+    --rotate: 0deg;
+  }
+  100% {
+    --rotate: 360deg;
+  }
+}
+
+
+
+.Five_easy_steps_to_become_amazing{
+  background: url('../../../assets/images/Five_easy_steps_to_become_amazing.png');
+
+}
+.Greek_gods{
+  background: url('../../../assets/images/Greek_gods.png');
+
+}
+.The_sea_of_monsters{
+  background: url('../../../assets/images/The_sea_of_monsters.png');
+}
+.The_lightning_thief{
+  background: url('../../../assets/images/The_lightning_thief.png');
+
+}
+.The_titans_curse{
+  background: url('../../../assets/images/The_titans_curse.png');
+
+}
+.The_last_olympian{
+  background: url('../../../assets/images/The_last_olympian.png');
+
+}
+.The_singer_of_apollo{
+  background: url('../../../assets/images/The_singer_of_apollo.png');
+
+}
+.The_lost_hero{
+  background: url('../../../assets/images/The_lost_hero.png');
+
+}
+
+.books-container{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.book-pic{
+  height: 400px;
+  width: 204px;
+    place-items: center;
+
+  background-size: cover;
+}
+
+
+
+
+
+
+
+@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro:200,900');
+
+
+ html, body {
+	 width: 100%;
+	 height: 100%;
+	 display: flex;
+	 align-items: center;
+	 justify-content: center;
+	 background-color: #141218;
+}
+ button {
+	 position: relative;
+	 padding: 10px 20px;
+	 border: none;
+	 background: none;
+	 cursor: pointer;
+	 font-family: "Source Code Pro";
+	 font-weight: 900;
+	 text-transform: uppercase;
+	 font-size: 17px;
+	 color: rgba(198, 217, 236, 1);
+	 background-color: #156bc1;
+	 box-shadow:  rgba(84, 133, 182, .4) 2px 2px 22px;
+	 border-radius: 4px;
+	 z-index: 0;
+	 overflow: hidden;
+   justify-content: center;
+   align-items: center;
+   height: 70px;
+   margin: 5px;
+}
+ button:focus {
+	 outline-color: transparent;
+	 box-shadow: #156bc1 2px 2px 22px;
+}
+ .right::after, button::after {
+	 content: var(--content);
+	 display: block;
+	 position: absolute;
+	 white-space: nowrap;
+	 padding: 40px 40px;
+	 pointer-events: none;
+}
+ button::after {
+	 font-weight: 200;
+	 top: -30px;
+	 left: -20px;
+}
+ .right, .left {
+	 position: absolute;
+	 width: 100%;
+	 height: 100%;
+	 top: 0;
+}
+ .right {
+	 left: 66%;
+}
+ .left {
+	 right: 66%;
+}
+ .right::after {
+	 top: -30px;
+	 left: calc(-66% - 20px);
+	 background-color: #141218;
+	 color: transparent;
+	 transition: transform 0.4s ease-out;
+	 transform: translate(0, -90%) rotate(0deg);
+}
+ button:hover .right::after {
+	 transform: translate(0, -47%) rotate(0deg);
+}
+ button .right:hover::after {
+	 transform: translate(0, -50%) rotate(-7deg);
+}
+ button .left:hover ~ .right::after {
+	 transform: translate(0, -50%) rotate(7deg);
+}
+/* bubbles */
+ button::before {
+	 content: '';
+	 pointer-events: none;
+	 opacity: 0.6;
+	 background: radial-gradient(circle at 20% 35%, transparent 0, transparent 2px,rgba(198, 217, 236, 1) 3px, rgba(198, 217, 236, 1) 4px, transparent 4px), radial-gradient(circle at 75% 44%, transparent 0, transparent 2px,rgba(198, 217, 236, 1) 3px, rgba(198, 217, 236, 1) 4px, transparent 4px), radial-gradient(circle at 46% 52%, transparent 0, transparent 4px,rgba(198, 217, 236, 1) 5px,rgba(198, 217, 236, 1) 6px, transparent 6px);
+	 width: 100%;
+	 height: 300%;
+	 top: 0;
+	 left: 0;
+	 position: absolute;
+	 animation: bubbles 3s linear infinite both;
+}
+ @keyframes bubbles {
+	 from {
+		 transform: translate();
+	}
+	 to {
+		 transform: translate(0, -66.666%);
+	}
+}
+
+
+
+
+
+
+
+@keyframes spin {
+  0% {
+    --rotate: 0deg;
+  }
+  100% {
+    --rotate: 360deg;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+.glow-on-hover {
+    width: 154px;
+    height: 50px;
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+}
+
+.glow-on-hover:before {
+    content: '';
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    position: absolute;
+    top: -2px;
+    left:-2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+}
+
+.glow-on-hover:active {
+    color: #000
+}
+
+.glow-on-hover:active:after {
+    background: transparent;
+}
+#card{
+  background-color:  #000000a1
+}
+
+.glow-on-hover:hover:before {
+    opacity: 1;
+}
+
+.glow-on-hover:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #111;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}
+
+
+
+
+
+
+.card{
+  background-color: none;
+}

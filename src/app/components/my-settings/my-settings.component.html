@@ -1,0 +1,16 @@
+<div class="container">
+
+<div></div>
+<div class="delete-User" (click)="deleteUser()">
+ Delete User
+</div>
+<div class="change" (click)="changePropertyOfUser()">Change user detail's</div>
+<div class="log-out">
+ Log-out
+</div>
+
+<div *ngIf="this.localService.getUserObj().typeOfUser=='admin'" class="log-out" [routerLink]="['/admin']" >
+  Admin panel
+ </div>
+
+</div>

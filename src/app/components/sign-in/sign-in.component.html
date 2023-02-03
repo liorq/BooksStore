@@ -1,0 +1,23 @@
+<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+
+<div class="login">
+  <h2 class="active"> sign in </h2>
+
+
+
+
+
+  <form>
+    <input id="input" type="text" class="text" name="username" [(ngModel)]="userName">
+     <span>username</span>
+    <br>
+    <br>
+    <input id="input" type="password" class="text" name="password" [(ngModel)]="Password">
+    <span>password</span>
+    <br>
+    <button class="signin" (click)="isValidUserInfo()">
+      Sign In
+    </button>
+    <hr>
+  </form>
+</div>

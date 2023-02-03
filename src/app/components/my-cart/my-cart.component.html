@@ -1,0 +1,12 @@
+<app-books-list [btnTitle]="'remove'" [booksToDisplay]="booksToDisplay" [clickHandler]="removeBookFromCart"></app-books-list>
+<div *ngIf="totalCharge(this.booksToDisplay)>0" class="container-total">
+<div class="total">total:{{totalCharge(this.booksToDisplay)+"$"}}</div>
+<button  class="glow-on-hover" (click)="displayModalPayment()"> $Purchase</button></div>
+<div *ngIf="!isPaymentModalClose" class="modal-container">
+<app-payment-modal class="payment-modal"></app-payment-modal>
+</div>
+
+<div id="x-sign" *ngIf="booksToDisplay.length==0">
+  You don't have anything in your cart, press on the "All Books" button.
+</div>
+
