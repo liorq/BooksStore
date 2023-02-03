@@ -20,27 +20,25 @@ constructor(private userInfoService:UserInfoService,private booksService:BooksSe
   closeModal(){
     this.userInfoService.isPaymentModalClose.next(true)
   }
+
    isValidCreditCard(): any {
     const cardNumberRegex = new RegExp("^\\d{16}$");
     const cvvRegex = /^[0-9]{3,4}$/;
     const today = new Date();
     const expiry = new Date(this.expireDate);
-
     this.isValidCard=cvvRegex.test(this.cvv)&&expiry < today&& cardNumberRegex.test(this.cardNumber)
     return  this.isValidCard
-
   }
+
   processThePayment(){
     if(this.isValidPayment()){
        this.closeModal()
        this.booksService.currentBooks.next([])
     }
-
   }
+
   isValidPayment(){
     Swal.fire(this.isValidCard?messages.purchasedSuccessfully:messages.invalidCreditCardDetails)
      return this.isValidCard;
-     
 }
-
 }

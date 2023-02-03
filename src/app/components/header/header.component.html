@@ -16,33 +16,21 @@
 
 
 </div>
+
+
 <div class="title1">
 
   <section class="container ">
     <div class="words word-1">
-      <span class="neon">B</span>
-      <span class="neon">O</span>
-      <span class="neon">O</span>
-      <span class="neon">K</span>
-
+      <span class="neon" *ngFor="let char of 'BOOK'.split('')">{{char}}</span>
     </div>
 
     <div class="words word-2">
-      <span class="neon">S</span>
-      <span class="neon">T</span>
-      <span class="neon">O</span>
-      <span class="neon">R</span>
-      <span class="neon">E</span>
+      <span class="neon" *ngFor="let char of 'STORE'.split('')">{{char}}</span>
     </div>
 
     <div class="words word-3">
-      <span class="neon">H</span>
-      <span class="neon">O</span>
-      <span class="neon">T</span>
-      <span class="neon">S</span>
-      <span class="neon">A</span>
-      <span class="neon">L</span>
-      <span class="neon">E</span>
+      <span class="neon" *ngFor="let char of 'HOTSALE'.split('')">{{char}}</span>
 
     </div>
 
