@@ -20,20 +20,21 @@
 
 <div class="modal-addBook" *ngIf="this.isAddBookModalOpen">
   <div class="x" (click)="this.isAddBookModalOpen=false;">x</div>
-<div class="message">Please enter the name of the book</div>
-<input type="text" [(ngModel)]="BookName">
-<div  class="message">Please enter the price of the book</div>
 
-<input type="text" [(ngModel)]="price">
-<div  class="message">Please enter the author name of the book</div>
+  
+  <div *ngFor="let item of ['BookName', 'price', 'authorName', 'bookId']">
+    <div class="message">Please enter the {{item}}:</div>
+    <input type="text" [(ngModel)]="book[item]">
+  </div>
 
-<input type="text" [(ngModel)]="authorName">
-<div  class="message">Please enter the ID of the book.</div>
-
-<input type="text" [(ngModel)]="BookId">
 
 <button class="glow-on-hover" (click)="addBook();this.isAddBookModalOpen=false;">Add book</button>
 </div>
+
+
+
+
+
 </div>
 
 

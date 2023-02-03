@@ -13,7 +13,7 @@ import { book } from '../../app.interfaces';
 })
 export class AllBooksComponent implements OnInit {
   constructor(private localService:LocalService,private userInfoService:UserInfoService){}
-allBooks:book[]=getAllBooks();
+allBooks:book[]=JSON.parse(this.localService.getLocalProperty('allBooks')||"[]")
 searchValue:string="";
 booksToDisplay:book[]=[...this.allBooks];
 

@@ -13,13 +13,16 @@ import Swal from 'sweetalert2';
   styleUrls: ['./admin-panel.component.css','../books-list/books-list.component.css']
 })
 export class AdminPanelComponent implements OnInit{
-  BookName: string="";
-  price: string="";
-  authorName: string="";
-  BookId: string="";
+ 
   isAddBookModalOpen=false;
   isBooksPanelOpen=false;
   booksToDisplay:book[]=[];
+  book:any={
+    BookName:"",
+    price:"",
+    authorName:"",
+    BookId:"",
+  }
   ngOnInit(){
     if(this.localService.isUserLogged())
       this.userInfoService.isUserLogged.next(true)
@@ -29,7 +32,7 @@ export class AdminPanelComponent implements OnInit{
   }
 
    constructor(private localService:LocalService,private userInfoService:UserInfoService){}
-   
+
    addBook(){
    const newBook:any= this.createNewBook()
   //  this.localService.setLocalProperty('allBooks',JSON.stringify(getAllBooks()))
@@ -41,10 +44,10 @@ export class AdminPanelComponent implements OnInit{
   }
   createNewBook(){
   return{
-    id:this.BookId,
-   name:this.BookName,
-   price:this.price,
-  author: this.authorName,
+    id:this.book.BookId,
+   name:this.book.BookName,
+   price:this.book.price,
+  author: this.book.authorName,
   }
   }
 
