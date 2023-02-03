@@ -23,7 +23,7 @@ bottom: 59px;
   position: absolute;
   top: -10px;
 }
-.Setting,.Sign-in,.Sign-up,.Log-out,.My-cart,.allBooks{
+.Setting,.SignIn,.SignUp,.Log-out,.myCart,.allBooks{
 margin-right: 15px;
 cursor: pointer;
 }
@@ -104,7 +104,7 @@ body {
 
 @import url("https://fonts.googleapis.com/css?family=Sacramento&display=swap");
 
-.Setting,.Sign-in,.Sign-up,.Log-out,.My-cart ,.allBooks{
+.Setting,.SignIn,.SignUp,.Log-out,.myCart ,.allBooks{
   font-size:  2.5vh;
   line-height: 10vh;
 

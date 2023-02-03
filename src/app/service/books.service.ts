@@ -12,7 +12,6 @@ export class BooksService {
   usersData:user[]=[];
   currentBooks=new Subject<book[]>();
 
-
   getBookPicture(book:book){
     const obj:any={}
      obj['defaultPic']=true;

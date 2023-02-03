@@ -1,12 +1,15 @@
 <div class="header-container">
   <div class="option-container">
-<div *ngIf="isUserLogged" class="Setting" routerLink="mySetting">Setting</div>
-<div *ngIf="!isUserLogged" class="Sign-in" routerLink="signIn">Sign-in</div>
-<div *ngIf="!isUserLogged" class="Sign-up" routerLink="signUp">Sign-up</div>
-<div *ngIf="isUserLogged" class="Log-out" (click)="deleteUserInfo()" routerLink="signIn" >Log-out</div>
- <div *ngIf="isUserLogged" class="My-cart" routerLink="myCart"></div >
-  <div *ngIf="isUserLogged"  class="allBooks" routerLink="allBooks">allBooks</div >
 
+    <div *ngFor="let item of ['SignIn','SignUp']">
+      <div  *ngIf="!isUserLogged" class="{{item}}" routerLink="{{item}}">{{item}}</div>
+    </div>
+
+    <div *ngFor="let item of ['Setting','allBooks']">
+      <div *ngIf="isUserLogged" class="{{item}}" routerLink="{{item}}">{{item}}</div>
+    </div>
+
+<div *ngIf="isUserLogged" class="Log-out" (click)="deleteUserInfo()" routerLink="signIn" >Log-out</div>
 
   <span  *ngIf="isUserLogged" id="cart" class=" material-symbols-outlined " routerLink="myCart">
   shopping_cart_checkout
@@ -31,13 +34,8 @@
 
     <div class="words word-3">
       <span class="neon" *ngFor="let char of 'HOTSALE'.split('')">{{char}}</span>
-
     </div>
-
   </section>
-
-
-
 </div>
 
 
