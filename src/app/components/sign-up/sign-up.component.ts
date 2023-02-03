@@ -16,7 +16,7 @@ import Swal from 'sweetalert2';
 })
 export class SignUpComponent  implements OnInit{
   ngOnInit(){
-    this.formInitialization()
+    this.initForm()
     this.booksService.usersData=JSON.parse(this.localService.getLocalProperty('usersData')||"[]")
 
   }
@@ -28,7 +28,7 @@ export class SignUpComponent  implements OnInit{
   errorMessages=messages.errorMessages
   typeOfUser:any;
 
-  formInitialization() {
+  initForm() {
     this.subscribeForm = new FormGroup({
       name: new FormControl('', [Validators.required,Validators.minLength(4)]),
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -42,7 +42,7 @@ export class SignUpComponent  implements OnInit{
     this.typeOfUser=this.subscribeForm.get('typeOfUser');
   }
 
-  signUp(){
+  CreateUserProfile(){
   const newUser:any={ ...this.subscribeForm.value };
   const isUserNameAvailable =
   this.userInfoService.isUserAvailable(
