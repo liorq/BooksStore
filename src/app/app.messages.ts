@@ -104,14 +104,22 @@ export const messages:any={
 
 export function DisplayBookInfoMessage(book:book)
 {
-return {
-  title: `name:${book.name}\n price:${book.price+" $"}\n author:${book.author}\n`,
-  background:'url(../../assets/images/background.png)',
-  showClass: {popup: 'animate__animated animate__fadeInDown'},
-  hideClass: {popup: 'animate__animated animate__fadeOutUp'},
-  imageUrl:`../../../assets/images/${book.name}.png`
-  ,imageWidth:'250px',imageHeight:'250px',
-  }
+  return {
+
+    customClass: {
+      textColor: '.text-white',
+      title:'.text-white'
+    },
+    title: `Name: ${book.name}\n Price: ${book.price + " $"}\n Author: ${book.author}\n`,
+    background: 'url(../../assets/images/background.png)',
+    showClass: { popup: 'animate__animated animate__fadeInDown' },
+    hideClass: { popup: 'animate__animated animate__fadeOutUp' },
+    imageUrl: `../../../assets/images/${book.name}.png`,
+    imageWidth: '250px',
+    imageHeight: '250px',
+
+
+  };
 }
 
 
