@@ -5,7 +5,7 @@
 <div *ngIf="!isUserLogged" class="Sign-up" routerLink="signUp">Sign-up</div>
 <div *ngIf="isUserLogged" class="Log-out" (click)="deleteUserInfo()" routerLink="signIn" >Log-out</div>
  <div *ngIf="isUserLogged" class="My-cart" routerLink="myCart"></div >
-  <div  class="allBooks" routerLink="allBooks">allBooks</div >
+  <div *ngIf="isUserLogged"  class="allBooks" routerLink="allBooks">allBooks</div >
 
 
   <span  *ngIf="isUserLogged" id="cart" class=" material-symbols-outlined " routerLink="myCart">
