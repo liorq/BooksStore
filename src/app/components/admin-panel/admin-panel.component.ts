@@ -24,8 +24,6 @@ export class AdminPanelComponent implements OnInit{
     BookId:"",
   }
   ngOnInit(){
-    if(this.localService.isUserLogged())
-      this.userInfoService.isUserLogged.next(true)
 
     const allBooks=JSON.parse(this.localService.getLocalProperty('allBooks')||"[]")
     this.booksToDisplay=allBooks;
@@ -66,5 +64,5 @@ export class AdminPanelComponent implements OnInit{
       this.localService.setLocalProperty('allBooks',JSON.stringify(this.booksToDisplay))
     }
   }
-  
+
 }

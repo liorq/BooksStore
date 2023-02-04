@@ -18,6 +18,7 @@ import { v4 as uuidv4 } from 'uuid';
 })
 export class SignUpComponent  implements OnInit{
   ngOnInit(){
+
     this.initForm()
     this.booksService.usersData=JSON.parse(this.localService.getLocalProperty('usersData')||"[]")
 
@@ -48,6 +49,7 @@ export class SignUpComponent  implements OnInit{
     const uniqueEmail ='guest'+ uuidv4()+'@gmail.com';
     this.addNewUserPropertyToLocalService({
       email: uniqueEmail,
+      password: '12345678',
       booksInCart: [],
       typeOfUser:'guest',
     })

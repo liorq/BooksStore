@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { messages } from 'src/app/app.messages';
 import { LocalService } from 'src/app/service/local.service';
 import { UserInfoService } from 'src/app/service/user-info.service';
@@ -11,17 +11,14 @@ import { book } from '../../app.interfaces';
   templateUrl: './all-books.component.html',
   styleUrls: ['./all-books.component.css']
 })
-export class AllBooksComponent implements OnInit {
+export class AllBooksComponent  {
   constructor(private localService:LocalService,private userInfoService:UserInfoService){}
 allBooks:book[]=JSON.parse(this.localService.getLocalProperty('allBooks')||"[]")
 searchValue:string="";
 booksToDisplay:book[]=[...this.allBooks];
 
 
-ngOnInit(){
-if(this.localService.isUserLogged())
-  this.userInfoService.isUserLogged.next(true)
-}
+
 
 showMatchingBooks(){
   const capitalizedString=this.PrepareTheSearchValueForUse()

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { DeleteUserForm, genericForm } from 'src/app/app.forms';
 import { messages } from 'src/app/app.messages';
@@ -13,13 +13,9 @@ import Swal from 'sweetalert2';
   templateUrl: './my-settings.component.html',
   styleUrls: ['./my-settings.component.css']
 })
-export class MySettingsComponent implements OnInit{
+export class MySettingsComponent {
 constructor(private  router: Router,public localService:LocalService,private userInfoService:UserInfoService,private booksService:BooksService){}
-ngOnInit(): void {
-  if(this.localService.isUserLogged()){
-    this.userInfoService.isUserLogged.next(true)
-  }
-}
+
  async deleteUser(){
 
    const isUserConfirmDelete:any=await DeleteUserForm()
@@ -43,8 +39,7 @@ ngOnInit(): void {
     currentUser.password=formValues[2];
     const index:any=this.localService.getLocalProperty('index')
     this.booksService.usersData[index]=currentUser;
-
-    this.localService.setLocalProperty('usersData',JSON.stringify([...this.booksService.usersData]))
+     this.localService.setLocalProperty('usersData',JSON.stringify(this.booksService.usersData))
   }
 
    Swal.fire(isValidateForm?messages.changeSuccessfully:messages.passwordIncorrect)
