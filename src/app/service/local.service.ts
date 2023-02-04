@@ -25,6 +25,7 @@ export class LocalService {
    this.setLocalProperty('usersData',JSON.stringify(filteredData))
 
   }
+
   getBooksInCarts(){
     const currentUserName:any= this.getLocalProperty('currentUserName')
     const usersData:any= JSON.parse(this.getLocalProperty('usersData')||"[]")
