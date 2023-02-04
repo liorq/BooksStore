@@ -9,7 +9,7 @@ import { UserInfoService } from '../../service/user-info.service';
 })
 export class HeaderComponent implements OnInit {
 isUserLogged?:boolean;
-constructor(private userInfoService:UserInfoService,private localService:LocalService){}
+constructor(private userInfoService:UserInfoService,public localService:LocalService){}
 ngOnInit(){
   this.userInfoService.isUserLogged.subscribe((isUserLogged)=>{
    this.isUserLogged=isUserLogged;

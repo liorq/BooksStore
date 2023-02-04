@@ -8,6 +8,8 @@ import { BooksService } from 'src/app/service/books.service';
 import { LocalService } from 'src/app/service/local.service';
 import { UserInfoService } from 'src/app/service/user-info.service';
 import Swal from 'sweetalert2';
+import { v4 as uuidv4 } from 'uuid';
+
 
 @Component({
   selector: 'app-sign-up',
@@ -42,6 +44,19 @@ export class SignUpComponent  implements OnInit{
     this.typeOfUser=this.subscribeForm.get('typeOfUser');
   }
 
+  CreateGuestProfile(){
+    const uniqueEmail ='guest'+ uuidv4()+'@gmail.com';
+
+    this.addNewUserPropertyToLocalService({
+      email: uniqueEmail,
+      password: '12345678',
+      booksInCart: [],
+      typeOfUser:'guest',
+    })
+    this.router.navigate(['/allBooks'])
+
+  }
+
   CreateUserProfile(){
   const newUser:any={ ...this.subscribeForm.value };
   const isUserNameAvailable =
@@ -53,13 +68,13 @@ export class SignUpComponent  implements OnInit{
     Swal.fire(messages.usernameIsntAvailable)
     return;
   }
-
   this.addNewUserPropertyToLocalService(newUser)
   this.userInfoService.isUserLogged.next(true)
   Swal.fire(messages.usernameAdded);
   this.router.navigate([`/${newUser.typeOfUser=='admin'?'admin':'allBooks'}`])
-
 }
+
+
 
 addNewUserPropertyToLocalService(newUser:any){
 
