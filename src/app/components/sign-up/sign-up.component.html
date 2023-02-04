@@ -64,11 +64,28 @@
       }}
     </div>
     <br>
-    <label class="typeOfUser">Please choose a user type.</label>
+
+
+    <div class="typeOfUser" *ngIf="typeOfUser.touched && typeOfUser.invalid" class="invalid-message">
+      {{
+        this.userInfoService.getInvalidMessage(
+          email.errors,
+          "typeOfUser",
+          "typeOfUser",
+          this.errorMessages.typeOfUser
+        )
+      }}
+    </div>
+
+ <div>
+   <div class="type-Of-User">type of user</div>
     <select id="typeOfUser"  formControlName="typeOfUser">
       <option value="user">user</option>
       <option value="admin">admin</option>
     </select>
+
+</div>
+
 
     <button class="button-submit" [disabled]="subscribeForm.invalid" class="signin" (click)="CreateUserProfile();">
       Sign Up

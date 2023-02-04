@@ -24,6 +24,8 @@ ngOnInit(): void {
 
    const isUserConfirmDelete:any=await DeleteUserForm()
     if(isUserConfirmDelete){
+      ///לראות מה אפשר לצמצם כאן זה ארוך מידע אולי לעשות פונקציה נוספת
+      
         this.localService.deleteUser(this.localService.getLocalProperty('currentUserName'))
         this.localService.deleteUserInfo();
         this.userInfoService.isUserLogged.next(false);

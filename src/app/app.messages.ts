@@ -6,6 +6,7 @@ export const messages:any={
     password:'password needs to contain at least 8 characters.',
     email: 'Invalid email address. Please enter a valid email address.',
     name: ' name must be at least 4 characters.',
+    typeOfUser:'Please choose a user type'
   },
 
   BookAdded: {
