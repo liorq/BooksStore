@@ -13,16 +13,11 @@ export class BooksService {
   currentBooks=new Subject<book[]>();
 
   getBookPicture(book:book){
-    const obj:any={}
-     obj['defaultPic']=true;
-     obj[book.name]=true;
-     return obj
+   return {'defaultPic':true,[book.name]:true }
    }
 
    DisplayBookInfo(book:book){
-   const message= DisplayBookInfoMessage(book)
-   Swal.fire(message)
-
+   Swal.fire(DisplayBookInfoMessage(book))
    }
 
 }
