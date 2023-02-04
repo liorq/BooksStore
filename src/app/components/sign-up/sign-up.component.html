@@ -91,7 +91,7 @@
       Sign Up
     </button>
 
-    <div *ngIf="this.localService.getUserObj()?.typeOfUser!='guest'" class="Log-as-guest" (click)="CreateGuestUser()">Log as guest</div>
+    <div *ngIf="this.localService.getUserObj()?.typeOfUser!='guest'" class="Log-as-guest btn-hover color-1" (click)="CreateGuestUser()">Log as guest</div>
     <hr>
   </form>
 </div>
