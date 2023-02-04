@@ -16,7 +16,8 @@ export class PaymentModalComponent {
   expireDate:any;
   cvv:any;
   isValidCard:boolean=false;
-constructor(private userInfoService:UserInfoService,private booksService:BooksService){}
+  
+  constructor(private userInfoService:UserInfoService,private booksService:BooksService){}
   closeModal(){
     this.userInfoService.isPaymentModalClose.next(true)
   }
@@ -38,7 +39,7 @@ constructor(private userInfoService:UserInfoService,private booksService:BooksSe
   }
 
   isValidPayment(){
-    Swal.fire(this.isValidCard?messages.purchasedSuccessfully:messages.invalidCreditCardDetails)
+    Swal.fire(messages[this.isValidCard?'purchasedSuccessfully':'invalidCreditCardDetails'])
      return this.isValidCard;
 }
 }

@@ -61,17 +61,15 @@ export class SignUpComponent  implements OnInit{
     newUser,
     this.booksService.usersData
   );
-  if (!isUserNameAvailable){
-    Swal.fire(messages.usernameIsntAvailable)
+
+  Swal.fire(messages[!isUserNameAvailable?'usernameIsntAvailable':'usernameAdded'])
+  if (!isUserNameAvailable)
     return;
-  }
+
   this.addNewUserPropertyToLocalService(newUser)
   this.userInfoService.isUserLogged.next(true)
-  Swal.fire(messages.usernameAdded);
   this.router.navigate([`/${newUser.typeOfUser=='admin'?'admin':'allBooks'}`])
 }
-
-
 
 addNewUserPropertyToLocalService(newUser:any){
 
