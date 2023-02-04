@@ -42,7 +42,7 @@ export class AdminPanelComponent implements OnInit{
   return{
     id:this.book.BookId,
    name:this.book.BookName,
-   price:this.book.price,
+   price:parseInt(this.book.price)||80,
   author: this.book.authorName,
   }
   }

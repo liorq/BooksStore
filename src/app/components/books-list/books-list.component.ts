@@ -19,5 +19,4 @@ export class BooksListComponent {
 @Input()secondBtnTitle?:string="";
 
 constructor(public booksService:BooksService,public localService :LocalService,public userInfoService:UserInfoService){}
-
 }
