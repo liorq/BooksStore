@@ -3,6 +3,7 @@ import {   FormGroup,
   FormControl,
   Validators, } from '@angular/forms';
 import { Router } from '@angular/router';
+import { user } from 'src/app/app.interfaces';
 import { messages } from 'src/app/app.messages';
 import { BooksService } from 'src/app/service/books.service';
 import { LocalService } from 'src/app/service/local.service';
@@ -18,7 +19,6 @@ import { v4 as uuidv4 } from 'uuid';
 })
 export class SignUpComponent  implements OnInit{
   ngOnInit(){
-
     this.initForm()
     this.booksService.usersData=JSON.parse(this.localService.getLocalProperty('usersData')||"[]")
 
@@ -47,13 +47,14 @@ export class SignUpComponent  implements OnInit{
 
   CreateGuestUser(){
     const uniqueEmail ='guest'+ uuidv4()+'@gmail.com';
-    this.addNewUserPropertyToLocalService({
+    const newGuestUser={
       email: uniqueEmail,
       password: '12345678',
       booksInCart: [],
       typeOfUser:'guest',
-    })
-    this.router.navigate(['/allBooks'])
+    }
+    this.newUserProcess(newGuestUser)
+
   }
 
   CreateUserProfile(){
@@ -68,13 +69,16 @@ export class SignUpComponent  implements OnInit{
   if (!isUserNameAvailable)
     return;
 
+  this.newUserProcess(newUser)
+}
+
+newUserProcess(newUser:user){
   this.addNewUserPropertyToLocalService(newUser)
   this.userInfoService.isUserLogged.next(true)
   this.router.navigate([`/${newUser.typeOfUser=='admin'?'admin':'allBooks'}`])
 }
 
 addNewUserPropertyToLocalService(newUser:any){
-
     this.booksService.usersData.push({
       email: newUser.email,
       password: newUser.password,
