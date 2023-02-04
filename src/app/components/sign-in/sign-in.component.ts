@@ -31,14 +31,17 @@ isValidUserInfo() {
     this.booksService.usersData
    );
 
-  if (isValidInfo) {
-    this.userInfoService.isUserLogged.next(true)
+  if (isValidInfo)
+  this.signInProcess()
+
+  else
+  Swal.fire(messages.usernameIncorrect);
+}
+signInProcess(){
+ this.userInfoService.isUserLogged.next(true)
     this.localService.setLocalProperty("currentUserName",this.userName)
     this.updateIndex(this.userName)
     this.router.navigate([`/${this.localService.getUserObj().typeOfUser=='admin'?'admin':'allBooks'}`])
-  }
-  else
-  Swal.fire(messages.usernameIncorrect);
 }
 
 updateIndex(userName:any){

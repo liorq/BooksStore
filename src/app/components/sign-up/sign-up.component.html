@@ -10,14 +10,14 @@
     placeholder="name"
 
     [ngClass]="
-    name.touched && name.invalid ? '.input-text__Invalid' : ''"
+    Name?.touched && Name?.invalid ? '.input-text__Invalid' : ''"
     >
      <span>username</span>
 
-    <div *ngIf="name.touched && name.invalid" class="invalid-message">
+    <div *ngIf="Name?.touched && Name?.invalid" class="invalid-message">
       {{
         this.userInfoService.getInvalidMessage(
-          name.errors,
+          Name?.errors,
           "name",
           "minlength",
           this.errorMessages.name
@@ -32,13 +32,13 @@
     formControlName="password"
     placeholder="password"
     [ngClass]="
-    password.touched && password.invalid ? '.input-text__Invalid' : ''"
+    Password?.touched && Password?.invalid ? '.input-text__Invalid' : ''"
     >
     <span>password</span>
-    <div *ngIf="password.touched && password.invalid" class="invalid-message">
+    <div *ngIf="Password?.touched && Password?.invalid" class="invalid-message">
       {{
         this.userInfoService.getInvalidMessage(
-          password.errors,
+          Password?.errors,
           "password",
           "minlength",
           this.errorMessages.password
@@ -49,14 +49,14 @@
     formControlName="email"
     placeholder="email"
     [ngClass]="
-    email.touched && email.invalid ? '.input-text__Invalid' : ''
+    Email?.touched && Email?.invalid ? '.input-text__Invalid' : ''
       "
     >
     <span>email</span>
-    <div *ngIf="email.touched && email.invalid" class="invalid-message">
+    <div *ngIf="Email?.touched && Email?.invalid" class="invalid-message">
       {{
         this.userInfoService.getInvalidMessage(
-          email.errors,
+          Email?.errors,
           "email",
           "email",
           this.errorMessages.email
@@ -66,10 +66,10 @@
     <br>
 
 
-    <div class="typeOfUser" *ngIf="typeOfUser.touched && typeOfUser.invalid" class="invalid-message">
+    <div class="typeOfUser" *ngIf="TypeOfUser?.touched && TypeOfUser?.invalid" class="invalid-message">
       {{
         this.userInfoService.getInvalidMessage(
-          email.errors,
+          TypeOfUser?.errors,
           "typeOfUser",
           "typeOfUser",
           this.errorMessages.typeOfUser

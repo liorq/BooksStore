@@ -18,7 +18,7 @@ searchValue:string="";
 booksToDisplay:book[]=[...this.allBooks];
 
 showMatchingBooks(){
-  const capitalizedString=this.PrepareTheSearchValueForUse()
+  const capitalizedString=this.PrepareTheSearchValueForUse();
   const bookToDisplay= this.allBooks.filter((book)=>{return  book.name.includes(capitalizedString)})
   this.booksToDisplay=[...bookToDisplay]
 }

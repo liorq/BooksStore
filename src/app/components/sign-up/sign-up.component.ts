@@ -25,11 +25,8 @@ export class SignUpComponent  implements OnInit{
   }
   constructor(public userInfoService:UserInfoService,private booksService:BooksService,private router:Router,public localService:LocalService){}
   subscribeForm!: FormGroup;
-  name: any;
-  email: any;
-  password: any;
   errorMessages=messages.errorMessages
-  typeOfUser:any;
+
 
   initForm() {
     this.subscribeForm = new FormGroup({
@@ -39,11 +36,12 @@ export class SignUpComponent  implements OnInit{
       typeOfUser: new FormControl('', [Validators.required]),
     });
 
-    this.name = this.subscribeForm.get('name');
-    this.email = this.subscribeForm.get('email');
-    this.password = this.subscribeForm.get('password');
-    this.typeOfUser=this.subscribeForm.get('typeOfUser');
   }
+  get Name(){return this.subscribeForm.get('name');}
+  get Email(){return this.subscribeForm.get('email');}
+  get Password(){return this.subscribeForm.get('password');}
+  get TypeOfUser(){return this.subscribeForm.get('typeOfUser');}
+
 
   CreateGuestUser(){
     const uniqueEmail ='guest'+ uuidv4()+'@gmail.com';
