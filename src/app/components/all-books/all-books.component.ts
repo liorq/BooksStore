@@ -37,8 +37,7 @@ PrepareTheSearchValueForUse(){
 
 addBooksToCart(book:book){
   const currentCart=this.localService.getBooksInCarts();
-  currentCart.push({...book})
-  this.localService.UpdateBooksCartInUsersData([...currentCart]);
+  this.localService.UpdateBooksCartInUsersData([...currentCart,{...book}]);
   Swal.fire(messages.BookAdded)
   }
 }
