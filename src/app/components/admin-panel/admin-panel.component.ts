@@ -27,15 +27,13 @@ export class AdminPanelComponent implements OnInit{
     if(this.localService.isUserLogged())
       this.userInfoService.isUserLogged.next(true)
 
-    const allBooks=JSON.parse(this.localService.getLocalProperty('allBooks')||"[]")
-    this.booksToDisplay=allBooks;
+    this.booksToDisplay=JSON.parse(this.localService.getLocalProperty('allBooks')||"[]");
   }
 
    constructor(private localService:LocalService,private userInfoService:UserInfoService){}
 
    addBook(){
-   const newBook:any= this.createNewBook()
-   this.booksToDisplay.push(newBook)
+   this.booksToDisplay.push(this.createNewBook());
    this.localService.setLocalProperty('allBooks',JSON.stringify([...this.booksToDisplay]))
    Swal.fire(messages.BookAddedToLocalStorage)
   }
