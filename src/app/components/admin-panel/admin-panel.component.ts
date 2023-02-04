@@ -39,7 +39,7 @@ export class AdminPanelComponent implements OnInit{
    this.localService.setLocalProperty('allBooks',JSON.stringify([...this.booksToDisplay]))
    Swal.fire(messages.BookAddedToLocalStorage)
   }
-  
+
   createNewBook(){
   return{
     id:this.book.BookId,
@@ -60,7 +60,7 @@ export class AdminPanelComponent implements OnInit{
     const { value: formValues } = await Swal.fire(form);
     if (formValues){
       book.name=formValues[0];
-      book.price=formValues[1];
+      book.price=parseInt(formValues[1])||0;
       book.author=formValues[2];
       Swal.fire(messages.changeSuccessfully)
       this.localService.setLocalProperty('allBooks',JSON.stringify(this.booksToDisplay))
