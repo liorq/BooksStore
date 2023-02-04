@@ -13,7 +13,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./admin-panel.component.css','../books-list/books-list.component.css']
 })
 export class AdminPanelComponent implements OnInit{
- 
+
   isAddBookModalOpen=false;
   isBooksPanelOpen=false;
   booksToDisplay:book[]=[];
@@ -35,13 +35,11 @@ export class AdminPanelComponent implements OnInit{
 
    addBook(){
    const newBook:any= this.createNewBook()
-  //  this.localService.setLocalProperty('allBooks',JSON.stringify(getAllBooks()))
-   const allBooks=JSON.parse(this.localService.getLocalProperty('allBooks')||"[]")
-   allBooks.push(newBook)
-   this.booksToDisplay=allBooks;
-   this.localService.setLocalProperty('allBooks',JSON.stringify(allBooks))
+   this.booksToDisplay.push(newBook)
+   this.localService.setLocalProperty('allBooks',JSON.stringify([...this.booksToDisplay]))
    Swal.fire(messages.BookAddedToLocalStorage)
   }
+  
   createNewBook(){
   return{
     id:this.book.BookId,

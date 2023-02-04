@@ -25,8 +25,7 @@ if(this.localService.isUserLogged())
 
 showMatchingBooks(){
   const capitalizedString=this.PrepareTheSearchValueForUse()
-  const bookToDisplay= this.allBooks.filter
-  ((book)=>{return  book.name.includes(capitalizedString)})
+  const bookToDisplay= this.allBooks.filter((book)=>{return  book.name.includes(capitalizedString)})
   this.booksToDisplay=[...bookToDisplay]
 }
 
