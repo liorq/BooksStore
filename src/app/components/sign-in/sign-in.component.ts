@@ -17,17 +17,18 @@ export class SignInComponent implements OnInit{
  constructor(private router:Router,private userInfoService:UserInfoService,private localService:LocalService,private booksService:BooksService){}
 userName: string="";
 Password: string="";
-usersData:any;
+
+
 ngOnInit(){
   this.localService.initialLocalStorageToDefault()
-  this.usersData=JSON.parse(this.localService.getLocalProperty('usersData')||"[]")
+  this.booksService.usersData=JSON.parse(this.localService.getLocalProperty('usersData')||"[]")
 }
 
 isValidUserInfo() {
    const isValidInfo = this.userInfoService.isValidUserInfo(
     this.userName,
     this.Password,
-    this.usersData
+    this.booksService.usersData
    );
 
   if (isValidInfo) {
@@ -41,7 +42,7 @@ isValidUserInfo() {
 }
 
 updateIndex(userName:any){
-  const index = this.usersData.findIndex((user:user) => user.email == userName);
+  const index = this.booksService.usersData.findIndex((user:user) => user.email == userName);
   this.localService.setLocalProperty("index",index)
 }
 }

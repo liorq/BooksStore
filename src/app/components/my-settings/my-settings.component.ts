@@ -42,7 +42,8 @@ constructor(private  router: Router,public localService:LocalService,private use
      this.localService.setLocalProperty('usersData',JSON.stringify(this.booksService.usersData))
   }
 
-   Swal.fire(isValidateForm?messages.changeSuccessfully:messages.passwordIncorrect)
+  Swal.fire(messages[isValidateForm?'changeSuccessfully':'passwordIncorrect'])
+
   }
 
 }
