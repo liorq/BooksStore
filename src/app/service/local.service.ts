@@ -40,7 +40,7 @@ export class LocalService {
   }
 
   getUserObj(){
-    const currentUserName:any= this.getLocalProperty('currentUserName')
+    const currentUserName:any= this.getLocalProperty('currentUserName')||""
     const usersData:any= JSON.parse(this.getLocalProperty('usersData')||"[]")
     return usersData.find((user: any) => user.email === currentUserName)
   }

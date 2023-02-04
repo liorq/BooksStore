@@ -22,7 +22,7 @@ export class SignUpComponent  implements OnInit{
     this.booksService.usersData=JSON.parse(this.localService.getLocalProperty('usersData')||"[]")
 
   }
-  constructor(public userInfoService:UserInfoService,private booksService:BooksService,private router:Router,private localService:LocalService){}
+  constructor(public userInfoService:UserInfoService,private booksService:BooksService,private router:Router,public localService:LocalService){}
   subscribeForm!: FormGroup;
   name: any;
   email: any;
@@ -44,17 +44,14 @@ export class SignUpComponent  implements OnInit{
     this.typeOfUser=this.subscribeForm.get('typeOfUser');
   }
 
-  CreateGuestProfile(){
+  CreateGuestUser(){
     const uniqueEmail ='guest'+ uuidv4()+'@gmail.com';
-
     this.addNewUserPropertyToLocalService({
       email: uniqueEmail,
-      password: '12345678',
       booksInCart: [],
       typeOfUser:'guest',
     })
     this.router.navigate(['/allBooks'])
-
   }
 
   CreateUserProfile(){
