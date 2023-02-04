@@ -60,4 +60,6 @@ export class LocalService {
   isUserLogged(){
     return this.getLocalProperty('currentUserName')!="";
   }
+
+
 }

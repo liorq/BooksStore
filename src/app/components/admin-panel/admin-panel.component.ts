@@ -27,13 +27,15 @@ export class AdminPanelComponent implements OnInit{
     if(this.localService.isUserLogged())
       this.userInfoService.isUserLogged.next(true)
 
-    this.booksToDisplay=JSON.parse(this.localService.getLocalProperty('allBooks')||"[]");
+    const allBooks=JSON.parse(this.localService.getLocalProperty('allBooks')||"[]")
+    this.booksToDisplay=allBooks;
   }
 
    constructor(private localService:LocalService,private userInfoService:UserInfoService){}
 
    addBook(){
-   this.booksToDisplay.push(this.createNewBook());
+   const newBook:any= this.createNewBook()
+   this.booksToDisplay.push(newBook)
    this.localService.setLocalProperty('allBooks',JSON.stringify([...this.booksToDisplay]))
    Swal.fire(messages.BookAddedToLocalStorage)
   }
@@ -58,11 +60,11 @@ export class AdminPanelComponent implements OnInit{
     const { value: formValues } = await Swal.fire(form);
     if (formValues){
       book.name=formValues[0];
-      book.price=parseInt(formValues[1])||0;
+      book.price=parseInt(formValues[1])||80;
       book.author=formValues[2];
       Swal.fire(messages.changeSuccessfully)
       this.localService.setLocalProperty('allBooks',JSON.stringify(this.booksToDisplay))
     }
   }
-
+  
 }
