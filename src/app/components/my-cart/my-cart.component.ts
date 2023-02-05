@@ -46,6 +46,7 @@ export class MyCartComponent implements OnInit{
   AddQuantity(book:book){
     book.amount++;
     this.booksService.currentBooks.next([...this.booksToDisplay])
+    // Swal.fire(messages.BookAdded);
 
   }
 

@@ -270,7 +270,7 @@ body {
     border: none;
     outline: none;
     color: black;
-
+    display: flex;
     background: #111;
     cursor: pointer;
     position: relative;
