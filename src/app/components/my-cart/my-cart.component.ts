@@ -30,7 +30,7 @@ export class MyCartComponent implements OnInit{
   if (this.localService.isUserLogged())
   this.UpdateCartFromLocalStorage();
   }
-  
+
 
   removeBookFromCart(book:book){
 
@@ -42,6 +42,11 @@ export class MyCartComponent implements OnInit{
 
    Swal.fire(messages.BookRemoved);
     this.booksService.currentBooks.next([...this.booksToDisplay])
+  }
+  AddQuantity(book:book){
+    book.amount++;
+    this.booksService.currentBooks.next([...this.booksToDisplay])
+
   }
 
   displayModalPayment(){

@@ -19,5 +19,6 @@ export class BooksService {
    DisplayBookInfo(book:book){
    Swal.fire(DisplayBookInfoMessage(book))
    }
+   
 
 }

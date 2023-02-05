@@ -33,11 +33,7 @@ PrepareTheSearchValueForUse(){
 
 addBooksToCart(book:book){
    const currentCart=this.localService.getBooksInCarts();
-
    const Index=currentCart.findIndex((b:book)=>b.name==book.name);
-
-
-   
     if(Index!=-1){
     currentCart[Index].amount++;
     this.localService.UpdateBooksCartInUsersData([...currentCart]);

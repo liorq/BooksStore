@@ -9,7 +9,7 @@
 <button (click)="clickHandler(book)">{{btnTitle}}</button>
 
 <button class="glow-on-hover" type="button" (click)="this.booksService.DisplayBookInfo(book)">book info</button>
-<button *ngIf="secondClickHandler!=undefined" class="glow-on-hover" type="button" (click)="this.secondClickHandler(book)">Edit book</button>
+<button *ngIf="secondClickHandler!=undefined" class="glow-on-hover" type="button" (click)="this.secondClickHandler(book)">{{this.secondBtnTitle}}</button>
 
 </div>
 </div>
