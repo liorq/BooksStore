@@ -27,6 +27,7 @@ constructor(private  router: Router,public localService:LocalService,private use
     }
   }
 
+  
   async changePropertyOfUser(){
    const currentUser= this.localService.getUserObj();
    const form=genericForm(currentUser,'Edit user details','user')

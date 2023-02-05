@@ -68,6 +68,7 @@ export class SignUpComponent  implements OnInit{
   );
 
   Swal.fire(messages[!isUserNameAvailable?'usernameIsntAvailable':'usernameAdded'])
+
   if (!isUserNameAvailable)
     return;
 

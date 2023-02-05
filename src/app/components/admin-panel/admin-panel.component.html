@@ -21,9 +21,9 @@
 <div class="modal-addBook" *ngIf="this.isAddBookModalOpen">
   <div class="x" (click)="this.isAddBookModalOpen=false;">x</div>
 
-  
-  <div *ngFor="let item of ['BookName', 'price', 'authorName', 'bookId']">
-    <div class="message">Please enter the {{item}}:</div>
+
+  <div *ngFor="let item of ['Book_Name', 'price', 'author_Name', 'book_Id']">
+    <div class="message">Please enter the {{item.toLowerCase().replaceAll('_', " ")}}:</div>
     <input type="text" [(ngModel)]="book[item]">
   </div>
 

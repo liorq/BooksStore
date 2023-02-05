@@ -1,5 +1,5 @@
 #background{
-  background: url('https://images.pexels.com/photos/1624496/pexels-photo-1624496.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+  background:url('https://images.pexels.com/photos/4862864/pexels-photo-4862864.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
   background-size: cover;
 }
 .input-text__Invalid {
@@ -14,6 +14,7 @@
 #input{
   height: 40px;
   width: 300px;
+  color: white;
 }
 .typeOfUser{
   color: #18a832;

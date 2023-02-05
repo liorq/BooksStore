@@ -1,18 +1,16 @@
-<div class="container" *ngIf="this.localService.getUserObj().typeOfUser!='guest'">
+<div class="container" *ngIf="this.localService.getUserObj()?.typeOfUser!='guest'">
 
 <div></div>
 <div class="delete-User" (click)="deleteUser()">
  Delete User
 </div>
 <div class="change" (click)="changePropertyOfUser()">Change user detail's</div>
-<!-- <div class="log-out">
- Log-out
-</div> -->
 
-<div *ngIf="this.localService.getUserObj().typeOfUser=='admin'" class="log-out" [routerLink]="['/admin']" >
+
+<div *ngIf="this.localService.getUserObj()?.typeOfUser=='admin'" class="log-out" [routerLink]="['/admin']" >
   Admin panel
  </div>
 
 </div>
 
-<h1 *ngIf="this.localService.getUserObj().typeOfUser=='guest'" class="neon">You need to log in to access your settings.</h1>
+<h1 *ngIf="this.localService.getUserObj()?.typeOfUser=='guest'" class="neon">You need to log in to access your settings.</h1>

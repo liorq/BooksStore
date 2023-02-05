@@ -19,17 +19,15 @@ export class AdminPanelComponent implements OnInit{
   isBooksPanelOpen=false;
   booksToDisplay:book[]=[];
   book:any={
-    BookName:"",
+    Book_Name:"",
     price:"",
-    authorName:"",
-    BookId:"",
+    author_Name:"",
+    Book_Id:"",
   }
   ngOnInit(){
 
     this.booksToDisplay=JSON.parse(this.localService.getLocalProperty('allBooks')||"[]")
     //  this.localService.setLocalProperty('allBooks',JSON.stringify(getAllBooks()))
-
-
   }
 
    constructor(private localService:LocalService,private userInfoService:UserInfoService){}
@@ -43,17 +41,19 @@ export class AdminPanelComponent implements OnInit{
 
   createNewBook(){
   return{
-    id:this.book.BookId,
-   name:this.book.BookName,
+    id:this.book.Book_Id,
+   name:this.book.Book_Name,
    price:parseInt(this.book.price)||80,
-  author: this.book.authorName,
+  author: this.book.author_Name,
   }
   }
+
 
   deleteBook(book:book){
     this.booksToDisplay = this.booksToDisplay.filter(b => b !== book);
     this.localService.setLocalProperty('allBooks',JSON.stringify(this.booksToDisplay))
   }
+
 
    async editBook(book:book){
     const form=genericForm(book,'Edit book','book')
