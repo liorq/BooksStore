@@ -5,9 +5,9 @@
  Delete User
 </div>
 <div class="change" (click)="changePropertyOfUser()">Change user detail's</div>
-<div class="log-out">
+<!-- <div class="log-out">
  Log-out
-</div>
+</div> -->
 
 <div *ngIf="this.localService.getUserObj().typeOfUser=='admin'" class="log-out" [routerLink]="['/admin']" >
   Admin panel
