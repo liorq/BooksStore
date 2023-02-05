@@ -1,7 +1,7 @@
 
 export function getAllBooks(){
   return [{
-    name:'Brad_pitt_bibliography',
+    name:'brad_pitt_bibliography',
    price:89,
    author:'Rick Riordan',
    amount:0
