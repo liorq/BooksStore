@@ -32,6 +32,7 @@ export class AdminPanelComponent implements OnInit{
    constructor(private localService:LocalService,private userInfoService:UserInfoService){}
 
    addBook(){
+    
    const newBook:any= this.createNewBook();
    this.booksToDisplay.push(newBook);
    this.localService.setLocalProperty('allBooks',JSON.stringify([...this.booksToDisplay]))
@@ -47,13 +48,13 @@ export class AdminPanelComponent implements OnInit{
   return{
    name:this.book.Book_Name,
    price:parseInt(this.book.price)||80,
-  author: this.book.author_Name,
+   author: this.book.author_Name,
   }
   }
 
 
   deleteBook(book:book){
-    this.booksToDisplay = this.booksToDisplay.filter(b => b !== book);
+    this.booksToDisplay = this.booksToDisplay.filter(b => b.name !== book.name);
     this.localService.setLocalProperty('allBooks',JSON.stringify(this.booksToDisplay))
   }
 
