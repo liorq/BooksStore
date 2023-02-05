@@ -30,6 +30,7 @@ export class MyCartComponent implements OnInit{
   if (this.localService.isUserLogged())
   this.UpdateCartFromLocalStorage();
   }
+  
 
   removeBookFromCart(book:book){
 

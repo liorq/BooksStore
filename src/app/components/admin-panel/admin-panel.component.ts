@@ -22,7 +22,6 @@ export class AdminPanelComponent implements OnInit{
     Book_Name:"",
     price:"",
     author_Name:"",
-    Book_Id:"",
   }
   ngOnInit(){
 
@@ -46,7 +45,6 @@ export class AdminPanelComponent implements OnInit{
 
   createNewBook(){
   return{
-    id:this.book.Book_Id,
    name:this.book.Book_Name,
    price:parseInt(this.book.price)||80,
   author: this.book.author_Name,
