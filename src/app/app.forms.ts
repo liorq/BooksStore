@@ -5,8 +5,8 @@ import Swal from "sweetalert2"
     return{
       title: `${title}`,
           html:
-            `<div>Please enter  ${property=='user'?'your new userName':'the name of the new book.'}.</div>  <input id="swal-input1" class="swal2-input" value=${property=='user'?parameter.email:parameter.name}>` +
-            `<div>Please enter  ${property=='user'?'your old password':'the new price of the book.'}.</div> <input id="swal-input2" type=${property=='user'?'password':'text'} class="swal2-input" value=${property=='user'?'':parameter.price}>` +
+            `<div> ${property=='user'?'':'Please enter the name of the new book.'}.</div>  <input ${property=='user'?'disabled':''} id="swal-input1" class="swal2-input" value=${property=='user'?parameter.email:parameter.name}>` +
+            `<div>Please enter  ${property=='user'?'your old password':'the new price of the book.'}.</div> <input   id="swal-input2" type=${property=='user'?'password':'text'} class="swal2-input" value=${property=='user'?'':parameter.price}>` +
             `<div>Please enter  ${property=='user'?'your new password':'the new author name for the book.'}.</div>   <input id="swal-input3" type=${property=='user'?'password':'text'} class="swal2-input"  value=${property=='user'?'':parameter.author}>` ,
           focusConfirm: false,
           preConfirm: () => {
