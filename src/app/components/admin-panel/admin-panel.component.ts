@@ -32,13 +32,13 @@ export class AdminPanelComponent implements OnInit{
    constructor(private localService:LocalService,private userInfoService:UserInfoService){}
 
    addBook(){
-    
    const newBook:any= this.createNewBook();
    this.booksToDisplay.push(newBook);
    this.localService.setLocalProperty('allBooks',JSON.stringify([...this.booksToDisplay]))
    Swal.fire(messages.BookAddedToLocalStorage)
    this.resetBookFields()
   }
+
   resetBookFields(){
     this.book={  Book_Name:"",price:"",author_Name:"",Book_Id:"",}
   }
