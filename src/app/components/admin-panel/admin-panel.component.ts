@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { getAllBooks } from 'src/app/app.books';
 import {  genericForm } from 'src/app/app.forms';
 import { book } from 'src/app/app.interfaces';
 import { messages } from 'src/app/app.messages';
@@ -25,8 +26,10 @@ export class AdminPanelComponent implements OnInit{
   }
   ngOnInit(){
 
-    const allBooks=JSON.parse(this.localService.getLocalProperty('allBooks')||"[]")
-    this.booksToDisplay=allBooks;
+    this.booksToDisplay=JSON.parse(this.localService.getLocalProperty('allBooks')||"[]")
+    //  this.localService.setLocalProperty('allBooks',JSON.stringify(getAllBooks()))
+
+
   }
 
    constructor(private localService:LocalService,private userInfoService:UserInfoService){}
