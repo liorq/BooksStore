@@ -27,7 +27,7 @@
       <label>Cardholder name</label>
       <input  class="inputname" type="text" placeholder=""/>
       <label>Expiry date</label>
-      <input [(ngModel)]="expireDate" class="expire" type="text" placeholder="MM / YYYY"/>
+      <input [(ngModel)]="expireDate"  class="expire" type="text" placeholder="MM / YYYY"  (keyup)="isValidCreditCard()"/>
       <label>Security Number</label>
       <input [(ngModel)]="cvv" class="ccv" type="text" placeholder="CVC" maxlength="3" onkeypress='return event.charCode >= 48 && event.charCode <= 57'(keyup)="isValidCreditCard()"/>
       <button  (click)="processThePayment()"  class="buy"><span class="material-symbols-outlined">

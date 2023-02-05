@@ -17,7 +17,7 @@ export const messages:any={
     showCloseButton: true,
   },
   BookAddedToLocalStorage: {
-    title: 'Book added to local Storage.',
+    title: 'Book added.',
     icon: 'question',
     iconHtml: '=)',
     confirmButtonText: 'ok',
@@ -118,7 +118,7 @@ export function DisplayBookInfoMessage(book:book)
     imageUrl: `../../../assets/images/${book.name}.png`,
     imageWidth: '250px',
     imageHeight: '250px',
-
+///בעיה בתמונה שאין אותה במאגר תמונות 
 
   };
 }

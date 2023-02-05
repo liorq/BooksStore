@@ -39,6 +39,8 @@ export class MyCartComponent implements OnInit{
   displayModalPayment(){
     this.userInfoService.isPaymentModalClose.next(false);
   }
+  
+
 
   UpdateCartFromLocalStorage(){
     const data = this.localService.getBooksInCarts();
