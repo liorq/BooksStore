@@ -37,7 +37,12 @@ export class AdminPanelComponent implements OnInit{
    this.booksToDisplay.push(newBook)
    this.localService.setLocalProperty('allBooks',JSON.stringify([...this.booksToDisplay]))
    Swal.fire(messages.BookAddedToLocalStorage)
+   this.resetBookFields()
   }
+  resetBookFields(){
+    this.book={  Book_Name:"",price:"",author_Name:"",Book_Id:"",}
+  }
+
 
   createNewBook(){
   return{
