@@ -105,8 +105,8 @@ export const messages:any={
 
 export function DisplayBookInfoMessage(book:book)
 {
+  const image={}
   return {
-
     customClass: {
       textColor: '.text-white',
       title:'.text-white'
@@ -115,10 +115,10 @@ export function DisplayBookInfoMessage(book:book)
     background: 'url(../../assets/images/background.png)',
     showClass: { popup: 'animate__animated animate__fadeInDown' },
     hideClass: { popup: 'animate__animated animate__fadeOutUp' },
-    imageUrl: `../../../assets/images/${book.name}.png`,
+
+    imageUrl: `../../../assets/images/${book.author=='Rick'?`${book.name}`:'defualtPic'}.png`,
     imageWidth: '250px',
     imageHeight: '250px',
-///בעיה בתמונה שאין אותה במאגר תמונות 
 
   };
 }
@@ -127,3 +127,56 @@ export function DisplayBookInfoMessage(book:book)
 
 
 
+// export function getAllBooks(){
+//   return [{
+//     name:'Five_easy_steps_to_become_amazing',
+//    price:89,
+//    author:'lior daniel',
+//    id:'1'
+// },
+// {
+//   name:'Greek_gods',
+//  price:96,
+//  author:'Rick Riordan',
+//  id:"2"
+// },
+// {
+//   name:'The_sea_of_monsters',
+//  price:85,
+//  author:'Rick Riordan',
+//  id:"3"
+// },
+// {
+//   name:'The_lightning_thief',
+//  price:93,
+//  author:'Rick Riordan',
+//  id:'4'
+// },
+// {
+//   name:'The_titans_curse',
+//  price:78,
+//  author:'Rick Riordan',
+//  id:'5'
+// },
+// {
+//   name:'The_last_olympian',
+//  price:99,
+//  author:'Rick Riordan',
+//  id:'6'
+// },
+// {
+//   name:'The_singer_of_apollo',
+//  price:75,
+//  author:'Rick Riordan',
+//  id:'7'
+// },
+// {
+//   name:'The_lost_hero',
+//  price:89,
+//  author:'Rick Riordan',
+//  id:'8'
+// },
+
+// ]
+
+// }
