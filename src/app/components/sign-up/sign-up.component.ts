@@ -21,7 +21,7 @@ export class SignUpComponent  implements OnInit{
   ngOnInit(){
     this.initForm()
     this.booksService.usersData=JSON.parse(this.localService.getLocalProperty('usersData')||"[]")
-    
+
     this.userInfoService.createGuestUser.subscribe(()=>{
       if(!this.localService.isUserLogged())
        this.CreateGuestUser()
@@ -84,7 +84,7 @@ addNewUserPropertyToLocalService(newUser:any){
     this.booksService.usersData.push({
       email: newUser.email,
       password: newUser.password,
-      booksInCart: [],
+      booksInCart: this.localService.getBooksInCarts()||[],
       typeOfUser:newUser.typeOfUser,
     });
     this.localService.setLocalProperty('index',this.booksService.usersData.length-1)
