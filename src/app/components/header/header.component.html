@@ -6,12 +6,12 @@
     </div>
 
     <div *ngFor="let item of ['Setting','allBooks']">
-      <div *ngIf="isUserLogged" class="{{item}}" routerLink="{{item}}">{{item}}</div>
+      <div  class="{{item}}" routerLink="{{item}}"  (click)=" this.userInfoService.createGuestUser.next(true)">{{item}}</div>
     </div>
 
-<div *ngIf="isUserLogged&&this.localService.getUserObj()?.typeOfUser!='guest'" class="Log-out" (click)="deleteUserInfo()" routerLink="SignIn" >Log-out</div>
+  <div *ngIf="isUserLogged&&this.localService.getUserObj()?.typeOfUser!='guest'" class="Log-out" (click)="deleteUserInfo()" routerLink="SignIn" >Log-out</div>
 
-  <span  *ngIf="isUserLogged" id="cart" class=" material-symbols-outlined " routerLink="myCart">
+  <span  id="cart" class=" material-symbols-outlined " routerLink="myCart" (click)=" this.userInfoService.createGuestUser.next(true)">
   shopping_cart_checkout
   </span>
 

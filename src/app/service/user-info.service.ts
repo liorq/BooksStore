@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { messages } from '../app.messages';
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +7,8 @@ import { messages } from '../app.messages';
 export class UserInfoService {
 isPaymentModalClose=new Subject<boolean>()
 isUserLogged=new Subject<boolean>()
+createGuestUser=new Subject();
+
 
   isValidUserInfo(userName: string, password: string, usersData: any[]) {
     return usersData.find((user: any) => userName == user.email && password == user.password)

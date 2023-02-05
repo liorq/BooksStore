@@ -21,7 +21,11 @@ export class SignUpComponent  implements OnInit{
   ngOnInit(){
     this.initForm()
     this.booksService.usersData=JSON.parse(this.localService.getLocalProperty('usersData')||"[]")
-
+    
+    this.userInfoService.createGuestUser.subscribe(()=>{
+      if(!this.localService.isUserLogged())
+       this.CreateGuestUser()
+    })
   }
   constructor(public userInfoService:UserInfoService,private booksService:BooksService,private router:Router,public localService:LocalService){}
   subscribeForm!: FormGroup;
