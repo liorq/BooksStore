@@ -1,6 +1,7 @@
 import Swal from "sweetalert2"
 
   export function genericForm(parameter:any,title:string,property:string){
+
     return{
       title: `${title}`,
           html:
@@ -20,7 +21,25 @@ import Swal from "sweetalert2"
     }
 
 
-  export async function DeleteUserForm(){
+
+  export async function DeleteUserForm(userPassword:string){
+
+    const { value: password } = await Swal.fire({
+      title: 'Please verify your password',
+      input: 'password',
+      inputLabel: 'password',
+      inputPlaceholder: 'Enter your password'
+    })
+
+    if (password!=userPassword) {
+      Swal.fire(`Incurrent password: try again`)
+      return
+    }
+
+
+
+
+
     const swalWithBootstrapButtons =await Swal.mixin({
       customClass: {
         confirmButton: 'btn btn-danger',

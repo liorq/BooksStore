@@ -7,7 +7,7 @@
 <div class=" glow-on-hover" (click)="changePropertyOfUser()">Change user detail's</div>
 
 
-<div *ngIf="this.localService.getUserObj()?.typeOfUser=='admin'" class="log-out" [routerLink]="['/admin']" >
+<div *ngIf="this.localService.getUserObj()?.typeOfUser=='admin'" class="glow-on-hover" [routerLink]="['/admin']" >
   Admin panel
  </div>
 

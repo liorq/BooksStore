@@ -18,7 +18,9 @@ constructor(private  router: Router,public localService:LocalService,private use
 
  async deleteUser(){
 
-   const isUserConfirmDelete:any=await DeleteUserForm()
+  const currentUser= this.localService.getUserObj();
+
+   const isUserConfirmDelete:any=await DeleteUserForm(currentUser.password)
     if(isUserConfirmDelete){
         this.localService.deleteUser(this.localService.getLocalProperty('currentUserName'))
         this.localService.deleteUserInfo();
