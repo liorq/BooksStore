@@ -26,7 +26,7 @@ export class AdminPanelComponent implements OnInit{
   ngOnInit(){
 
     this.booksToDisplay=JSON.parse(this.localService.getLocalProperty('allBooks')||"[]")
-    //  this.localService.setLocalProperty('allBooks',JSON.stringify(getAllBooks()))
+     this.localService.setLocalProperty('allBooks',JSON.stringify(getAllBooks()))
   }
 
    constructor(private localService:LocalService,private userInfoService:UserInfoService){}

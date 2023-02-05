@@ -87,10 +87,11 @@ body {
 
 
 
-.Five_easy_steps_to_become_amazing{
-  background: url('../../../assets/images/Five_easy_steps_to_become_amazing.png');
+.Brad_pitt_bibliography{
+  background: url('../../../assets/images/Brad_pitt_bibliography.png');
 
 }
+
 .Greek_gods{
   background: url('../../../assets/images/Greek_gods.png');
 
@@ -300,9 +301,7 @@ body {
     border-radius: 10px;
 }
 
-.glow-on-hover:active {
-    /* color: #000 */
-}
+
 
 .glow-on-hover:active:after {
     background: transparent;
