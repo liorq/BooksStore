@@ -3,6 +3,8 @@
 <div id="card" class="card" *ngFor="let book of booksToDisplay">
   <div class="book-pic"  [ngClass]="this.booksService.getBookPicture(book)"></div>
   <div class="div-name">{{book.name.replaceAll("_"," ")}}</div>
+  <div *ngIf="this.componentName=='myCart'" class="amount">Amount:{{book.amount}}</div>
+
 <button (click)="clickHandler(book)">{{btnTitle}}</button>
 <button class="glow-on-hover" type="button" (click)="this.booksService.DisplayBookInfo(book)">book info</button>
 <button *ngIf="secondClickHandler!=undefined" class="glow-on-hover" type="button" (click)="this.secondClickHandler(book)">Edit book</button>

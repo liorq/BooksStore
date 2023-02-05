@@ -13,8 +13,8 @@ export class MyCartComponent implements OnInit{
   constructor(private localService:LocalService,private booksService:BooksService,private userInfoService:UserInfoService){}
   booksToDisplay:book[]=[];
   isPaymentModalClose:boolean=true;
-
- ngOnInit(){
+  filteredBooks:book[]=[];
+  ngOnInit(){
 
   this.userInfoService.isPaymentModalClose.subscribe((newStatus)=>{
   this.isPaymentModalClose=newStatus;
@@ -28,10 +28,27 @@ export class MyCartComponent implements OnInit{
 
   if (this.localService.isUserLogged())
   this.UpdateCartFromLocalStorage();
+
+
+  this.filteredDoubledBooks()
   }
 
-  
 
+  filteredDoubledBooks(){
+    const AmountOfBooks:any=[];
+    
+    for(let book of this.booksToDisplay){
+
+      if(AmountOfBooks[book.name]==undefined)
+       AmountOfBooks[book.name]=1;
+      else
+       AmountOfBooks[book.name]++;
+    }
+    console.log(AmountOfBooks)
+
+    this.filteredBooks=AmountOfBooks;
+
+    }
 
   removeBookFromCart(book:book){
    const index= this.booksToDisplay.findIndex((b)=>b==book)

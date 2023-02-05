@@ -3,6 +3,7 @@ export interface book{
   author:string,
   id:string
   price:any,
+  amount:number,
 }
 
 export interface user{

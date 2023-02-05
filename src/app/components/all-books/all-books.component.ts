@@ -18,8 +18,6 @@ searchValue:string="";
 booksToDisplay:book[]=[...this.allBooks];
 
 
-
-
 showMatchingBooks(){
   const capitalizedString=this.PrepareTheSearchValueForUse();
   const bookToDisplay= this.allBooks.filter((book)=>{return  book.name.includes(capitalizedString)})
@@ -33,8 +31,21 @@ PrepareTheSearchValueForUse(){
 }
 
 addBooksToCart(book:book){
-  const currentCart=this.localService.getBooksInCarts();
-  this.localService.UpdateBooksCartInUsersData([...currentCart,{...book}]);
+   const currentCart=this.localService.getBooksInCarts();
+
+   const Index=currentCart.findIndex((b:book)=>b.name==book.name);
+   console.log(Index)
+    if(Index!=-1){
+    currentCart[Index].amount++;
+    this.localService.UpdateBooksCartInUsersData([...currentCart]);
+   }
+   
+   else{
+   book.amount=1;
+   this.localService.UpdateBooksCartInUsersData([...currentCart,{...book}]);
+   }
+
+
   Swal.fire(messages.BookAdded)
   }
 }
