@@ -33,7 +33,8 @@ export class MyCartComponent implements OnInit {
       this.totalCharge(this.booksToDisplay);
     });
 
-    if (this.localService.isUserLogged()) this.UpdateCartFromLocalStorage();
+    if (this.localService.isUserLogged())
+    this.UpdateCartFromLocalStorage();
   }
 
   removeBookFromCart(book: book) {

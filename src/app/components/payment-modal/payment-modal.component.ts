@@ -27,9 +27,8 @@ export class PaymentModalComponent {
     const today = new Date();
     const expiry = new Date(this.expireDate);
     this.isValidCard=cvvRegex.test(this.cvv)&&expiry < today&& cardNumberRegex.test(this.cardNumber)
-
     return  this.isValidCard
-    
+
   }
 
   processThePayment(){

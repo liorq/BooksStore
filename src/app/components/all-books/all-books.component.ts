@@ -38,13 +38,15 @@ addBooksToCart(book:book){
    const Index=currentCart.findIndex((b:book)=>b.name==book.name);
     if(Index!=-1){
     currentCart[Index].amount++;
-    this.localService.UpdateBooksCartInUsersData([...currentCart]);
    }
    else{
    book.amount=1;
-   this.localService.UpdateBooksCartInUsersData([...currentCart,{...book}]);
+   currentCart.push({...book})
+   }
+   this.localService.UpdateBooksCartInUsersData([...currentCart]);
+   Swal.fire(messages.BookAdded)
+
    }
 
-  Swal.fire(messages.BookAdded)
-  }
+
 }
