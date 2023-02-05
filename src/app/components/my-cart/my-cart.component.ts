@@ -30,6 +30,9 @@ export class MyCartComponent implements OnInit{
   this.UpdateCartFromLocalStorage();
   }
 
+  
+
+
   removeBookFromCart(book:book){
    const index= this.booksToDisplay.findIndex((b)=>b==book)
     this.booksToDisplay.splice(index,1)
@@ -39,7 +42,7 @@ export class MyCartComponent implements OnInit{
   displayModalPayment(){
     this.userInfoService.isPaymentModalClose.next(false);
   }
-  
+
 
 
   UpdateCartFromLocalStorage(){

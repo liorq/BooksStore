@@ -1,6 +1,5 @@
 import Swal from "sweetalert2"
 
-
   export function genericForm(parameter:any,title:string,property:string){
     return{
       title: `${title}`,

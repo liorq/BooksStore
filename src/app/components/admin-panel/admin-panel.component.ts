@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-admin-panel',
   templateUrl: './admin-panel.component.html',
-  styleUrls: ['./admin-panel.component.css','../books-list/books-list.component.css']
+  styleUrls: ['../books-list/books-list.component.css','./admin-panel.component.css']
 })
 export class AdminPanelComponent implements OnInit{
 

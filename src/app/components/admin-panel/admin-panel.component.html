@@ -1,21 +1,24 @@
 
 <div id="big-container" class="big-container">
   <div class="container-gif-and-options">
-<div class="admin-gif"></div>
+<div class="admin-gif">
 <div class="containerAdmin" id="containerAdmin">
 
 <div class="container">
-<div class="hover-btn" (click)="this.isBooksPanelOpen=true">
+<div class="glow-on-hover" (click)="this.isBooksPanelOpen=true">
   Delete or Edit book
 </div>
-<div class="hover-btn" (click)="this.isAddBookModalOpen=true">  Add book
+
+
+<div class="glow-on-hover" (click)="this.isAddBookModalOpen=true">  Add book
 </div>
-<div *ngIf="this.isBooksPanelOpen" class="hover-btn" (click)="this.isBooksPanelOpen=false">
+<div *ngIf="this.isBooksPanelOpen" class="glow-on-hover" (click)="this.isBooksPanelOpen=false">
   Close open panel
 </div>
 </div>
 </div>
 
+</div>
 <div class="gray-background"  *ngIf="this.isAddBookModalOpen" >
 
 <div class="modal-addBook" *ngIf="this.isAddBookModalOpen">

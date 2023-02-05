@@ -11,7 +11,7 @@ font-weight: 400;
 
 .container{
   opacity: 0.8;
-  background: linear-gradient(#0096c7,#70e000);
+  /* background: linear-gradient(#0096c7,#70e000); */
   width: 200px;
   height: 250px;
   border-radius: 10px;
@@ -120,7 +120,7 @@ button:focus {
   background-position: center;
   background-size: cover;
   display: block;
-  opacity: 0.8;
+  opacity: 1;
 
 }
 #big-container{
@@ -159,3 +159,9 @@ button:focus {
   align-items: center;
 }
 
+.glow-on-hover{
+  height: auto;
+  margin: 10px;
+  background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+
+}

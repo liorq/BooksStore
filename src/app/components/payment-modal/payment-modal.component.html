@@ -23,11 +23,11 @@
     </div>
     <div class="col2">
       <label>Card Number</label>
-      <input [(ngModel)]="cardNumber" class="number" type="text" ng-model="ncard" maxlength="19" onkeypress='return event.charCode >= 48 && event.charCode <= 57 '(keyup)="isValidCreditCard()"/>
+      <input [(ngModel)]="cardNumber" class="number" type="text" ng-model="ncard" maxlength="16" onkeypress='return event.charCode >= 48 && event.charCode <= 57 '(keyup)="isValidCreditCard()"/>
       <label>Cardholder name</label>
       <input  class="inputname" type="text" placeholder=""/>
       <label>Expiry date</label>
-      <input [(ngModel)]="expireDate"  class="expire" type="text" placeholder="MM / YYYY"  (keyup)="isValidCreditCard()"/>
+      <input [(ngModel)]="expireDate"  class="expire" type="text" maxlength="5" placeholder="MM / YY"  (keyup)="isValidCreditCard()"/>
       <label>Security Number</label>
       <input [(ngModel)]="cvv" class="ccv" type="text" placeholder="CVC" maxlength="3" onkeypress='return event.charCode >= 48 && event.charCode <= 57'(keyup)="isValidCreditCard()"/>
       <button  (click)="processThePayment()"  class="buy"><span class="material-symbols-outlined">
