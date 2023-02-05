@@ -23,6 +23,13 @@ export const messages:any={
     confirmButtonText: 'ok',
     showCloseButton: true,
   },
+  BookRemoved: {
+    title: 'Book removed.',
+    icon: 'question',
+    iconHtml: '=(',
+    confirmButtonText: 'ok',
+    showCloseButton: true,
+  },
   usernameIncorrect: {
     title: 'Username or password incorrect',
     icon: 'question',

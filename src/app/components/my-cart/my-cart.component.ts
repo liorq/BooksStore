@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { book } from 'src/app/app.interfaces';
+import { messages } from 'src/app/app.messages';
 import { BooksService } from 'src/app/service/books.service';
 import { LocalService } from 'src/app/service/local.service';
 import { UserInfoService } from 'src/app/service/user-info.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-my-cart',
@@ -30,8 +32,14 @@ export class MyCartComponent implements OnInit{
   }
 
   removeBookFromCart(book:book){
+
    const index= this.booksToDisplay.findIndex((b)=>b==book)
+   if(this.booksToDisplay[index].amount==1)
     this.booksToDisplay.splice(index,1)
+   else
+   this.booksToDisplay[index].amount--;
+
+   Swal.fire(messages.BookRemoved);
     this.booksService.currentBooks.next([...this.booksToDisplay])
   }
 

@@ -20,13 +20,14 @@ booksToDisplay:book[]=[...this.allBooks];
 
 showMatchingBooks(){
   const capitalizedString=this.PrepareTheSearchValueForUse();
-  const bookToDisplay= this.allBooks.filter((book)=>{return  book.name.includes(capitalizedString)})
+  const bookToDisplay= this.allBooks.filter((book)=>{
+    return  book.name.toLowerCase().includes(capitalizedString)
+  })
   this.booksToDisplay=[...bookToDisplay]
 }
 
 PrepareTheSearchValueForUse(){
-  const capitalizedString = this.searchValue.trim().toLowerCase().replaceAll(' ','_')
-  return capitalizedString.charAt(0).toUpperCase() +capitalizedString.slice(1);
+ return this.searchValue.trim().toLowerCase().replaceAll(' ','_');
 
 }
 
@@ -34,17 +35,17 @@ addBooksToCart(book:book){
    const currentCart=this.localService.getBooksInCarts();
 
    const Index=currentCart.findIndex((b:book)=>b.name==book.name);
-   console.log(Index)
+
+
+   
     if(Index!=-1){
     currentCart[Index].amount++;
     this.localService.UpdateBooksCartInUsersData([...currentCart]);
    }
-   
    else{
    book.amount=1;
    this.localService.UpdateBooksCartInUsersData([...currentCart,{...book}]);
    }
-
 
   Swal.fire(messages.BookAdded)
   }
