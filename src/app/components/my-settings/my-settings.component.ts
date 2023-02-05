@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-my-settings',
   templateUrl: './my-settings.component.html',
-  styleUrls: ['./my-settings.component.css']
+  styleUrls: ['../books-list/books-list.component.css','./my-settings.component.css']
 })
 export class MySettingsComponent {
 constructor(private  router: Router,public localService:LocalService,private userInfoService:UserInfoService,private booksService:BooksService){}
@@ -27,7 +27,7 @@ constructor(private  router: Router,public localService:LocalService,private use
     }
   }
 
-  
+
   async changePropertyOfUser(){
    const currentUser= this.localService.getUserObj();
    const form=genericForm(currentUser,'Edit user details','user')

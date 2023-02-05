@@ -72,6 +72,7 @@ span {
   border: 2px solid rgba(255, 255, 255, 0);
   overflow: hidden;
   margin-top: 15px;
+  color: #fff;
   transition: all 0.5s ease-in-out;
 }
 
@@ -177,7 +178,7 @@ a {
   text-decoration: none;
   color: rgba(255, 255, 255, 0.2);
 }
-#input{
+#input,#input1,#input2{
   height: 40px;
   width: 66vw;
   max-width: 300px;
