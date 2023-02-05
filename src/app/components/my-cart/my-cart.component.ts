@@ -30,25 +30,8 @@ export class MyCartComponent implements OnInit{
   this.UpdateCartFromLocalStorage();
 
 
-  this.filteredDoubledBooks()
   }
 
-
-  filteredDoubledBooks(){
-    const AmountOfBooks:any=[];
-    
-    for(let book of this.booksToDisplay){
-
-      if(AmountOfBooks[book.name]==undefined)
-       AmountOfBooks[book.name]=1;
-      else
-       AmountOfBooks[book.name]++;
-    }
-    console.log(AmountOfBooks)
-
-    this.filteredBooks=AmountOfBooks;
-
-    }
 
   removeBookFromCart(book:book){
    const index= this.booksToDisplay.findIndex((b)=>b==book)
@@ -68,7 +51,7 @@ export class MyCartComponent implements OnInit{
     this.userInfoService.isUserLogged.next(true);
 }
   totalCharge(currentCart:book[]){
-    return currentCart.reduce((sum,book) => sum + book.price, 0);
+    return currentCart.reduce((sum,book) => sum + book.price*book.amount, 0);
   }
 
 }
