@@ -10,10 +10,10 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 
 const routes: Routes = [
   { path: 'SignUp', component: SignUpComponent },
-  {path: 'Setting', component: MySettingsComponent},
-  {path: 'admin', component: AdminPanelComponent},
-  { path: 'allBooks', component: AllBooksComponent },
-  { path: 'myCart', component: MyCartComponent },
+  {path: 'users/:user/Setting', component: MySettingsComponent},
+  {path: 'users/:user/admin', component: AdminPanelComponent},
+  { path: 'users/:user/allBooks', component: AllBooksComponent },
+  { path: 'users/:user/myCart', component: MyCartComponent },
   { path: 'SignIn', component: SignInComponent },
   { path: '', component: SignInComponent, pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },
