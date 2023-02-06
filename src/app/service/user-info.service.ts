@@ -7,7 +7,7 @@ import { Subject } from 'rxjs';
 export class UserInfoService {
 isPaymentModalClose=new Subject<boolean>()
 isUserLogged=new Subject<boolean>()
-isGuestUser=new Subject();
+isGuestUser=new Subject<boolean>();
 
 
   isValidUserInfo(userName: string, password: string, usersData: any[]) {

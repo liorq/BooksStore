@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { messages } from 'src/app/app.messages';
 import { LocalService } from 'src/app/service/local.service';
-import { UserInfoService } from 'src/app/service/user-info.service';
 import Swal from 'sweetalert2';
 import { book } from '../../app.interfaces';
 

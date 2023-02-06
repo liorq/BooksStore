@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { getAllBooks } from 'src/app/app.books';
+import { getEditBookForm } from 'src/app/app.forms';
 import { book, user } from 'src/app/app.interfaces';
 import { messages } from 'src/app/app.messages';
 import { BooksService } from 'src/app/service/books.service';
@@ -67,7 +68,8 @@ export class AdminPanelComponent implements OnInit{
 
 
     async editBookHandler(book:book){
-    const{ value: validForm} :any= await this.booksSvc.isValidEditBookForm(book);
+
+    const{ value: validForm} :any= await Swal.fire(getEditBookForm(book,'Edit book','book'));
 
     if (validForm){
       Swal.fire(messages.changeSuccessfully)

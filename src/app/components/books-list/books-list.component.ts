@@ -3,7 +3,8 @@ import { LocalService } from 'src/app/service/local.service';
 import { UserInfoService } from 'src/app/service/user-info.service';
 import { book } from '../../app.interfaces';
 import { BooksService } from '../../service/books.service';
-
+import { getEditBookForm } from 'src/app/app.forms';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-books-list',
   templateUrl: './books-list.component.html',
