@@ -24,7 +24,7 @@ ngOnInit(){
   this.booksService.usersData=JSON.parse(this.localService.getLocalProperty('usersData')||"[]")
 }
 
-isValidUserInfo() {
+signInHandler() {
    const isValidInfo = this.userInfoService.isValidUserInfo(
     this.userName,
     this.Password,
@@ -32,18 +32,19 @@ isValidUserInfo() {
    );
 
   if (isValidInfo)
-  this.signInProcess()
+  this.signIn()
 
   else
   Swal.fire(messages.usernameIncorrect);
 }
-signInProcess(){
- this.userInfoService.isUserLogged.next(true)
+
+signIn(){
+   this.userInfoService.isUserLogged.next(true)
     this.localService.setLocalProperty("currentUserName",this.userName)
     this.updateIndex(this.userName)
     this.router.navigate([`users/${this.userName+"/"+(this.localService.getUserObj()?.typeOfUser=='admin'?'admin':'allBooks')}`])
-
 }
+
 
 updateIndex(userName:any){
   const index = this.booksService.usersData.findIndex((user:user) => user.email == userName);
