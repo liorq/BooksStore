@@ -67,18 +67,19 @@ export class AdminPanelComponent implements OnInit{
   }
 
 
-   async editBook(book:book){
-    ///שאלה ואז האם יש אדיט אין כאן אדיט ישר
-    const form=getEditBookForm(book,'Edit book','book')
 
-    const { value: formValues } = await Swal.fire(form);
-    if (formValues){
-      book.name=formValues[0];
-      book.price=parseInt(formValues[1])||80;
-      book.author=formValues[2];
+
+
+
+    async editBookHandler(book:book){
+    const validForm:any= await this.booksService.isValidEditBookForm(book);
+
+    if (validForm){
       Swal.fire(messages.changeSuccessfully)
+      this.booksService.editBook(book,validForm)
       this.localService.setLocalProperty('allBooks',JSON.stringify(this.booksToDisplay))
     }
+
   }
 
 }

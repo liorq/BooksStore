@@ -41,8 +41,7 @@ signInProcess(){
  this.userInfoService.isUserLogged.next(true)
     this.localService.setLocalProperty("currentUserName",this.userName)
     this.updateIndex(this.userName)
-    const currentUser=this.localService.getUserObj();
-    this.router.navigate([`users/${currentUser?.email+"/"+(currentUser?.typeOfUser=='admin'?'admin':'allBooks')}`])
+    this.router.navigate([`users/${this.userName+"/"+(this.localService.getUserObj()?.typeOfUser=='admin'?'admin':'allBooks')}`])
 
 }
 
