@@ -54,8 +54,7 @@ export class MySettingsComponent implements OnInit{
   async VerifyPassword(){
     const form = getEditUserForm(this.currentUser, 'Edit user details', 'user');
     const { value: formValues } = await Swal.fire(form);
-    const isValidateForm = formValues![1] == this.currentUser.password && formValues;
-    return isValidateForm ?formValues:false
+    return formValues&& formValues![1] == this.currentUser.password ?formValues:false;
   }
 
 

@@ -1,7 +1,8 @@
 
 
   <div class="container">
-    <div class="x" (click)="closeModal()">X</div>
+    <div class="x" (click)="this.userInfoService.isPaymentModalClose.next(true)
+    ">X</div>
     <div class="col1">
       <div class="card">
         <div class="front">
@@ -30,7 +31,7 @@
       <input [(ngModel)]="expireDate"  class="expire" type="text" maxlength="5" placeholder="MM / YY"  (keyup)="isValidCreditCard()"/>
       <label>Security Number</label>
       <input [(ngModel)]="cvv" class="ccv" type="text" placeholder="CVC" maxlength="3" onkeypress='return event.charCode >= 48 && event.charCode <= 57'(keyup)="isValidCreditCard()"/>
-      <button  (click)="processThePayment()"  class="buy"><span class="material-symbols-outlined">
+      <button  (click)="processPaymentHandler()"  class="buy"><span class="material-symbols-outlined">
         monetization_on
         </span> Pay </button>
     </div>

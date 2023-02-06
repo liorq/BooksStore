@@ -16,10 +16,8 @@ export class PaymentModalComponent {
   cvv:string="";
   isValidCard:boolean=false;
 
-  constructor(private userInfoService:UserInfoService,private booksService:BooksService){}
-  closeModal(){
-    this.userInfoService.isPaymentModalClose.next(true)
-  }
+  constructor(public userInfoService:UserInfoService,public booksService:BooksService){}
+
 
    isValidCreditCard() {
     const cardNumberRegex = new RegExp("^\\d{16}$");
@@ -31,10 +29,10 @@ export class PaymentModalComponent {
 
   }
 
-  processThePayment(){
+  processPaymentHandler(){
     if(this.isValidPayment()){
-       this.closeModal()
-       this.booksService.currentBooks.next([])
+      this.userInfoService.isPaymentModalClose.next(true)
+      this.booksService.currentBooks.next([])
     }
   }
 
