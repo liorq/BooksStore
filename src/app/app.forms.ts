@@ -1,4 +1,5 @@
 import Swal, { SweetAlertResult } from 'sweetalert2';
+import { swalObj } from './app.swalObj';
 
 export function getEditBookForm(parameter: any, title: string, property: string) {
   return {
@@ -52,40 +53,21 @@ export function getEditUserForm(parameter: any, title: string, property: string)
 
 export async function DeleteUserForm(userPassword: string) {
   async function openModalAndGetInput(this: any, value: any) {
+
+    console.log(this)
     return await this.fire(value);
   }
-
-  const password: SweetAlertResult<string> = await Swal.fire({
-    title: 'Please verify your password',
-    input: 'password',
-    inputLabel: 'password',
-    inputPlaceholder: 'Enter your password',
-  });
+// SweetAlertResult<string>
+console.log("feef")
+  const password: any =await openModalAndGetInput(swalObj.verifyPassword);
 
   if (password?.value != userPassword) {
     Swal.fire(`Incurrent password: try again`);
     return;
   }
 
-  //varfifyPassword
-
-  const swalWithBootstrapButtons = Swal.mixin({
-    customClass: {
-      confirmButton: 'btn btn-danger',
-      cancelButton: 'btn btn-success',
-    },
-    buttonsStyling: false,
-  });
-
-  const result: any = await swalWithBootstrapButtons.fire({
-    title: 'Are you sure?',
-    text: "You won't be able to revert this!",
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonText: 'Yes, delete it!',
-    cancelButtonText: 'No, cancel!',
-    reverseButtons: true,
-  });
+  const swalWithBootstrapButtons = Swal.mixin(swalObj.btnsDangerAndSuccess);
+  const result: any = await swalWithBootstrapButtons.fire(swalObj.wariningOfDelete);
 
   if (result.isConfirmed) {
     swalWithBootstrapButtons.fire(
@@ -93,11 +75,10 @@ export async function DeleteUserForm(userPassword: string) {
       'Your user has been deleted.',
       'success'
     );
-  } else if (result.dismiss === Swal.DismissReason.cancel) {
+  } else if (result.dismiss === Swal.DismissReason.cancel)
     swalWithBootstrapButtons.fire('Cancelled', '', 'error');
-  }
 
-  // varfifyDelete
+
 
   return !result.dismiss;
 }

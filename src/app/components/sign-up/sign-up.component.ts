@@ -20,7 +20,7 @@ export class SignUpComponent  implements OnInit{
     this.initForm()
     this.booksService.usersData=JSON.parse(this.localService.getLocalProperty('usersData')||"[]")
 
-    this.userInfoService.createGuestUser.subscribe(()=>{
+    this.userInfoService.isGuestUser.subscribe(()=>{
       if(!this.localService.isUserLogged())
        this.CreateGuestUser()
     })
