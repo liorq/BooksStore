@@ -29,6 +29,10 @@ export class BooksService {
   book.name=validForm[0]==undefined?book.name:validForm[0];
   book.price=validForm[1]==undefined?book.price:parseInt(validForm[1]);
   book.author=validForm[2]==undefined?book.author:validForm[2];
+
+  // book.name=validForm[0]||book.name;
+  // book.price = validForm[1] ? parseInt(validForm[1]) : book.price;
+  // book.author=validForm[2]||book.author;
 }
 
 }

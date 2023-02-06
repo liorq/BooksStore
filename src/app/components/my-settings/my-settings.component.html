@@ -1,10 +1,10 @@
 <div class="container" *ngIf="this.localService.getUserObj()?.typeOfUser!='guest'">
 
 <div></div>
-<div class=" glow-on-hover" (click)="deleteUser()">
+<div class=" glow-on-hover" (click)="deleteUserHandler()">
  Delete User
 </div>
-<div class=" glow-on-hover" (click)="changePropertyOfUser()">Change user detail's</div>
+<div class=" glow-on-hover" (click)="VerifyAndUpdateUserPasswordHandler()">Change user detail's</div>
 
 
 <div *ngIf="this.localService.getUserObj()?.typeOfUser=='admin'" class="glow-on-hover" [routerLink]="['/users', this.localService.getUserObj().email, 'admin'] " >

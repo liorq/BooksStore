@@ -49,11 +49,13 @@ export function getEditUserForm(parameter: any, title: string, property: string)
 
 
 
- async function openModalAndGetInput(value: any) {
+export async function openModalAndGetInput(value: any) {
 
     return await Swal.fire(value);
   }
-  async function verifyPassword(userPassword:string){
+
+  
+  export async function verifyPassword(userPassword:string){
     const password: any =await openModalAndGetInput(swalObj.verifyPassword);
 
   if (password?.value != userPassword) {
@@ -65,7 +67,7 @@ export function getEditUserForm(parameter: any, title: string, property: string)
 
 
 
- async function verifyDelete(){
+ export async function verifyDelete(){
 
   const swalWithBootstrapButtons = Swal.mixin(swalObj.btnsDangerAndSuccess);
   const result: any = await swalWithBootstrapButtons.fire(swalObj.wariningOfDelete);
@@ -88,10 +90,4 @@ export function getEditUserForm(parameter: any, title: string, property: string)
 
 
 
-export async function DeleteUserForm(userPassword: string) {
 
-  const isValid= verifyDelete();
- const isPassword= verifyPassword(userPassword)
-
-
-}

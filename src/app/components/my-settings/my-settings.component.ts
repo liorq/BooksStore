@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { DeleteUserForm, getEditUserForm } from 'src/app/app.forms';
+import {  getEditUserForm, verifyDelete, verifyPassword } from 'src/app/app.forms';
+import { user } from 'src/app/app.interfaces';
 import { messages } from 'src/app/app.messages';
 import { BooksService } from 'src/app/service/books.service';
 import { LocalService } from 'src/app/service/local.service';
@@ -15,7 +16,8 @@ import Swal from 'sweetalert2';
     './my-settings.component.css',
   ],
 })
-export class MySettingsComponent {
+export class MySettingsComponent implements OnInit{
+  currentUser:any;
 
   constructor(
     public router: Router,
@@ -23,46 +25,63 @@ export class MySettingsComponent {
     private userInfoService: UserInfoService,
     private booksService: BooksService
   ) {}
+  ngOnInit(): void {
+   this.currentUser=this.localService.getUserObj();
+   this.booksService.usersData=JSON.parse(this.localService.getLocalProperty('usersData')||"[]")
+  }
 
-  async deleteUser() {
 
-    ////////isValid
-    ///////קודם כל בדיקה ואז שאלה או handleDeleteUser
-    ///לא עושים ישר את הדליט
+   async isUserConfirmedDelete(userPassword: string) {
+    return await verifyPassword(userPassword)&&await verifyDelete()
+   }
 
-    const currentUser = this.localService.getUserObj();
-    // handleDeleteUser()
-    const isUserConfirmedDelete: any = await DeleteUserForm(currentUser.password);
+
+  async deleteUserHandler() {
+
+    const isUserConfirmedDelete: any = await this.isUserConfirmedDelete(this.currentUser.password)
     if (isUserConfirmedDelete) {
-      this.localService.deleteUser(
-        this.localService.getLocalProperty('currentUserName')
-      );
-      this.localService.deleteUserInfo();
+      this.deleteUser();
       this.userInfoService.isUserLogged.next(false);
       this.router.navigate(['/SignIn']);
     }
+
   }
 
-  async changePropertyOfUser() {
-    const currentUser = this.localService.getUserObj();
-    const form = getEditUserForm(currentUser, 'Edit user details', 'user');
+ deleteUser(){
+      this.localService.deleteUser(
+      this.localService.getLocalProperty('currentUserName'));
+      this.localService.deleteUserInfo();
+ }
 
+
+  async VerifyPassword(){
+    const form = getEditUserForm(this.currentUser, 'Edit user details', 'user');
     const { value: formValues } = await Swal.fire(form);
-    const isValidateForm = formValues![1] == currentUser.password && formValues;
+    const isValidateForm = formValues![1] == this.currentUser.password && formValues;
+    return isValidateForm ?formValues:false
+  }
 
-    if (isValidateForm) {
-      currentUser.email = formValues[0];
-      currentUser.password = formValues[2];
-      const index: any = this.localService.getLocalProperty('index');
-      this.booksService.usersData[index] = currentUser;
-      this.localService.setLocalProperty(
-        'usersData',
-        JSON.stringify(this.booksService.usersData)
-      );
-    }
+
+  UpdateUserPassword(currentUser:user,form:any){
+    currentUser.password = form[2];
+    const index: any = this.localService.getLocalProperty('index');
+    this.booksService.usersData[index] = currentUser;
+    this.localService.setLocalProperty(
+      'usersData',
+      JSON.stringify(this.booksService.usersData)
+    );
+  }
+
+  async VerifyAndUpdateUserPasswordHandler() {
+     const form:any=await this.VerifyPassword();
+
+    if (form)
+    this.UpdateUserPassword(this.currentUser,form)
 
     Swal.fire(
-      messages[isValidateForm ? 'changeSuccessfully' : 'passwordIncorrect']
+      messages[form ? 'changeSuccessfully' : 'passwordIncorrect']
     );
   }
 }
+
+

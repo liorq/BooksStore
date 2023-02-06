@@ -21,7 +21,7 @@ export class LocalService {
 
   deleteUser(userName:any){
    const usersData:any= JSON.parse(this.getLocalProperty('usersData')||"[]")
-   const filteredData = usersData.filter((user: any) => user.email !== userName);
+   const filteredData = usersData.filter((user: any) => user?.email !== userName);
    this.setLocalProperty('usersData',JSON.stringify(filteredData))
 
   }
@@ -32,7 +32,7 @@ export class LocalService {
 
     const currentUserName:any= this.getLocalProperty('currentUserName')
     const usersData:any= JSON.parse(this.getLocalProperty('usersData')||"[]")
-    return usersData.find((user: any) => user.email === currentUserName).booksInCart
+    return usersData.find((user: any) => user.email === currentUserName)?.booksInCart
   }
 
    UpdateBooksCartInUsersData(books:book[]){
@@ -46,7 +46,7 @@ export class LocalService {
   getUserObj(){
     const currentUserName:any= this.getLocalProperty('currentUserName')||""
     const usersData:any= JSON.parse(this.getLocalProperty('usersData')||"[]")
-    return usersData.find((user: any) => user.email === currentUserName)
+    return usersData.find((user: any) => user?.email === currentUserName)
   }
 
   initialLocalProperty(Property:string,value:any){

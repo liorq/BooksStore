@@ -67,10 +67,6 @@ export class AdminPanelComponent implements OnInit{
   }
 
 
-
-
-
-
     async editBookHandler(book:book){
     const{ value: validForm} :any= await this.booksService.isValidEditBookForm(book);
 
@@ -79,7 +75,5 @@ export class AdminPanelComponent implements OnInit{
       this.booksService.editBook(book,validForm)
       this.localService.setLocalProperty('allBooks',JSON.stringify(this.booksToDisplay))
     }
-
   }
-
 }
