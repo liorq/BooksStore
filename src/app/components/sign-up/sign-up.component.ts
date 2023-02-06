@@ -76,7 +76,8 @@ export class SignUpComponent  implements OnInit{
 newUserProcess(newUser:user){
   this.addNewUserPropertyToLocalService(newUser)
   this.userInfoService.isUserLogged.next(true)
-  this.router.navigate([`/${newUser.typeOfUser=='admin'?'admin':'allBooks'}`])
+  console.log(newUser.email)
+  this.router.navigate([`users/${newUser.email+"/"+(newUser.typeOfUser=='admin'?'admin':'allBooks')}`])
 }
 
 addNewUserPropertyToLocalService(newUser:any){
