@@ -25,6 +25,7 @@ export class MySettingsComponent implements OnInit{
     private userInfoService: UserInfoService,
     private booksService: BooksService
   ) {}
+  
   ngOnInit(): void {
    this.currentUser=this.localService.getUserObj();
    this.booksService.usersData=JSON.parse(this.localService.getLocalProperty('usersData')||"[]")
@@ -68,7 +69,7 @@ export class MySettingsComponent implements OnInit{
     );
   }
 
-  async VerifyAndUpdateUserPasswordHandler() {
+  async VerifyAndUpdatePasswordHandler() {
      const form:any=await this.VerifyPassword();
 
     if (form)

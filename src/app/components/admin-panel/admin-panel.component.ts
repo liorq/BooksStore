@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { getAllBooks } from 'src/app/app.books';
-import {  getEditBookForm } from 'src/app/app.forms';
 import { book, user } from 'src/app/app.interfaces';
 import { messages } from 'src/app/app.messages';
 import { BooksService } from 'src/app/service/books.service';
@@ -59,7 +58,6 @@ export class AdminPanelComponent implements OnInit{
     this.booksToDisplay = this.booksToDisplay.filter(b => b.name !== book.name);
     this.localService.setLocalProperty('allBooks',JSON.stringify(this.booksToDisplay))
 
-   ////נוסף לבדוק האם אפשר להעלות אותו לסרוויס
     this.booksService.usersData.forEach((u) =>{
       return u.booksInCart=u.booksInCart.filter((b) => b.name !== book.name);
       });

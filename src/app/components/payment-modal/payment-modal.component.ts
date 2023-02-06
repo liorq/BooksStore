@@ -18,7 +18,6 @@ export class PaymentModalComponent {
 
   constructor(public userInfoService:UserInfoService,public booksService:BooksService){}
 
-
    isValidCreditCard() {
     const cardNumberRegex = new RegExp("^\\d{16}$");
     const cvvRegex = /^[0-9]{3,4}$/;

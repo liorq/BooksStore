@@ -23,7 +23,6 @@ export class LocalService {
    const usersData:any= JSON.parse(this.getLocalProperty('usersData')||"[]")
    const filteredData = usersData.filter((user: any) => user?.email !== userName);
    this.setLocalProperty('usersData',JSON.stringify(filteredData))
-
   }
 
   getBooksInCarts(){
