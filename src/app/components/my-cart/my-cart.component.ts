@@ -53,12 +53,13 @@ export class MyCartComponent implements OnInit {
     this.booksService.currentBooks.next([...this.booksToDisplay]);
   }
 
-
   UpdateCartFromLocalStorage() {
     const data = this.localService.getBooksInCarts();
     this.booksService.currentBooks.next([...data]);
     this.userInfoService.isUserLogged.next(true);
   }
+
+
   totalCharge(currentCart: book[]) {
     return currentCart.reduce((sum, book) => sum + book.price * book.amount, 0);
   }

@@ -38,9 +38,9 @@ export class AllBooksComponent {
   addBooksToCart(book: book) {
     const currentCart = this.localService.getBooksInCarts();
     const Index = currentCart.findIndex((b: book) => b.name == book.name);
-    if (Index != -1) {
+    if (Index != -1)
       currentCart[Index].amount++;
-    } else {
+      else {
       book.amount = 1;
       currentCart.push({ ...book });
     }
