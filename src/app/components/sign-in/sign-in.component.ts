@@ -21,7 +21,7 @@ Password: string="";
 
 ngOnInit(){
   this.localService.initialLocalStorageToDefault()
-  this.booksService.usersData=JSON.parse(this.localService.getLocalProperty('usersData')||"[]")
+  this.booksService.usersData=this.localService.getLocalProperty('usersData')
 }
 
 signInHandler() {

@@ -21,14 +21,14 @@ export class MySettingsComponent implements OnInit{
 
   constructor(
     public router: Router,
-    public localService: LocalService,
-    private userInfoService: UserInfoService,
-    private booksService: BooksService
+    public localSvc: LocalService,
+    private userInfoSvc: UserInfoService,
+    private booksSvc: BooksService
   ) {}
-  
+
   ngOnInit(): void {
-   this.currentUser=this.localService.getUserObj();
-   this.booksService.usersData=JSON.parse(this.localService.getLocalProperty('usersData')||"[]")
+   this.currentUser=this.localSvc.getUserObj();
+   this.booksSvc.usersData=this.localSvc.getLocalProperty('usersData')
   }
 
    async isUserConfirmedDelete(userPassword: string) {
@@ -39,16 +39,16 @@ export class MySettingsComponent implements OnInit{
     const isUserConfirmedDelete: any = await this.isUserConfirmedDelete(this.currentUser.password)
     if (isUserConfirmedDelete) {
       this.deleteUser();
-      this.userInfoService.isUserLogged.next(false);
-      this.router.navigate(['/SignIn']);
+      this.userInfoSvc.isUserLogged.next(false);
+      this.router.navigate(['/SignUp']);
     }
 
   }
 
  deleteUser(){
-      this.localService.deleteUser(
-      this.localService.getLocalProperty('currentUserName'));
-      this.localService.deleteUserInfo();
+      this.localSvc.deleteUser(
+      this.localSvc.getLocalProperty('currentUserName'));
+      this.localSvc.deleteUserInfo();
  }
 
 
@@ -61,12 +61,11 @@ export class MySettingsComponent implements OnInit{
 
   UpdateUserPassword(currentUser:user,form:any){
     currentUser.password = form[2];
-    const index: any = this.localService.getLocalProperty('index');
-    this.booksService.usersData[index] = currentUser;
-    this.localService.setLocalProperty(
-      'usersData',
-      JSON.stringify(this.booksService.usersData)
-    );
+    const index: any = this.localSvc.getLocalProperty('index');
+    this.booksSvc.usersData[index] = currentUser;
+    this.localSvc.setLocalProperty(
+      'usersData',this.booksSvc.usersData);
+
   }
 
   async VerifyAndUpdatePasswordHandler() {

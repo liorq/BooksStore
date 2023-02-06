@@ -18,5 +18,5 @@ export class BooksListComponent {
 @Input()allBooks?:book[] =[];
 @Input()secondBtnTitle?:string="";
 @Input()componentName="";
-constructor(public booksService:BooksService,public localService :LocalService,public userInfoService:UserInfoService){}
+constructor(public booksSvc:BooksService,public localSvc :LocalService,public userInfoSvc:UserInfoService){}
 }

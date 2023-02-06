@@ -3,7 +3,6 @@ import { messages } from 'src/app/app.messages';
 import { LocalService } from 'src/app/service/local.service';
 import { UserInfoService } from 'src/app/service/user-info.service';
 import Swal from 'sweetalert2';
-import { getAllBooks } from '../../app.books';
 import { book } from '../../app.interfaces';
 
 @Component({
@@ -13,12 +12,9 @@ import { book } from '../../app.interfaces';
 })
 export class AllBooksComponent {
   constructor(
-    private localService: LocalService,
-    private userInfoService: UserInfoService
+    private localSvc: LocalService,
   ) {}
-  allBooks: book[] = JSON.parse(
-    this.localService.getLocalProperty('allBooks') || '[]'
-  );
+  allBooks:book[]=this.localSvc.getLocalProperty('allBooks')
 
   searchValue: string = '';
   booksToDisplay: book[] = [...this.allBooks];
@@ -36,7 +32,7 @@ export class AllBooksComponent {
   }
 
   addBooksToCart(book: book) {
-    const currentCart = this.localService.getBooksInCarts();
+    const currentCart = this.localSvc.getBooksInCarts();
     const Index = currentCart.findIndex((b: book) => b.name == book.name);
     if (Index != -1)
       currentCart[Index].amount++;
@@ -44,7 +40,7 @@ export class AllBooksComponent {
       book.amount = 1;
       currentCart.push({ ...book });
     }
-    this.localService.UpdateBooksCartInUsersData([...currentCart]);
+    this.localSvc.UpdateBooksCartInUsersData([...currentCart]);
     Swal.fire(messages.BookAdded);
   }
 }

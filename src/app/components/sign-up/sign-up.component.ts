@@ -18,7 +18,7 @@ import { v4 as uuidv4 } from 'uuid';
 export class SignUpComponent  implements OnInit{
   ngOnInit(){
     this.initForm()
-    this.booksService.usersData=JSON.parse(this.localService.getLocalProperty('usersData')||"[]")
+    this.booksService.usersData=this.localService.getLocalProperty('usersData')
 
     this.userInfoService.isGuestUser.subscribe(()=>{
       if(!this.localService.isUserLogged())
@@ -88,7 +88,7 @@ addNewUserToLocalService(newUser:user){
     });
     this.localService.setLocalProperty('index',this.booksService.usersData.length-1)
     this.localService.setLocalProperty("currentUserName",newUser.email)
-    this.localService.setLocalProperty('usersData',JSON.stringify([...this.booksService.usersData]));
+    this.localService.setLocalProperty('usersData',[...this.booksService.usersData]);
 }
 
 }

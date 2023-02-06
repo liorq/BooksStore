@@ -16,24 +16,24 @@ import Swal from 'sweetalert2';
 })
 export class MyCartComponent implements OnInit {
   constructor(
-    public localService: LocalService,
-    public booksService: BooksService,
-    public userInfoService: UserInfoService
+    public localSvc: LocalService,
+    public booksSvc: BooksService,
+    public userInfoSvc: UserInfoService
   ) {}
   booksToDisplay: book[] = [];
   isPaymentModalClose: boolean = true;
   ngOnInit() {
-    this.userInfoService.isPaymentModalClose.subscribe((newStatus) => {
+    this.userInfoSvc.isPaymentModalClose.subscribe((newStatus) => {
       this.isPaymentModalClose = newStatus;
     });
 
-    this.booksService.currentBooks.subscribe((updateBooks) => {
-      this.localService.UpdateBooksCartInUsersData([...updateBooks]);
+    this.booksSvc.currentBooks.subscribe((updateBooks) => {
+      this.localSvc.UpdateBooksCartInUsersData([...updateBooks]);
       this.booksToDisplay = [...updateBooks];
       this.totalCharge(this.booksToDisplay);
     });
 
-    if (this.localService.isUserLogged())
+    if (this.localSvc.isUserLogged())
     this.UpdateCartFromLocalStorage();
   }
 
@@ -45,18 +45,18 @@ export class MyCartComponent implements OnInit {
      this.booksToDisplay[index].amount--;
 
     Swal.fire(messages.BookRemoved);
-    this.booksService.currentBooks.next([...this.booksToDisplay]);
+    this.booksSvc.currentBooks.next([...this.booksToDisplay]);
   }
 
   AddBookQuantity(book: book) {
     book.amount++;
-    this.booksService.currentBooks.next([...this.booksToDisplay]);
+    this.booksSvc.currentBooks.next([...this.booksToDisplay]);
   }
 
   UpdateCartFromLocalStorage() {
-    const data = this.localService.getBooksInCarts();
-    this.booksService.currentBooks.next([...data]);
-    this.userInfoService.isUserLogged.next(true);
+    const data = this.localSvc.getBooksInCarts();
+    this.booksSvc.currentBooks.next([...data]);
+    this.userInfoSvc.isUserLogged.next(true);
   }
 
 

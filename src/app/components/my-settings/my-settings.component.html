@@ -1,4 +1,4 @@
-<div class="container" *ngIf="this.localService.getUserObj()?.typeOfUser!='guest'">
+<div class="container" *ngIf="this.currentUser?.typeOfUser!='guest'">
 
 <div></div>
 <div class=" glow-on-hover" (click)="deleteUserHandler()">
@@ -7,10 +7,10 @@
 <div class=" glow-on-hover" (click)="VerifyAndUpdatePasswordHandler()">Change user detail's</div>
 
 
-<div *ngIf="this.localService.getUserObj()?.typeOfUser=='admin'" class="glow-on-hover" [routerLink]="['/users', this.localService.getUserObj().email, 'admin'] " >
+<div *ngIf="this.currentUser?.typeOfUser=='admin'" class="glow-on-hover" [routerLink]="['/users', this.currentUser?.email, 'admin'] " >
   Admin panel
  </div>
 
 </div>
 
-<h1 *ngIf="this.localService.getUserObj()?.typeOfUser=='guest'" class="neon">You need to log in to access your settings.</h1>
+<h1 *ngIf="this.currentUser?.typeOfUser=='guest'" class="neon">You need to log in to access your settings.</h1>

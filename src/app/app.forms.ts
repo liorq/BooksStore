@@ -44,17 +44,10 @@ export function getEditUserForm(parameter: any, title: string, property: string)
 }
 
 
-
-
-
-
-
 export async function openModalAndGetInput(value: any) {
-
     return await Swal.fire(value);
   }
 
-  
   export async function verifyPassword(userPassword:string){
     const password: any =await openModalAndGetInput(swalObj.verifyPassword);
 
@@ -81,8 +74,6 @@ export async function openModalAndGetInput(value: any) {
 
   } else if (result.dismiss === Swal.DismissReason.cancel)
     swalWithBootstrapButtons.fire('Cancelled', '', 'error');
-
-
 
   return !result.dismiss;
 

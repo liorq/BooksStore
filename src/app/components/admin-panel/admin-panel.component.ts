@@ -24,18 +24,19 @@ export class AdminPanelComponent implements OnInit{
     author_Name:"",
   }
   ngOnInit(){
-    this.booksService.usersData=JSON.parse(this.localService.getLocalProperty('usersData')||"[]")
-    this.booksToDisplay=JSON.parse(this.localService.getLocalProperty('allBooks')||"[]")
-     this.localService.setLocalProperty('allBooks',JSON.stringify(getAllBooks()))
+    // this.localService.setLocalProperty('allBooks',JSON.stringify(getAllBooks()))
+
+    this.booksSvc.usersData=this.localSvc.getLocalProperty('usersData');
+    this.booksToDisplay=this.localSvc.getLocalProperty('allBooks')
 
   }
 
-   constructor(private localService:LocalService,private userInfoService:UserInfoService,public booksService:BooksService){}
+   constructor(private localSvc:LocalService,private userInfoSvc:UserInfoService,public booksSvc:BooksService){}
 
    addBook(){
    const newBook:any= this.createNewBook();
    this.booksToDisplay.push(newBook);
-   this.localService.setLocalProperty('allBooks',JSON.stringify([...this.booksToDisplay]))
+   this.localSvc.setLocalProperty('allBooks',[...this.booksToDisplay])
    Swal.fire(messages.BookAddedToLocalStorage)
    this.resetBookFields()
   }
@@ -56,22 +57,22 @@ export class AdminPanelComponent implements OnInit{
 
   deleteBook(book:book){
     this.booksToDisplay = this.booksToDisplay.filter(b => b.name !== book.name);
-    this.localService.setLocalProperty('allBooks',JSON.stringify(this.booksToDisplay))
+    this.localSvc.setLocalProperty('allBooks',this.booksToDisplay)
 
-    this.booksService.usersData.forEach((u) =>{
+    this.booksSvc.usersData.forEach((u) =>{
       return u.booksInCart=u.booksInCart.filter((b) => b.name !== book.name);
       });
-      this.localService.setLocalProperty('usersData',JSON.stringify(this.booksService.usersData))
+      this.localSvc.setLocalProperty('usersData',this.booksSvc.usersData);
   }
 
 
     async editBookHandler(book:book){
-    const{ value: validForm} :any= await this.booksService.isValidEditBookForm(book);
+    const{ value: validForm} :any= await this.booksSvc.isValidEditBookForm(book);
 
     if (validForm){
       Swal.fire(messages.changeSuccessfully)
-      this.booksService.editBook(book,validForm)
-      this.localService.setLocalProperty('allBooks',JSON.stringify(this.booksToDisplay))
+      this.booksSvc.editBook(book,validForm)
+      this.localSvc.setLocalProperty('allBooks',this.booksToDisplay)
     }
   }
 }

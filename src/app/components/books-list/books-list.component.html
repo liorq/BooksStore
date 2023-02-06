@@ -1,13 +1,13 @@
 
 <div class="books-container">
 <div id="card" class="card" *ngFor="let book of booksToDisplay">
-  <div class="book-pic"  [ngClass]="this.booksService.getBookPicture(book)"></div>
+  <div class="book-pic"  [ngClass]="this.booksSvc.getBookPicture(book)"></div>
   <div class="div-name">{{book.name.replaceAll("_"," ")}}</div>
   <div *ngIf="this.componentName=='myCart'" class="amount">Amount:{{book.amount}}</div>
   <button *ngIf="this.componentName=='myCart'" (click)="this.secondClickHandler(book)" >Add +</button>
 <button (click)="clickHandler(book)">{{btnTitle}}</button>
 
-<button class="glow-on-hover" type="button" (click)="this.booksService.DisplayBookInfo(book)">book info</button>
+<button class="glow-on-hover" type="button" (click)="this.booksSvc.DisplayBookInfo(book)">book info</button>
 <button *ngIf="secondClickHandler!=undefined&&this.componentName!='myCart'" class="glow-on-hover" type="button" (click)="this.secondClickHandler(book)">{{this.secondBtnTitle}}</button>
 
 </div>
