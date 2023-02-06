@@ -49,22 +49,23 @@ export function getEditUserForm(parameter: any, title: string, property: string)
 
 
 
+ async function openModalAndGetInput(value: any) {
 
-
-export async function DeleteUserForm(userPassword: string) {
-  async function openModalAndGetInput(this: any, value: any) {
-
-    console.log(this)
-    return await this.fire(value);
+    return await Swal.fire(value);
   }
-// SweetAlertResult<string>
-console.log("feef")
-  const password: any =await openModalAndGetInput(swalObj.verifyPassword);
+  async function verifyPassword(userPassword:string){
+    const password: any =await openModalAndGetInput(swalObj.verifyPassword);
 
   if (password?.value != userPassword) {
     Swal.fire(`Incurrent password: try again`);
     return;
   }
+  return password;
+  }
+
+
+
+ async function verifyDelete(){
 
   const swalWithBootstrapButtons = Swal.mixin(swalObj.btnsDangerAndSuccess);
   const result: any = await swalWithBootstrapButtons.fire(swalObj.wariningOfDelete);
@@ -75,10 +76,22 @@ console.log("feef")
       'Your user has been deleted.',
       'success'
     );
+
   } else if (result.dismiss === Swal.DismissReason.cancel)
     swalWithBootstrapButtons.fire('Cancelled', '', 'error');
 
 
 
   return !result.dismiss;
+
+}
+
+
+
+export async function DeleteUserForm(userPassword: string) {
+
+  const isValid= verifyDelete();
+ const isPassword= verifyPassword(userPassword)
+
+
 }

@@ -58,6 +58,8 @@ export class AdminPanelComponent implements OnInit{
   deleteBook(book:book){
     this.booksToDisplay = this.booksToDisplay.filter(b => b.name !== book.name);
     this.localService.setLocalProperty('allBooks',JSON.stringify(this.booksToDisplay))
+
+   ////נוסף לבדוק האם אפשר להעלות אותו לסרוויס
     this.booksService.usersData.forEach((u) =>{
       return u.booksInCart=u.booksInCart.filter((b) => b.name !== book.name);
       });
@@ -66,6 +68,7 @@ export class AdminPanelComponent implements OnInit{
 
 
    async editBook(book:book){
+    ///שאלה ואז האם יש אדיט אין כאן אדיט ישר
     const form=getEditBookForm(book,'Edit book','book')
 
     const { value: formValues } = await Swal.fire(form);

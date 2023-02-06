@@ -24,8 +24,13 @@ export class MySettingsComponent {
   ) {}
 
   async deleteUser() {
-    const currentUser = this.localService.getUserObj();
 
+    ////////isValid
+    ///////קודם כל בדיקה ואז שאלה או handleDeleteUser
+    ///לא עושים ישר את הדליט
+    
+    const currentUser = this.localService.getUserObj();
+    // handleDeleteUser()
     const isUserConfirmedDelete: any = await DeleteUserForm(currentUser.password);
     if (isUserConfirmedDelete) {
       this.localService.deleteUser(
