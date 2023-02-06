@@ -57,7 +57,7 @@ export class SignUpComponent  implements OnInit{
 
   }
 
-  CreateUserProfile(){
+  SignUpHandler(){
   const newUser:any={ ...this.subscribeForm.value };
   const isUserNameAvailable =
   this.userInfoService.isUserAvailable(
@@ -74,13 +74,12 @@ export class SignUpComponent  implements OnInit{
 }
 
 newUserProcess(newUser:user){
-  this.addNewUserPropertyToLocalService(newUser)
-  this.userInfoService.isUserLogged.next(true)
-  console.log(newUser.email)
+  this.addNewUserToLocalService(newUser);
+  this.userInfoService.isUserLogged.next(true);
   this.router.navigate([`users/${newUser.email+"/"+(newUser.typeOfUser=='admin'?'admin':'allBooks')}`])
 }
 
-addNewUserPropertyToLocalService(newUser:any){
+addNewUserToLocalService(newUser:user){
     this.booksService.usersData.push({
       email: newUser.email,
       password: newUser.password,
@@ -91,4 +90,5 @@ addNewUserPropertyToLocalService(newUser:any){
     this.localService.setLocalProperty("currentUserName",newUser.email)
     this.localService.setLocalProperty('usersData',JSON.stringify([...this.booksService.usersData]));
 }
+
 }

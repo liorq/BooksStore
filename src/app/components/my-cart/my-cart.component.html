@@ -1,7 +1,7 @@
-<app-books-list [btnTitle]="'Remove-'" [componentName]="'myCart'" [booksToDisplay]="booksToDisplay" [clickHandler]="removeBookFromCart" [secondClickHandler]="AddQuantity" secondBtnTitle="Add+"></app-books-list>
+<app-books-list [btnTitle]="'Remove-'" [componentName]="'myCart'" [booksToDisplay]="booksToDisplay" [clickHandler]="removeBookFromCart" [secondClickHandler]="AddBookQuantity" secondBtnTitle="Add+"></app-books-list>
 <div *ngIf="totalCharge(this.booksToDisplay)>0" class="container-total">
 <div class="total">total:{{totalCharge(this.booksToDisplay)+"$"}}</div>
-<button  class="glow-on-hover" (click)="displayModalPayment()"> $Purchase</button></div>
+<button  class="glow-on-hover" (click)="this.userInfoService.isPaymentModalClose.next(false);"> $Purchase</button></div>
 <div *ngIf="!isPaymentModalClose" class="modal-container">
 <app-payment-modal class="payment-modal"></app-payment-modal>
 </div>

@@ -30,14 +30,11 @@ export class MySettingsComponent implements OnInit{
    this.booksService.usersData=JSON.parse(this.localService.getLocalProperty('usersData')||"[]")
   }
 
-
    async isUserConfirmedDelete(userPassword: string) {
     return await verifyPassword(userPassword)&&await verifyDelete()
    }
 
-
   async deleteUserHandler() {
-
     const isUserConfirmedDelete: any = await this.isUserConfirmedDelete(this.currentUser.password)
     if (isUserConfirmedDelete) {
       this.deleteUser();

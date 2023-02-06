@@ -16,9 +16,9 @@ import Swal from 'sweetalert2';
 })
 export class MyCartComponent implements OnInit {
   constructor(
-    private localService: LocalService,
-    private booksService: BooksService,
-    private userInfoService: UserInfoService
+    public localService: LocalService,
+    public booksService: BooksService,
+    public userInfoService: UserInfoService
   ) {}
   booksToDisplay: book[] = [];
   isPaymentModalClose: boolean = true;
@@ -39,21 +39,20 @@ export class MyCartComponent implements OnInit {
 
   removeBookFromCart(book: book) {
     const index = this.booksToDisplay.findIndex((b) => b == book);
-    this.booksToDisplay[index].amount == 1? this.booksToDisplay.splice(index, 1)
-      : this.booksToDisplay[index].amount--;
+    if( this.booksToDisplay[index].amount == 1)
+    this.booksToDisplay.splice(index, 1)
+    else
+     this.booksToDisplay[index].amount--;
 
     Swal.fire(messages.BookRemoved);
     this.booksService.currentBooks.next([...this.booksToDisplay]);
   }
 
-  AddQuantity(book: book) {
+  AddBookQuantity(book: book) {
     book.amount++;
     this.booksService.currentBooks.next([...this.booksToDisplay]);
   }
 
-  displayModalPayment() {
-    this.userInfoService.isPaymentModalClose.next(false);
-  }
 
   UpdateCartFromLocalStorage() {
     const data = this.localService.getBooksInCarts();
