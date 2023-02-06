@@ -64,7 +64,7 @@ export class LocalService {
   }
 
   initialLocalProperty(Property:string,value:any){
-    if(this.getLocalProperty(Property)==undefined)
+    if(this.getLocalProperty(Property)===undefined)
     this.setLocalProperty(Property,value)
   }
 
