@@ -14,7 +14,7 @@
 
   <div *ngIf="isUserLogged&&this.localSvc.getUserObj()?.typeOfUser!='guest'" class="Log-out" (click)="deleteUserInfo()" routerLink="SignIn" >Log-out</div>
 
-  <span  id="cart" class=" material-symbols-outlined " routerLink="users/{{this.localSvc.getUserObj()?.email}}/myCart" (click)=" this.userInfoSvc.isGuestUser.next(true)">
+  <span  id="cart" class=" material-symbols-outlined " routerLink="users/{{this.localSvc.getUserObj()?.email}}/my-Cart" (click)=" this.userInfoSvc.isGuestUser.next(true)">
   shopping_cart_checkout
   </span>
 

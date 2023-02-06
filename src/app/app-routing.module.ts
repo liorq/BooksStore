@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'SignUp', component: SignUpComponent },
   {path: 'users/:user/Setting', component: MySettingsComponent} ,
   { path: 'users/:user/allBooks', component: AllBooksComponent },
-  { path: 'users/:user/myCart', component: MyCartComponent },
+  { path: 'users/:user/my-Cart', component: MyCartComponent },
   { path: 'SignIn', component: SignInComponent },
   {path: 'users/:user/admin', component: AdminPanelComponent},
   { path: '', component: SignInComponent, pathMatch: 'full' },
