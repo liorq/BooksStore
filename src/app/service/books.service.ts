@@ -23,10 +23,12 @@ export class BooksService {
    async isValidEditBookForm(book:book){
     return await Swal.fire(getEditBookForm(book,'Edit book','book'));
  }
+
  editBook(book:book,validForm:any){
-  book.name=validForm[0];
-  book.price=parseInt(validForm[1])||80;
-  book.author=validForm[2];
+
+  book.name=validForm[0]==undefined?book.name:validForm[0];
+  book.price=validForm[1]==undefined?book.price:parseInt(validForm[1]);
+  book.author=validForm[2]==undefined?book.author:validForm[2];
 }
 
 }

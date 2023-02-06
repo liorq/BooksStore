@@ -72,7 +72,7 @@ export class AdminPanelComponent implements OnInit{
 
 
     async editBookHandler(book:book){
-    const validForm:any= await this.booksService.isValidEditBookForm(book);
+    const{ value: validForm} :any= await this.booksService.isValidEditBookForm(book);
 
     if (validForm){
       Swal.fire(messages.changeSuccessfully)
