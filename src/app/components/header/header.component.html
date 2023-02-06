@@ -7,14 +7,14 @@
 
 
     <div *ngFor="let item of ['Setting','all_Books']">
-      <div  class="{{item.replaceAll('_','')}}" routerLink="users/{{this.localService.getUserObj().email}}/{{item.replaceAll('_','')}}"  (click)=" this.userInfoService.isGuestUser.next(true)">{{item.toUpperCase().charAt(0)+item.replaceAll('_',' ').slice(1)}}</div>
+      <div  class="{{item.replaceAll('_','')}}" routerLink="users/{{this.localService.getUserObj()?.email}}/{{item.replaceAll('_','')}}"  (click)=" this.userInfoService.isGuestUser.next(true)">{{item.toUpperCase().charAt(0)+item.replaceAll('_',' ').slice(1)}}</div>
     </div>
 
 
 
   <div *ngIf="isUserLogged&&this.localService.getUserObj()?.typeOfUser!='guest'" class="Log-out" (click)="deleteUserInfo()" routerLink="SignIn" >Log-out</div>
 
-  <span  id="cart" class=" material-symbols-outlined " routerLink="users/{{this.localService.getUserObj().email}}/myCart" (click)=" this.userInfoService.isGuestUser.next(true)">
+  <span  id="cart" class=" material-symbols-outlined " routerLink="users/{{this.localService.getUserObj()?.email}}/myCart" (click)=" this.userInfoService.isGuestUser.next(true)">
   shopping_cart_checkout
   </span>
 
