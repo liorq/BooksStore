@@ -16,8 +16,9 @@ import Swal from 'sweetalert2';
   ],
 })
 export class MySettingsComponent {
+
   constructor(
-    private router: Router,
+    public router: Router,
     public localService: LocalService,
     private userInfoService: UserInfoService,
     private booksService: BooksService
@@ -28,7 +29,7 @@ export class MySettingsComponent {
     ////////isValid
     ///////קודם כל בדיקה ואז שאלה או handleDeleteUser
     ///לא עושים ישר את הדליט
-    
+
     const currentUser = this.localService.getUserObj();
     // handleDeleteUser()
     const isUserConfirmedDelete: any = await DeleteUserForm(currentUser.password);
