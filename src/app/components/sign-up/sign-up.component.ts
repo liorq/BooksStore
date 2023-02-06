@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {   FormGroup,
-  FormControl,
-  Validators, } from '@angular/forms';
+import {FormGroup,FormControl,Validators, } from '@angular/forms';
 import { Router } from '@angular/router';
 import { user } from 'src/app/app.interfaces';
 import { messages } from 'src/app/app.messages';

@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { book } from '../app.interfaces';
-
 @Injectable({
   providedIn: 'root'
 })
 export class LocalService {
 
-  getLocalProperty(property:string){
+   getLocalProperty(property:string){
+
     return localStorage.getItem(`${property}`);
   }
   setLocalProperty(property:string,value:any){
