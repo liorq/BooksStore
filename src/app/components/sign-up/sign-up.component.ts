@@ -30,6 +30,8 @@ export class SignUpComponent  implements OnInit{
   errorMessages=messages.errorMessages
 
 
+
+
   initForm() {
     this.subscribeForm = new FormGroup({
       name: new FormControl('', [Validators.required,Validators.minLength(4)]),
@@ -39,10 +41,15 @@ export class SignUpComponent  implements OnInit{
     });
 
   }
+
+
+
   get Name(){return this.subscribeForm.get('name');}
   get Email(){return this.subscribeForm.get('email');}
   get Password(){return this.subscribeForm.get('password');}
   get TypeOfUser(){return this.subscribeForm.get('typeOfUser');}
+
+
 
 
   CreateGuestUser(){
@@ -56,6 +63,9 @@ export class SignUpComponent  implements OnInit{
     this.newUserProcess(newGuestUser)
 
   }
+
+
+
 
   SignUpHandler(){
   const newUser:any={ ...this.subscribeForm.value };
@@ -73,11 +83,19 @@ export class SignUpComponent  implements OnInit{
   this.newUserProcess(newUser)
 }
 
+
+
+
 newUserProcess(newUser:user){
   this.addNewUserToLocalService(newUser);
   this.userInfoService.isUserLogged.next(true);
+
+   if(newUser.typeOfUser!=='guest')
   this.router.navigate([`users/${newUser.email+"/"+(newUser.typeOfUser=='admin'?'admin':'allBooks')}`])
 }
+
+
+
 
 addNewUserToLocalService(newUser:user){
     this.booksService.usersData.push({

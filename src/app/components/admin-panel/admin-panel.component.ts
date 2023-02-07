@@ -8,73 +8,89 @@ import { LocalService } from 'src/app/service/local.service';
 import { UserInfoService } from 'src/app/service/user-info.service';
 import Swal from 'sweetalert2';
 
-
 @Component({
   selector: 'app-admin-panel',
   templateUrl: './admin-panel.component.html',
-  styleUrls: ['../books-list/books-list.component.css','./admin-panel.component.css']
+  styleUrls: [
+    '../books-list/books-list.component.css',
+    './admin-panel.component.css',
+  ],
 })
-export class AdminPanelComponent implements OnInit{
-
-  isAddBookModalOpen=false;
-  isBooksPanelOpen=false;
-  booksToDisplay:book[]=[];
-  book:any={
-    Book_Name:"",
-    price:"",
-    author_Name:"",
-  }
-  ngOnInit(){
+export class AdminPanelComponent implements OnInit {
+  isAddBookModalOpen = false;
+  isBooksPanelOpen = false;
+  booksToDisplay: book[] = [];
+  book: any = {
+    Book_Name: '',
+    price: '',
+    author_Name: '',
+  };
+  ngOnInit() {
     // this.localService.setLocalProperty('allBooks',JSON.stringify(getAllBooks()))
+    this.booksSvc.usersData = this.localSvc.getLocalProperty('usersData');
+    this.booksToDisplay = this.localSvc.getLocalProperty('allBooks');
 
-    this.booksSvc.usersData=this.localSvc.getLocalProperty('usersData');
-    this.booksToDisplay=this.localSvc.getLocalProperty('allBooks')
+
+
+
+
+
 
   }
 
-   constructor(private localSvc:LocalService,private userInfoSvc:UserInfoService,public booksSvc:BooksService){}
+  constructor(private localSvc: LocalService,public booksSvc: BooksService
+  ) {}
 
-   addBook(){
-   const newBook:any= this.createNewBook();
-   this.booksToDisplay.push(newBook);
-   this.localSvc.setLocalProperty('allBooks',[...this.booksToDisplay])
-   Swal.fire(messages.BookAddedToLocalStorage)
-   this.resetBookFields()
-  }
-
-  resetBookFields(){
-    this.book={  Book_Name:"",price:"",author_Name:"",Book_Id:"",}
+  addBook() {
+    const newBook: any = this.createNewBook();
+    this.booksToDisplay.push(newBook);
+    this.localSvc.setLocalProperty('allBooks', [...this.booksToDisplay]);
+    Swal.fire(messages.BookAddedToLocalStorage);
+    this.resetBookFields();
   }
 
 
-  createNewBook(){
-  return{
-   name:this.book.Book_Name,
-   price:parseInt(this.book.price)||80,
-   author: this.book.author_Name,
-  }
+
+  resetBookFields() {
+    this.book = { Book_Name: '', price: '', author_Name: '', Book_Id: '' };
   }
 
 
-  deleteBook(book:book){
-    this.booksToDisplay = this.booksToDisplay.filter(b => b.name !== book.name);
-    this.localSvc.setLocalProperty('allBooks',this.booksToDisplay)
 
-    this.booksSvc.usersData.forEach((u) =>{
-      return u.booksInCart=u.booksInCart.filter((b) => b.name !== book.name);
-      });
-      this.localSvc.setLocalProperty('usersData',this.booksSvc.usersData);
+
+
+  createNewBook() {
+    return {
+      name: this.book.Book_Name,
+      price: parseInt(this.book.price) || 80,
+      author: this.book.author_Name,
+    };
   }
 
 
-    async editBookHandler(book:book){
 
-    const{ value: validForm} :any= await Swal.fire(getEditBookForm(book,'Edit book','book'));
+  deleteBook(book: book) {
+    this.booksToDisplay = this.booksToDisplay.filter(
+      (b) => b.name !== book.name);
+    this.localSvc.setLocalProperty('allBooks', this.booksToDisplay);
 
-    if (validForm){
-      Swal.fire(messages.changeSuccessfully)
-      this.booksSvc.editBook(book,validForm)
-      this.localSvc.setLocalProperty('allBooks',this.booksToDisplay)
+    this.booksSvc.usersData.forEach((u) => {
+      return (u.booksInCart = u.booksInCart.filter(
+        (b) => b.name !== book.name));
+    });
+    this.localSvc.setLocalProperty('usersData', this.booksSvc.usersData);
+  }
+
+
+
+  async editBookHandler(book: book) {
+    const { value: validForm }: any = await Swal.fire(
+      getEditBookForm(book, 'Edit book', 'book'));
+
+    if (validForm) {
+      Swal.fire(messages.changeSuccessfully);
+      this.booksSvc.editBook(book, validForm);
+      this.localSvc.setLocalProperty('allBooks', this.booksToDisplay);
     }
   }
 }

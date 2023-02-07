@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {  getEditUserForm, verifyDelete, verifyPassword } from 'src/app/app.forms';
+import {
+  getEditUserForm,
+  verifyDelete,
+  verifyPassword,
+} from 'src/app/app.forms';
 import { user } from 'src/app/app.interfaces';
 import { messages } from 'src/app/app.messages';
 import { BooksService } from 'src/app/service/books.service';
@@ -16,8 +20,12 @@ import Swal from 'sweetalert2';
     './my-settings.component.css',
   ],
 })
-export class MySettingsComponent implements OnInit{
-  currentUser:any;
+export class MySettingsComponent implements OnInit {
+  currentUser?: any;
+  isUserLogged?:boolean;
+  ///לשנות לtype
+
+
 
   constructor(
     public router: Router,
@@ -27,57 +35,59 @@ export class MySettingsComponent implements OnInit{
   ) {}
 
   ngOnInit(): void {
-   this.currentUser=this.localSvc.getUserObj();
-   this.booksSvc.usersData=this.localSvc.getLocalProperty('usersData')
+    this.userInfoSvc.currentUser.subscribe((currentUser)=>{
+      this.currentUser=currentUser
+    })
+
+////
+////
+
+    //not needed
+      this.currentUser = this.localSvc.getUserObj();
+      // don't need usersData
+      this.booksSvc.usersData = this.localSvc.getLocalProperty('usersData');
   }
 
-   async isUserConfirmedDelete(userPassword: string) {
-    return await verifyPassword(userPassword)&&await verifyDelete()
-   }
+  async isUserConfirmedDelete(userPassword: string) {
+    return (await verifyPassword(userPassword)) && (await verifyDelete());
+  }
 
   async deleteUserHandler() {
-    const isUserConfirmedDelete: any = await this.isUserConfirmedDelete(this.currentUser.password)
+    const isUserConfirmedDelete: any = await this.isUserConfirmedDelete(
+      this.currentUser.password
+    );
     if (isUserConfirmedDelete) {
       this.deleteUser();
       this.userInfoSvc.isUserLogged.next(false);
       this.router.navigate(['/SignUp']);
     }
-
   }
 
- deleteUser(){
-      this.localSvc.deleteUser(
-      this.localSvc.getLocalProperty('currentUserName'));
-      this.localSvc.deleteUserInfo();
- }
+  deleteUser() {
+    this.localSvc.deleteUser(this.localSvc.getLocalProperty('currentUserName'));
+    this.localSvc.deleteUserInfo();
+  }
 
-
-  async VerifyPassword(){
+  async VerifyPassword() {
     const form = getEditUserForm(this.currentUser, 'Edit user details', 'user');
     const { value: formValues } = await Swal.fire(form);
-    return formValues&& formValues![1] == this.currentUser.password ?formValues:false;
+    return formValues && formValues![1] == this.currentUser.password
+      ? formValues
+      : false;
   }
 
-
-  UpdateUserPassword(currentUser:user,form:any){
+  UpdateUserPassword(currentUser: user, form: any) {
     currentUser.password = form[2];
     const index: any = this.localSvc.getLocalProperty('index');
     this.booksSvc.usersData[index] = currentUser;
-    this.localSvc.setLocalProperty(
-      'usersData',this.booksSvc.usersData);
-
+    this.localSvc.setLocalProperty('usersData', this.booksSvc.usersData);
   }
 
   async VerifyAndUpdatePasswordHandler() {
-     const form:any=await this.VerifyPassword();
+    const form: any = await this.VerifyPassword();
 
-    if (form)
-    this.UpdateUserPassword(this.currentUser,form)
+    if (form) this.UpdateUserPassword(this.currentUser, form);
 
-    Swal.fire(
-      messages[form ? 'changeSuccessfully' : 'passwordIncorrect']
-    );
+    Swal.fire(messages[form ? 'changeSuccessfully' : 'passwordIncorrect']);
   }
 }
-
-

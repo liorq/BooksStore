@@ -24,6 +24,9 @@ ngOnInit(){
   this.booksService.usersData=this.localService.getLocalProperty('usersData')
 }
 
+
+
+
 signInHandler() {
    const isValidInfo = this.userInfoService.isValidUserInfo(
     this.userName,
@@ -38,12 +41,15 @@ signInHandler() {
   Swal.fire(messages.usernameIncorrect);
 }
 
+
+
 signIn(){
    this.userInfoService.isUserLogged.next(true)
     this.localService.setLocalProperty("currentUserName",this.userName)
     this.updateIndex(this.userName)
     this.router.navigate([`users/${this.userName+"/"+(this.localService.getUserObj()?.typeOfUser=='admin'?'admin':'allBooks')}`])
 }
+
 
 
 updateIndex(userName:any){

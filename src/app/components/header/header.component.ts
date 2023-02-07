@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { LocalService } from 'src/app/service/local.service';
 import { UserInfoService } from '../../service/user-info.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.css'],
+  
 })
 export class HeaderComponent implements OnInit {
 isUserLogged?:boolean;
-constructor(public userInfoSvc:UserInfoService,public localSvc:LocalService){}
+constructor(public userInfoSvc:UserInfoService,public localSvc:LocalService,public router:Router){}
 
 ngOnInit(){
 

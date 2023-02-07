@@ -28,6 +28,9 @@ export class PaymentModalComponent {
 
   }
 
+
+
+
   processPaymentHandler(){
     if(this.isValidPayment()){
       this.userInfoService.isPaymentModalClose.next(true)
@@ -35,8 +38,13 @@ export class PaymentModalComponent {
     }
   }
 
+
+
   isValidPayment(){
     Swal.fire(messages[this.isValidCard?'purchasedSuccessfully':'invalidCreditCardDetails'])
      return this.isValidCard;
 }
+
+
+
 }

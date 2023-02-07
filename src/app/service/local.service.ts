@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { book } from '../app.interfaces';
+import { book, user } from '../app.interfaces';
 @Injectable({
   providedIn: 'root'
 })
@@ -58,8 +58,8 @@ export class LocalService {
   }
 
   getUserObj(){
-    const currentUserName:any= this.getLocalProperty('currentUserName')
-    const usersData:any= this.getLocalProperty('usersData')
+    const currentUserName:string= this.getLocalProperty('currentUserName')
+    const usersData:user[]= this.getLocalProperty('usersData')
     return usersData.find((user: any) => user?.email === currentUserName)
   }
 

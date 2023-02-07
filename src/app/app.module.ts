@@ -38,5 +38,7 @@ import { AdminPanelComponent } from './components/admin-panel/admin-panel.compon
   ],
   providers: [],
   bootstrap: [AppComponent]
+
 })
+
 export class AppModule { }

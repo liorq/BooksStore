@@ -16,10 +16,12 @@ import Swal from 'sweetalert2';
 })
 export class MyCartComponent implements OnInit {
   constructor(
-    public localSvc: LocalService,
-    public booksSvc: BooksService,
+    private localSvc: LocalService,
+    private booksSvc: BooksService,
     public userInfoSvc: UserInfoService
   ) {}
+
+
   booksToDisplay: book[] = [];
   isPaymentModalClose: boolean = true;
   ngOnInit() {
@@ -33,9 +35,13 @@ export class MyCartComponent implements OnInit {
       this.totalCharge(this.booksToDisplay);
     });
 
+
     if (this.localSvc.isUserLogged())
     this.UpdateCartFromLocalStorage();
   }
+
+
+
 
   removeBookFromCart(book: book) {
     const index = this.booksToDisplay.findIndex((b) => b == book);
@@ -47,6 +53,8 @@ export class MyCartComponent implements OnInit {
     Swal.fire(messages.BookRemoved);
     this.booksSvc.currentBooks.next([...this.booksToDisplay]);
   }
+
+
 
   AddBookQuantity(book: book) {
     book.amount++;

@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
+import { user } from '../app.interfaces';
+import { LocalService } from './local.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +10,12 @@ export class UserInfoService {
 isPaymentModalClose=new Subject<boolean>()
 isUserLogged=new Subject<boolean>()
 isGuestUser=new Subject<boolean>();
+currentUser=new BehaviorSubject <user|null>(null);
 
+//use this
+  updateCurrentUser(user:user){
+this.currentUser.next(user)
+  }
 
   isValidUserInfo(userName: string, password: string, usersData: any[]) {
     return usersData.find((user: any) => userName == user.email && password == user.password)
