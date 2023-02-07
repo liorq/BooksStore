@@ -5,7 +5,6 @@ import { book, user } from 'src/app/app.interfaces';
 import { messages } from 'src/app/app.messages';
 import { BooksService } from 'src/app/service/books.service';
 import { LocalService } from 'src/app/service/local.service';
-import { UserInfoService } from 'src/app/service/user-info.service';
 import Swal from 'sweetalert2';
 
 @Component({

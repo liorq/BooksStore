@@ -5,15 +5,10 @@ import { book, user } from '../app.interfaces';
 })
 export class LocalService {
 
-  //  getLocalProperty(property:string){
-
-  //   return localStorage.getItem(`${property}`);
-  // }
-  // setLocalProperty(property:string,value:any){
-  //    localStorage.setItem(`${property}`,value);
-  // }
 
   getLocalProperty(property:string){
+
+
     if(property=='index'||property=='currentUserName')
      return localStorage.getItem(`${property}`);
 
