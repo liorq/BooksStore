@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import Swal from 'sweetalert2';
 import { getEditBookForm } from '../app.forms';
 import { book, user } from '../app.interfaces';
@@ -11,7 +11,7 @@ import { DisplayBookInfoMessage } from '../app.messages';
 
 export class BooksService {
   usersData:user[]=[];
-  currentBooks=new Subject<book[]>();
+  currentBooks=new BehaviorSubject<book[]>([]);
 
   getBookPicture(book:book){
    return {'defaultPic':true,[book.name]:true }

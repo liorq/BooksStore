@@ -7,14 +7,14 @@ import { LocalService } from './local.service';
   providedIn: 'root'
 })
 export class UserInfoService {
-isPaymentModalClose=new Subject<boolean>()
-isUserLogged=new Subject<boolean>()
-isGuestUser=new Subject<boolean>();
+isPaymentModalClose=new BehaviorSubject<boolean>(true)
+isUserLogged=new BehaviorSubject<boolean|null>(null)
+isGuestUser=new BehaviorSubject<boolean|null>(null);
 currentUser=new BehaviorSubject <user|null>(null);
 
 //use this
   updateCurrentUser(user:user){
-this.currentUser.next(user)
+   this.currentUser.next(user)
   }
 
   isValidUserInfo(userName: string, password: string, usersData: any[]) {
