@@ -10,7 +10,6 @@ import { DisplayBookInfoMessage } from '../app.messages';
 })
 
 export class BooksService {
-  usersData:user[]=[];
   currentBooks=new BehaviorSubject<book[]>([]);
 
   getBookPicture(book:book){

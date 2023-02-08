@@ -8,7 +8,6 @@ export class LocalService {
 
   getLocalProperty(property:string){
 
-
     if(property=='index'||property=='currentUserName')
      return localStorage.getItem(`${property}`);
 
@@ -36,6 +35,7 @@ export class LocalService {
   }
 
   getBooksInCarts(){
+
     if(!this.isUserLogged())
      return
 
@@ -74,5 +74,10 @@ export class LocalService {
     return this.getLocalProperty('currentUserName')!="";
   }
 
-
+  addNewUser(newUser:user){
+    const usersData=this.getLocalProperty('usersData')
+    this.setLocalProperty('index',usersData.length-1)
+    this.setLocalProperty("currentUserName",newUser.email)
+    this.setLocalProperty('usersData',[...usersData,newUser]);
+  }
 }

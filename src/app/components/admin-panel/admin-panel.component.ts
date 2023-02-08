@@ -29,12 +29,6 @@ export class AdminPanelComponent implements OnInit {
     this.booksSvc.usersData = this.localSvc.getLocalProperty('usersData');
     this.booksToDisplay = this.localSvc.getLocalProperty('allBooks');
 
-
-
-
-
-
-
   }
 
   constructor(private localSvc: LocalService,public booksSvc: BooksService
@@ -69,6 +63,7 @@ export class AdminPanelComponent implements OnInit {
 
 
   deleteBook(book: book) {
+
     this.booksToDisplay = this.booksToDisplay.filter(
       (b) => b.name !== book.name);
     this.localSvc.setLocalProperty('allBooks', this.booksToDisplay);
@@ -79,6 +74,7 @@ export class AdminPanelComponent implements OnInit {
     });
     this.localSvc.setLocalProperty('usersData', this.booksSvc.usersData);
   }
+
 
 
 

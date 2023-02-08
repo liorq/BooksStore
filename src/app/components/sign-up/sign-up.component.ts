@@ -18,7 +18,7 @@ import { v4 as uuidv4 } from 'uuid';
 export class SignUpComponent  implements OnInit{
   ngOnInit(){
     this.initForm()
-    this.booksService.usersData=this.localService.getLocalProperty('usersData')
+    this.userInfoService.usersData.next(this.localService.getLocalProperty('usersData'))
 
     this.userInfoService.isGuestUser.subscribe(()=>{
       if(!this.localService.isUserLogged())
@@ -69,11 +69,7 @@ export class SignUpComponent  implements OnInit{
 
   SignUpHandler(){
   const newUser:any={ ...this.subscribeForm.value };
-  const isUserNameAvailable =
-  this.userInfoService.isUserAvailable(
-    newUser,
-    this.booksService.usersData
-  );
+  const isUserNameAvailable =this.userInfoService.isUserAvailable(newUser);
 
   Swal.fire(messages[!isUserNameAvailable?'usernameIsntAvailable':'usernameAdded'])
 
@@ -87,8 +83,8 @@ export class SignUpComponent  implements OnInit{
 
 
 newUserProcess(newUser:user){
-  this.addNewUserToLocalService(newUser);
-  this.userInfoService.isUserLogged.next(true);
+  this.addNewUser(newUser);
+  this.userInfoService.updateCurrentUser(newUser)
 
    if(newUser.typeOfUser!=='guest')
   this.router.navigate([`users/${newUser.email+"/"+(newUser.typeOfUser=='admin'?'admin':'allBooks')}`])
@@ -97,16 +93,20 @@ newUserProcess(newUser:user){
 
 
 
-addNewUserToLocalService(newUser:user){
-    this.booksService.usersData.push({
-      email: newUser.email,
-      password: newUser.password,
-      booksInCart: this.localService.getBooksInCarts()||[],
-      typeOfUser:newUser.typeOfUser,
-    });
-    this.localService.setLocalProperty('index',this.booksService.usersData.length-1)
-    this.localService.setLocalProperty("currentUserName",newUser.email)
-    this.localService.setLocalProperty('usersData',[...this.booksService.usersData]);
+addNewUser(newUser:user){
+////פונקציה אחת של הלוקאל ופונקציה אחת של המערך הקיים
+
+///לעשות את זה ביוזר סרוויס
+
+const newUserAdded:user={
+  email: newUser.email,
+  password: newUser.password,
+  booksInCart: this.localService.getBooksInCarts()||[],
+  typeOfUser:newUser.typeOfUser,
+}
+this.userInfoService.addNewUser(newUserAdded)
+this.localService.addNewUser(newUserAdded)
+
 }
 
 }

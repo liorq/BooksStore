@@ -7,7 +7,7 @@ import { UserInfoService } from '../../service/user-info.service';
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
-  
+
 })
 export class HeaderComponent implements OnInit {
 isUserLogged?:boolean;
@@ -16,6 +16,7 @@ constructor(public userInfoSvc:UserInfoService,public localSvc:LocalService,publ
 ngOnInit(){
 
   this.userInfoSvc.isUserLogged.subscribe((isUserLogged)=>{
+    if(isUserLogged)
    this.isUserLogged=isUserLogged;
   })
 

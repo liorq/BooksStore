@@ -11,10 +11,12 @@ isPaymentModalClose=new BehaviorSubject<boolean>(true)
 isUserLogged=new BehaviorSubject<boolean|null>(null)
 isGuestUser=new BehaviorSubject<boolean|null>(null);
 currentUser=new BehaviorSubject <user|null>(null);
+usersData=new BehaviorSubject <user[]>([]);
 
 //use this
   updateCurrentUser(user:user){
    this.currentUser.next(user)
+   this.isUserLogged.next(true);
   }
 
   isValidUserInfo(userName: string, password: string, usersData: any[]) {
@@ -30,8 +32,15 @@ currentUser=new BehaviorSubject <user|null>(null);
     }
     return
   }
-  isUserAvailable(newUser:any,usersData:any){
-    return (usersData.find((user: any) => user.email === newUser.email))==undefined;
+  isUserAvailable(newUser:any){
+    return (this.usersData.getValue().find((user: any) => user.email === newUser.email))==undefined;
   }
+
+  addNewUser(newUser:user){
+    this.usersData.next([...this.usersData.getValue(),newUser])
+
+
+  }
+
 
 }
