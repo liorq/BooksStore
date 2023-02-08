@@ -5,7 +5,6 @@ import { book, user } from '../app.interfaces';
 })
 export class LocalService {
 
-usersData:user[]=this.getLocalProperty('usersData');
   getLocalProperty(property:string){
 
     if(property=='index'||property=='currentUserName')
@@ -29,8 +28,9 @@ usersData:user[]=this.getLocalProperty('usersData');
   }
 
   deleteUser(){
+    const usersData=this.getLocalProperty('usersData')
    const  userName:any= this.getLocalProperty('currentUserName')
-   const filteredData = this.usersData.filter((user: any) => user?.email !== userName);
+   const filteredData = usersData.filter((user: any) => user?.email !== userName);
    this.setLocalProperty('usersData',filteredData)
   }
 
@@ -39,20 +39,23 @@ usersData:user[]=this.getLocalProperty('usersData');
     if(!this.isUserLogged())
      return
 
+     const usersData=this.getLocalProperty('usersData')
     const currentUserName:any= this.getLocalProperty('currentUserName')
-    return this.usersData.find((user: any) => user.email === currentUserName)?.booksInCart
+    return usersData.find((user: any) => user.email === currentUserName)?.booksInCart
   }
 
    UpdateBooksCartInUsersData(books:book[]){
     ////put the cart between the userName and password
+    const usersData=this.getLocalProperty('usersData')
     const index:any= this.getLocalProperty('index')
-    this.usersData[index].booksInCart=[...books]
-    this.setLocalProperty('usersData',[...this.usersData])
+    usersData[index].booksInCart=[...books]
+    this.setLocalProperty('usersData',[...usersData])
   }
 
   getUserObj(){
+    const usersData=this.getLocalProperty('usersData')
     const currentUserName:string= this.getLocalProperty('currentUserName')
-    return this.usersData.find((user: any) => user?.email === currentUserName)
+    return usersData.find((user: any) => user?.email === currentUserName)
   }
 
   initialLocalProperty(Property:string,value:any){
@@ -72,20 +75,23 @@ usersData:user[]=this.getLocalProperty('usersData');
   }
 
   addNewUser(newUser:user){
+    const usersData=this.getLocalProperty('usersData')
+
     const newUserAdded:user={
       email: newUser.email,
       password: newUser.password,
       booksInCart: this.getBooksInCarts()||[],
       typeOfUser:newUser.typeOfUser,
     }
-    this.setLocalProperty('index',this.usersData.length-1)
+    this.setLocalProperty('index',usersData.length-1)
     this.setLocalProperty("currentUserName",newUser.email)
-    this.setLocalProperty('usersData',[...this.usersData,newUserAdded]);
+    this.setLocalProperty('usersData',[...usersData,newUserAdded]);
   }
 
   UpdateUserPassword(currentUser: user,index:any) {
-    this.usersData[index]=currentUser;
-    this.setLocalProperty('usersData', this.usersData);
+    const usersData=this.getLocalProperty('usersData')
+    usersData[index]=currentUser;
+    this.setLocalProperty('usersData', usersData);
   }
 
 
@@ -94,21 +100,26 @@ usersData:user[]=this.getLocalProperty('usersData');
     this.updateIndex(userName)
   }
   updateIndex(userName:any){
-    const index = this.usersData.findIndex((user:user) => user.email == userName);
+    const usersData=this.getLocalProperty('usersData')
+    const index = usersData.findIndex((user:user) => user.email == userName);
     this.setLocalProperty("index",index)
   }
 
 
   deleteBooksFromCarts(book:book){
-    this.usersData.forEach((u:user) => {
+    const usersData=this.getLocalProperty('usersData')
+
+    usersData.forEach((u:user) => {
        return (u.booksInCart = u.booksInCart.filter(
          (b:book) => b.name !== book.name));
      });
-     this.setLocalProperty('usersData', this.usersData);
+     this.setLocalProperty('usersData', usersData);
    }
 
  isValidUserInfo(userName: string, password: string) {
-    return this.usersData.find((user: any) => userName == user.email && password == user.password)
+  const usersData=this.getLocalProperty('usersData')
+
+    return usersData.find((user: any) => userName == user.email && password == user.password)
   }
 
   isPasswordCurrent(formValues:any){
@@ -117,7 +128,8 @@ usersData:user[]=this.getLocalProperty('usersData');
    }
 
   isUserNameAvailable(newUser:any){
-    return (this.usersData.find((user: any) => user.email === newUser.email))==undefined;
+    const usersData=this.getLocalProperty('usersData');
+    return (usersData.find((user: any) => user.email === newUser.email))==undefined;
   }
 
 }

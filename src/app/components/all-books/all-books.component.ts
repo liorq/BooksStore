@@ -12,10 +12,11 @@ import { book } from '../../app.interfaces';
 })
 export class AllBooksComponent {
   constructor(private localSvc: LocalService,private userInfoSvc:UserInfoService) {}
-  //get from bookService
+
+
   allBooks: book[] =this.userInfoSvc.allBooks.getValue()||
    this.localSvc.getLocalProperty('allBooks');
-   
+
   searchValue: string = '';
   booksToDisplay: book[] = [...this.allBooks];
 

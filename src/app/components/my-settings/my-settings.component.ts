@@ -31,17 +31,12 @@ export class MySettingsComponent implements OnInit {
     public router: Router,
     public localSvc: LocalService,
     private userInfoSvc: UserInfoService,
-    private booksSvc: BooksService
   ) {}
 
   ngOnInit(): void {
     this.userInfoSvc.currentUser.subscribe((currentUser)=>{
       this.currentUser=currentUser;
     })
-
-    //not needed
-      this.currentUser = this.localSvc.getUserObj();
-
   }
 
   async isUserConfirmedDelete(userPassword: string) {
