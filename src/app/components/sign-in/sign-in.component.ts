@@ -21,18 +21,12 @@ Password: string="";
 
 ngOnInit(){
   this.localService.initialLocalStorageToDefault()
-  this.booksService.usersData=this.localService.getLocalProperty('usersData')
+  this.userInfoService.usersData=this.localService.getLocalProperty('usersData')
 }
 
 
-
-
 signInHandler() {
-   const isValidInfo = this.userInfoService.isValidUserInfo(
-    this.userName,
-    this.Password,
-    this.booksService.usersData
-   );
+   const isValidInfo = this.userInfoService.isValidUserInfo(this.userName,this.Password);
 
   if (isValidInfo)
   this.signIn()
@@ -42,18 +36,11 @@ signInHandler() {
 }
 
 
-
 signIn(){
-   this.userInfoService.isUserLogged.next(true)
-    this.localService.setLocalProperty("currentUserName",this.userName)
-    this.updateIndex(this.userName)
+    this.localService.signIn(this.userName);
+    const currentUser:any=this.localService.getUserObj();
+    this.userInfoService.updateCurrentUser(currentUser);
     this.router.navigate([`users/${this.userName+"/"+(this.localService.getUserObj()?.typeOfUser=='admin'?'admin':'allBooks')}`])
 }
 
-
-
-updateIndex(userName:any){
-  const index = this.booksService.usersData.findIndex((user:user) => user.email == userName);
-  this.localService.setLocalProperty("index",index)
-}
 }

@@ -18,9 +18,10 @@ usersData=new BehaviorSubject <user[]>([]);
    this.currentUser.next(user)
    this.isUserLogged.next(true);
   }
+  
 
-  isValidUserInfo(userName: string, password: string, usersData: any[]) {
-    return usersData.find((user: any) => userName == user.email && password == user.password)
+  isValidUserInfo(userName: string, password: string) {
+    return this.usersData.getValue().find((user: any) => userName == user.email && password == user.password)
   }
 
   getInvalidMessage(errors:any,property:string,error:keyof typeof errors,errorMessage:string){
@@ -41,6 +42,13 @@ usersData=new BehaviorSubject <user[]>([]);
 
 
   }
+  UpdateUserPassword(currentUser: user,index:string) {
+    const usersData:any= this.usersData.getValue();
+    usersData[index]=currentUser;
+    this.usersData.next([usersData])
+
+  }
+
 
 
 }

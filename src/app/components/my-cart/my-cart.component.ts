@@ -51,20 +51,21 @@ export class MyCartComponent implements OnInit {
      this.booksToDisplay[index].amount--;
 
     Swal.fire(messages.BookRemoved);
-    this.booksSvc.currentBooks.next([...this.booksToDisplay]);
+    this.booksSvc.updateCurrentBooks([...this.booksToDisplay])
+
   }
 
 
 
   AddBookQuantity(book: book) {
     book.amount++;
-    this.booksSvc.currentBooks.next([...this.booksToDisplay]);
+    this.booksSvc.updateCurrentBooks([...this.booksToDisplay]);
   }
 
   UpdateCartFromLocalStorage() {
+    ///getCart
     const data = this.localSvc.getBooksInCarts();
-    this.booksSvc.currentBooks.next([...data]);
-    this.userInfoSvc.isUserLogged.next(true);
+    this.booksSvc.updateCurrentBooks([...data])
   }
 
 

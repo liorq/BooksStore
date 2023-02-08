@@ -94,16 +94,14 @@ newUserProcess(newUser:user){
 
 
 addNewUser(newUser:user){
-////פונקציה אחת של הלוקאל ופונקציה אחת של המערך הקיים
-
-///לעשות את זה ביוזר סרוויס
-
+  
 const newUserAdded:user={
   email: newUser.email,
   password: newUser.password,
   booksInCart: this.localService.getBooksInCarts()||[],
   typeOfUser:newUser.typeOfUser,
 }
+
 this.userInfoService.addNewUser(newUserAdded)
 this.localService.addNewUser(newUserAdded)
 

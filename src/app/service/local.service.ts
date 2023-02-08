@@ -80,4 +80,20 @@ export class LocalService {
     this.setLocalProperty("currentUserName",newUser.email)
     this.setLocalProperty('usersData',[...usersData,newUser]);
   }
+  UpdateUserPassword(currentUser: user,index:string) {
+
+    const usersData= this.getLocalProperty('usersData');
+    usersData[index]=currentUser
+    this.setLocalProperty('usersData', usersData);
+  }
+  signIn(userName:string){
+    this.setLocalProperty("currentUserName",userName)
+    this.updateIndex(userName)
+  }
+  updateIndex(userName:any){
+    const usersData=this.getLocalProperty('usersData')
+    const index = usersData.findIndex((user:user) => user.email == userName);
+    this.setLocalProperty("index",index)
+  }
+
 }

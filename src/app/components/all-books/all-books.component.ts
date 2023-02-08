@@ -35,15 +35,9 @@ export class AllBooksComponent {
   }
 
 
-
-
-
   PrepareTheSearchValueForUse() {
     return this.searchValue.trim().toLowerCase().replaceAll(' ', '_');
   }
-
-
-
 
 
   addBooksToCart(book: book) {
@@ -57,4 +51,5 @@ export class AllBooksComponent {
     this.localSvc.UpdateBooksCartInUsersData([...currentCart]);
     Swal.fire(messages.BookAdded);
   }
+  
 }

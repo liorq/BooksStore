@@ -20,9 +20,9 @@ ngOnInit(){
    this.isUserLogged=isUserLogged;
   })
 
-  if(this.localSvc.isUserLogged()){
+  if(this.localSvc.isUserLogged())
     this.userInfoSvc.isUserLogged.next(true)
-  }
+
 }
 
 deleteUserInfo() {

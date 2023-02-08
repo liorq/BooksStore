@@ -23,7 +23,7 @@ import Swal from 'sweetalert2';
 export class MySettingsComponent implements OnInit {
   currentUser?: any;
   isUserLogged?:boolean;
-  ///לשנות לtype
+
 
 
 
@@ -36,16 +36,12 @@ export class MySettingsComponent implements OnInit {
 
   ngOnInit(): void {
     this.userInfoSvc.currentUser.subscribe((currentUser)=>{
-      this.currentUser=currentUser
+      this.currentUser=currentUser;
     })
-
-////
-////
 
     //not needed
       this.currentUser = this.localSvc.getUserObj();
-      // don't need usersData
-      this.booksSvc.usersData = this.localSvc.getLocalProperty('usersData');
+
   }
 
   async isUserConfirmedDelete(userPassword: string) {
@@ -78,15 +74,18 @@ export class MySettingsComponent implements OnInit {
 
   UpdateUserPassword(currentUser: user, form: any) {
     currentUser.password = form[2];
-    const index: any = this.localSvc.getLocalProperty('index');
-    this.booksSvc.usersData[index] = currentUser;
-    this.localSvc.setLocalProperty('usersData', this.booksSvc.usersData);
+    const index=this.localSvc.getLocalProperty('index')
+    this.localSvc.UpdateUserPassword(currentUser,index)
+    this.userInfoSvc.UpdateUserPassword(currentUser,index)
   }
+
+
 
   async VerifyAndUpdatePasswordHandler() {
     const form: any = await this.VerifyPassword();
 
-    if (form) this.UpdateUserPassword(this.currentUser, form);
+    if (form)
+     this.UpdateUserPassword(this.currentUser, form);
 
     Swal.fire(messages[form ? 'changeSuccessfully' : 'passwordIncorrect']);
   }
