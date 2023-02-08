@@ -11,7 +11,7 @@ isPaymentModalClose=new BehaviorSubject<boolean>(true)
 isUserLogged=new BehaviorSubject<boolean|null>(null)
 isGuestUser=new BehaviorSubject<boolean|null>(null);
 currentUser=new BehaviorSubject <user|null>(null);
-
+allBooks=new BehaviorSubject <book[]|null>(null);
 //use this
   updateCurrentUser(user:user){
    this.currentUser.next(user)
@@ -27,7 +27,9 @@ currentUser=new BehaviorSubject <user|null>(null);
     }
     return
   }
-
+  // isUserLogged(){
+  //   return this.isUserLogged;
+  // }
 
 
 

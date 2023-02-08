@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { messages } from 'src/app/app.messages';
 import { LocalService } from 'src/app/service/local.service';
+import { UserInfoService } from 'src/app/service/user-info.service';
 import Swal from 'sweetalert2';
 import { book } from '../../app.interfaces';
 
@@ -10,19 +11,11 @@ import { book } from '../../app.interfaces';
   styleUrls: ['./all-books.component.css'],
 })
 export class AllBooksComponent {
-  constructor(private localSvc: LocalService) {}
+  constructor(private localSvc: LocalService,private userInfoSvc:UserInfoService) {}
   //get from bookService
-  allBooks: book[] = this.localSvc.getLocalProperty('allBooks');
-
-  // this.bookService.allBooks.subscribe((allBooks)=>{
-  //   if(allBooks==undefined)
-
-  // })
-
-  // this.bookService.AddBook(book)
-  // this.LocalService.addBook(book)
-
-
+  allBooks: book[] =this.userInfoSvc.allBooks.getValue()||
+   this.localSvc.getLocalProperty('allBooks');
+   
   searchValue: string = '';
   booksToDisplay: book[] = [...this.allBooks];
 
@@ -41,7 +34,7 @@ export class AllBooksComponent {
 
 
   addBooksToCart(book: book) {
-    const currentCart = this.localSvc.getBooksInCarts();
+    const currentCart:any = this.localSvc.getBooksInCarts();
     const Index = currentCart.findIndex((b: book) => b.name == book.name);
     if (Index != -1) currentCart[Index].amount++;
     else {

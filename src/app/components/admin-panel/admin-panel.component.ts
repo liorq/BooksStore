@@ -5,6 +5,7 @@ import { book, user } from 'src/app/app.interfaces';
 import { messages } from 'src/app/app.messages';
 import { BooksService } from 'src/app/service/books.service';
 import { LocalService } from 'src/app/service/local.service';
+import { UserInfoService } from 'src/app/service/user-info.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -26,13 +27,16 @@ export class AdminPanelComponent implements OnInit {
   };
   ngOnInit() {
     // this.localService.setLocalProperty('allBooks',JSON.stringify(getAllBooks()))
-    // this.booksSvc.usersData = this.localSvc.getLocalProperty('usersData');
 
-    this.booksToDisplay = this.localSvc.getLocalProperty('allBooks');
-
+    this.booksToDisplay =
+      this.userInfoSvc.allBooks.getValue() ||
+      this.localSvc.getLocalProperty('allBooks');
   }
 
-  constructor(private localSvc: LocalService,public booksSvc: BooksService
+  constructor(
+    private localSvc: LocalService,
+    public booksSvc: BooksService,
+    private userInfoSvc: UserInfoService
   ) {}
 
   addBookProcess() {
@@ -43,13 +47,9 @@ export class AdminPanelComponent implements OnInit {
     this.resetBookFields();
   }
 
-
-
   resetBookFields() {
     this.book = { Book_Name: '', price: '', author_Name: '', Book_Id: '' };
   }
-
-
 
   createNewBook() {
     return {
@@ -59,25 +59,23 @@ export class AdminPanelComponent implements OnInit {
     };
   }
 
-
-
   deleteBook(book: book) {
-    this.booksToDisplay=this.booksToDisplay.filter((b) => b.name !== book.name);
-    this.localSvc.deleteBooksFromCarts(book)
+    this.booksToDisplay = this.booksToDisplay.filter(
+      (b) => b.name !== book.name
+    );
+    this.localSvc.deleteBooksFromCarts(book);
     this.localSvc.setLocalProperty('allBooks', this.booksToDisplay);
   }
 
-
-
-
   async editBookHandler(book: book) {
     const { value: validForm }: any = await Swal.fire(
-      getEditBookForm(book, 'Edit book', 'book'));
+      getEditBookForm(book, 'Edit book', 'book')
+    );
 
     if (validForm) {
       Swal.fire(messages.changeSuccessfully);
       this.booksSvc.editBook(book, validForm);
-      this.localSvc.setLocalProperty('allBooks',this.booksToDisplay);
+      this.localSvc.setLocalProperty('allBooks', this.booksToDisplay);
     }
   }
 }

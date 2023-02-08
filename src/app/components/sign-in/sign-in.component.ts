@@ -20,13 +20,12 @@ Password: string="";
 
 
 ngOnInit(){
-  this.localService.initialLocalStorageToDefault()
+  this.localService.initialLocalStorageToDefault();
 }
 
 
 signInHandler() {
    const isValidInfo = this.localService.isValidUserInfo(this.userName,this.Password);
-
   if (isValidInfo)
   this.signIn()
 

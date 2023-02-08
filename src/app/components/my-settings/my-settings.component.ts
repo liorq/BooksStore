@@ -52,24 +52,22 @@ export class MySettingsComponent implements OnInit {
     const isUserConfirmedDelete: any = await this.isUserConfirmedDelete(
       this.currentUser.password
     );
+
     if (isUserConfirmedDelete) {
-      this.deleteUser();
+      this.localSvc.deleteUser();
+      this.localSvc.deleteUserInfo();
       this.userInfoSvc.isUserLogged.next(false);
       this.router.navigate(['/SignUp']);
     }
   }
 
-  deleteUser() {
-    this.localSvc.deleteUser(this.localSvc.getLocalProperty('currentUserName'));
-    this.localSvc.deleteUserInfo();
-  }
 
   async VerifyPassword() {
     const form = getEditUserForm(this.currentUser, 'Edit user details', 'user');
     const { value: formValues } = await Swal.fire(form);
-    return formValues && formValues![1] == this.currentUser.password
-      ? formValues
-      : false;
+
+    return formValues &&this.localSvc.isPasswordCurrent(formValues)? formValues: false;
+
   }
 
   UpdateUserPassword(currentUser: user, form: any) {

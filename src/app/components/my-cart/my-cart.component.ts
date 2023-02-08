@@ -65,7 +65,7 @@ export class MyCartComponent implements OnInit {
 
   UpdateCartFromLocalStorage() {
     ///getCart
-    const data = this.localSvc.getBooksInCarts();
+    const data:any = this.localSvc.getBooksInCarts();
     this.booksSvc.updateCurrentBooks([...data])
   }
 

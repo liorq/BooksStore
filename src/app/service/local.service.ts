@@ -28,7 +28,8 @@ usersData:user[]=this.getLocalProperty('usersData');
     this.setLocalProperty('index','');
   }
 
-  deleteUser(userName:any){
+  deleteUser(){
+   const  userName:any= this.getLocalProperty('currentUserName')
    const filteredData = this.usersData.filter((user: any) => user?.email !== userName);
    this.setLocalProperty('usersData',filteredData)
   }
@@ -71,13 +72,19 @@ usersData:user[]=this.getLocalProperty('usersData');
   }
 
   addNewUser(newUser:user){
+    const newUserAdded:user={
+      email: newUser.email,
+      password: newUser.password,
+      booksInCart: this.getBooksInCarts()||[],
+      typeOfUser:newUser.typeOfUser,
+    }
     this.setLocalProperty('index',this.usersData.length-1)
     this.setLocalProperty("currentUserName",newUser.email)
-    this.setLocalProperty('usersData',[...this.usersData,newUser]);
+    this.setLocalProperty('usersData',[...this.usersData,newUserAdded]);
   }
 
   UpdateUserPassword(currentUser: user,index:any) {
-    this.usersData[index]=currentUser
+    this.usersData[index]=currentUser;
     this.setLocalProperty('usersData', this.usersData);
   }
 
@@ -104,7 +111,12 @@ usersData:user[]=this.getLocalProperty('usersData');
     return this.usersData.find((user: any) => userName == user.email && password == user.password)
   }
 
-  isUserAvailable(newUser:any){
+  isPasswordCurrent(formValues:any){
+    const currentUser=this.getUserObj()
+    return formValues![1] == currentUser?.password;
+   }
+
+  isUserNameAvailable(newUser:any){
     return (this.usersData.find((user: any) => user.email === newUser.email))==undefined;
   }
 

@@ -68,7 +68,7 @@ export class SignUpComponent  implements OnInit{
 
   SignUpHandler(){
   const newUser:any={ ...this.subscribeForm.value };
-  const isUserNameAvailable =this.localService.isUserAvailable(newUser);
+  const isUserNameAvailable =this.localService.isUserNameAvailable(newUser);
 
   Swal.fire(messages[!isUserNameAvailable?'usernameIsntAvailable':'usernameAdded'])
 
@@ -82,28 +82,11 @@ export class SignUpComponent  implements OnInit{
 
 
 newUserProcess(newUser:user){
-  this.addNewUser(newUser);
+  this.localService.addNewUser(newUser)
   this.userInfoService.updateCurrentUser(newUser)
 
    if(newUser.typeOfUser!=='guest')
   this.router.navigate([`users/${newUser.email+"/"+(newUser.typeOfUser=='admin'?'admin':'allBooks')}`])
-}
-
-
-
-
-addNewUser(newUser:user){
-
-const newUserAdded:user={
-  email: newUser.email,
-  password: newUser.password,
-  booksInCart: this.localService.getBooksInCarts()||[],
-  typeOfUser:newUser.typeOfUser,
-}
-
-
-this.localService.addNewUser(newUserAdded)
-
 }
 
 }
