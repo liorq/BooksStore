@@ -26,7 +26,8 @@ export class AdminPanelComponent implements OnInit {
   };
   ngOnInit() {
     // this.localService.setLocalProperty('allBooks',JSON.stringify(getAllBooks()))
-    this.booksSvc.usersData = this.localSvc.getLocalProperty('usersData');
+    // this.booksSvc.usersData = this.localSvc.getLocalProperty('usersData');
+
     this.booksToDisplay = this.localSvc.getLocalProperty('allBooks');
 
   }
@@ -34,7 +35,7 @@ export class AdminPanelComponent implements OnInit {
   constructor(private localSvc: LocalService,public booksSvc: BooksService
   ) {}
 
-  addBook() {
+  addBookProcess() {
     const newBook: any = this.createNewBook();
     this.booksToDisplay.push(newBook);
     this.localSvc.setLocalProperty('allBooks', [...this.booksToDisplay]);
@@ -50,8 +51,6 @@ export class AdminPanelComponent implements OnInit {
 
 
 
-
-
   createNewBook() {
     return {
       name: this.book.Book_Name,
@@ -63,16 +62,9 @@ export class AdminPanelComponent implements OnInit {
 
 
   deleteBook(book: book) {
-
-    this.booksToDisplay = this.booksToDisplay.filter(
-      (b) => b.name !== book.name);
+    this.booksToDisplay=this.booksToDisplay.filter((b) => b.name !== book.name);
+    this.localSvc.deleteBooksFromCarts(book)
     this.localSvc.setLocalProperty('allBooks', this.booksToDisplay);
-
-    this.booksSvc.usersData.forEach((u) => {
-      return (u.booksInCart = u.booksInCart.filter(
-        (b) => b.name !== book.name));
-    });
-    this.localSvc.setLocalProperty('usersData', this.booksSvc.usersData);
   }
 
 
@@ -85,7 +77,7 @@ export class AdminPanelComponent implements OnInit {
     if (validForm) {
       Swal.fire(messages.changeSuccessfully);
       this.booksSvc.editBook(book, validForm);
-      this.localSvc.setLocalProperty('allBooks', this.booksToDisplay);
+      this.localSvc.setLocalProperty('allBooks',this.booksToDisplay);
     }
   }
 }

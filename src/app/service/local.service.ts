@@ -96,4 +96,15 @@ export class LocalService {
     this.setLocalProperty("index",index)
   }
 
+
+  deleteBooksFromCarts(book:book){
+    
+    const usersData=this.getLocalProperty('usersData');
+    usersData.forEach((u:user) => {
+       return (u.booksInCart = u.booksInCart.filter(
+         (b:book) => b.name !== book.name));
+     });
+     this.setLocalProperty('usersData', usersData);
+   }
+
 }

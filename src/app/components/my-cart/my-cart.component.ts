@@ -49,7 +49,7 @@ export class MyCartComponent implements OnInit {
     this.booksToDisplay.splice(index, 1)
     else
      this.booksToDisplay[index].amount--;
-
+     
     Swal.fire(messages.BookRemoved);
     this.booksSvc.updateCurrentBooks([...this.booksToDisplay])
 

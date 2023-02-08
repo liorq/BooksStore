@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
-import { user } from '../app.interfaces';
+import { book, user } from '../app.interfaces';
 import { LocalService } from './local.service';
 
 @Injectable({
@@ -18,7 +18,7 @@ usersData=new BehaviorSubject <user[]>([]);
    this.currentUser.next(user)
    this.isUserLogged.next(true);
   }
-  
+
 
   isValidUserInfo(userName: string, password: string) {
     return this.usersData.getValue().find((user: any) => userName == user.email && password == user.password)
