@@ -76,7 +76,6 @@ export class MySettingsComponent implements OnInit {
     currentUser.password = form[2];
     const index=this.localSvc.getLocalProperty('index')
     this.localSvc.UpdateUserPassword(currentUser,index)
-    this.userInfoSvc.UpdateUserPassword(currentUser,index)
   }
 
 

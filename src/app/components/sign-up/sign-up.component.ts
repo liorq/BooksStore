@@ -18,7 +18,6 @@ import { v4 as uuidv4 } from 'uuid';
 export class SignUpComponent  implements OnInit{
   ngOnInit(){
     this.initForm()
-    this.userInfoService.usersData.next(this.localService.getLocalProperty('usersData'))
 
     this.userInfoService.isGuestUser.subscribe(()=>{
       if(!this.localService.isUserLogged())
@@ -69,7 +68,7 @@ export class SignUpComponent  implements OnInit{
 
   SignUpHandler(){
   const newUser:any={ ...this.subscribeForm.value };
-  const isUserNameAvailable =this.userInfoService.isUserAvailable(newUser);
+  const isUserNameAvailable =this.localService.isUserAvailable(newUser);
 
   Swal.fire(messages[!isUserNameAvailable?'usernameIsntAvailable':'usernameAdded'])
 
@@ -94,7 +93,7 @@ newUserProcess(newUser:user){
 
 
 addNewUser(newUser:user){
-  
+
 const newUserAdded:user={
   email: newUser.email,
   password: newUser.password,
@@ -102,7 +101,7 @@ const newUserAdded:user={
   typeOfUser:newUser.typeOfUser,
 }
 
-this.userInfoService.addNewUser(newUserAdded)
+
 this.localService.addNewUser(newUserAdded)
 
 }

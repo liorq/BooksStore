@@ -29,6 +29,7 @@ export class MyCartComponent implements OnInit {
       this.isPaymentModalClose = newStatus;
     });
 
+
     this.booksSvc.currentBooks.subscribe((updateBooks) => {
       this.localSvc.UpdateBooksCartInUsersData([...updateBooks]);
       this.booksToDisplay = [...updateBooks];
@@ -36,7 +37,7 @@ export class MyCartComponent implements OnInit {
     });
 
 
-    if (this.localSvc.isUserLogged())
+  if (this.userInfoSvc.isUserLogged.getValue())
     this.UpdateCartFromLocalStorage();
   }
 
@@ -49,7 +50,7 @@ export class MyCartComponent implements OnInit {
     this.booksToDisplay.splice(index, 1)
     else
      this.booksToDisplay[index].amount--;
-     
+
     Swal.fire(messages.BookRemoved);
     this.booksSvc.updateCurrentBooks([...this.booksToDisplay])
 

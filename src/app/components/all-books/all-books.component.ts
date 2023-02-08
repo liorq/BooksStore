@@ -51,5 +51,5 @@ export class AllBooksComponent {
     this.localSvc.UpdateBooksCartInUsersData([...currentCart]);
     Swal.fire(messages.BookAdded);
   }
-  
+
 }
