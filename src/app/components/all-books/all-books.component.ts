@@ -15,11 +15,12 @@ export class AllBooksComponent {
   constructor(private localSvc: LocalService,private userInfoSvc:UserInfoService,private booksSvc:BooksService) {}
 
 
-  allBooks: book[] =this.userInfoSvc.allBooks.getValue()||
-   this.localSvc.getLocalProperty('allBooks');
-
+  allBooks: book[] =this.userInfoSvc.allBooks.getValue()||this.localSvc.getLocalProperty('allBooks');
   searchValue: string = '';
   booksToDisplay: book[] = [...this.allBooks];
+  ////  sub
+  currentCart:book[]=this.booksSvc.currentBooks.getValue();
+
 
   showMatchingBooks() {
     const capitalizedString = this.PrepareTheSearchValueForUse();
@@ -36,6 +37,13 @@ export class AllBooksComponent {
 
 
   addBooksToCart(book: book) {
+
+    ////allBooks
+    ///currentBooks
+
+       console.log(this.booksSvc.currentBooks.getValue())
+
+
     const currentCart:any = this.localSvc.getBooksInCarts();
     const Index = currentCart.findIndex((b: book) => b.name == book.name);
     if (Index != -1) currentCart[Index].amount++;

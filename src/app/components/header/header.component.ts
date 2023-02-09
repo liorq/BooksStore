@@ -26,10 +26,6 @@ ngOnInit(){
    this.userInfoSvc.currentUser.subscribe((user:any)=>{
     this.currentUser=user||this.localSvc.getUserObj()
     })
-
-  // if(this.isUserLogged)
-  //   this.userInfoSvc.isUserLogged.next(true)
-
 }
 
 deleteUserInfo() {

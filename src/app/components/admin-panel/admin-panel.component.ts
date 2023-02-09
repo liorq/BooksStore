@@ -39,7 +39,7 @@ export class AdminPanelComponent implements OnInit {
     private userInfoSvc: UserInfoService
   ) {}
 
-  addBookProcess() {
+  processNewBookAddition() {
     const newBook: any = this.createNewBook();
     this.booksToDisplay.push(newBook);
     this.localSvc.setLocalProperty('allBooks', [...this.booksToDisplay]);

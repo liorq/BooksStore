@@ -10,10 +10,6 @@
       <div *ngIf="isUserLogged&&this.currentUser?.typeOfUser!='guest'" class="{{'Setting'.replaceAll('_','')}}" routerLink="users/{{this.currentUser?.email}}/{{'Setting'}}"  (click)=" this.userInfoSvc.isGuestUser.next(true)">{{'Setting'.toUpperCase().charAt(0)+'Setting'.replaceAll('_',' ').slice(1)}}</div>
 
 
-
-
-
-
   <div *ngIf="isUserLogged&&this.currentUser?.typeOfUser!='guest'" class="Log-out" (click)="deleteUserInfo()" routerLink="SignUp" >Log-out</div>
 
   <span (click)="this.userInfoSvc.isGuestUser.next(true)" id="cart" class=" material-symbols-outlined "  routerLink="users/{{this.localSvc.getUserObj()?.email}}/my-Cart" >
