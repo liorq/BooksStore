@@ -18,12 +18,14 @@ import { v4 as uuidv4 } from 'uuid';
 export class SignUpComponent  implements OnInit{
   ngOnInit(){
     this.initForm()
+    this.localService.deleteUserInfo()
 
     this.userInfoService.isGuestUser.subscribe(()=>{
       if(!this.localService.isUserLogged())
-       this.CreateGuestUser()
+        this.CreateGuestUser()
     })
   }
+
   constructor(public userInfoService:UserInfoService,private booksSvc:BooksService,private router:Router,public localService:LocalService){}
   subscribeForm!: FormGroup;
   errorMessages=messages.errorMessages
@@ -84,12 +86,28 @@ export class SignUpComponent  implements OnInit{
 
 
 newUserProcess(newUser:user){
-  this.localService.addNewUser(newUser)
+  console.log(newUser)
+  this.addNewUser(newUser)
   this.userInfoService.updateCurrentUser(newUser)
-  this.booksSvc.currentBooks.next(newUser.booksInCart)
+  this.booksSvc.updateCurrentBooks(newUser.booksInCart)
+
 
    if(newUser.typeOfUser!=='guest')
   this.router.navigate([`users/${newUser.email+"/"+(newUser.typeOfUser=='admin'?'admin':'allBooks')}`])
 }
+addNewUser(newUser:user){
+  const usersData=this.localService.getLocalProperty('usersData')
 
+  const newUserAdded:user={
+    email: newUser.email,
+    password: newUser.password,
+    booksInCart: this.localService.getBooksInCarts()||[],
+    typeOfUser:newUser.typeOfUser,
+  }
+
+  this.localService.setLocalProperty("currentUserName",newUser.email)
+  this.localService.setLocalProperty('usersData',[...usersData,newUserAdded]);
+  this.localService.updateIndex(newUserAdded.email)
+
+}
 }

@@ -12,7 +12,9 @@ isUserLogged=new BehaviorSubject<boolean|null>(null)
 isGuestUser=new BehaviorSubject<boolean|null>(null);
 currentUser=new BehaviorSubject <user|null>(null);
 allBooks=new BehaviorSubject <book[]|null>(null);
+isPurchaseValid=new BehaviorSubject <boolean>(false);
 //use this
+
   updateCurrentUser(user:user){
    this.currentUser.next(user)
    this.isUserLogged.next(true);
@@ -28,7 +30,6 @@ allBooks=new BehaviorSubject <book[]|null>(null);
     return
   }
    deleteUserInfo(){
-
     this.isPaymentModalClose.next(true)
     this.isUserLogged.next(null)
     this.isGuestUser.next(null)

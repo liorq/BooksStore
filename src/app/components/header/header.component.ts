@@ -27,8 +27,8 @@ ngOnInit(){
     this.currentUser=user||this.localSvc.getUserObj()
     })
 
-  if(this.isUserLogged)
-    this.userInfoSvc.isUserLogged.next(true)
+  // if(this.isUserLogged)
+  //   this.userInfoSvc.isUserLogged.next(true)
 
 }
 

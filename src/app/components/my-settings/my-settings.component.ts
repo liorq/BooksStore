@@ -50,7 +50,7 @@ export class MySettingsComponent implements OnInit {
 
     if (isUserConfirmedDelete) {
       this.localSvc.deleteUser();
-      this.localSvc.deleteUserInfo();
+      
       this.userInfoSvc.isUserLogged.next(false);
       this.router.navigate(['/SignUp']);
     }

@@ -32,6 +32,7 @@ export class LocalService {
    const  userName:any= this.getLocalProperty('currentUserName')
    const filteredData = usersData.filter((user: any) => user?.email !== userName);
    this.setLocalProperty('usersData',filteredData)
+   this.deleteUserInfo();
   }
 
   getBooksInCarts(){
@@ -74,20 +75,7 @@ export class LocalService {
     return this.getLocalProperty('currentUserName')!="";
   }
 
-  addNewUser(newUser:user){
-    const usersData=this.getLocalProperty('usersData')
 
-    const newUserAdded:user={
-      email: newUser.email,
-      password: newUser.password,
-      booksInCart: this.getBooksInCarts()||[],
-      typeOfUser:newUser.typeOfUser,
-    }
-    this.setLocalProperty("currentUserName",newUser.email)
-    this.setLocalProperty('usersData',[...usersData,newUserAdded]);
-    this.updateIndex(newUserAdded.email)
-
-  }
 
   UpdateUserPassword(currentUser: user,index:any) {
     const usersData=this.getLocalProperty('usersData')

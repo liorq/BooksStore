@@ -38,7 +38,7 @@ signIn(){
     this.localService.signIn(this.userName);
     const currentUser:any=this.localService.getUserObj();
     this.userInfoService.updateCurrentUser(currentUser);
-    this.router.navigate([`users/${this.userName+"/"+(this.localService.getUserObj()?.typeOfUser=='admin'?'admin':'allBooks')}`])
+    this.router.navigate([`users/${this.userName+"/"+(currentUser?.typeOfUser=='admin'?'admin':'allBooks')}`])
 }
 
 }
