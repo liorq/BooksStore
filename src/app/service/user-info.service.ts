@@ -28,11 +28,16 @@ allBooks=new BehaviorSubject <book[]|null>(null);
     return
   }
    deleteUserInfo(){
+
     this.isPaymentModalClose.next(true)
     this.isUserLogged.next(null)
     this.isGuestUser.next(null)
     this.currentUser.next(null)
-    this.allBooks.next(null)
+   }
+   updateUserSubjects(newUser:user){
+    this.isUserLogged.next(true)
+    this.isGuestUser.next(newUser.typeOfUser=='guest')
+    this.currentUser.next(newUser)
 
    }
 

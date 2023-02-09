@@ -32,7 +32,7 @@ export class MyCartComponent implements OnInit {
 
     this.booksSvc.currentBooks.subscribe((updateBooks) => {
       console.log(this.booksSvc.currentBooks.getValue())
-       if(updateBooks.length!=0){
+       if(updateBooks?.length!=0){
        this.localSvc.UpdateBooksCartInUsersData([...updateBooks]);
 
        this.booksToDisplay = updateBooks;

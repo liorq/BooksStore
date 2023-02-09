@@ -24,7 +24,7 @@ export class SignUpComponent  implements OnInit{
        this.CreateGuestUser()
     })
   }
-  constructor(public userInfoService:UserInfoService,private booksService:BooksService,private router:Router,public localService:LocalService){}
+  constructor(public userInfoService:UserInfoService,private booksSvc:BooksService,private router:Router,public localService:LocalService){}
   subscribeForm!: FormGroup;
   errorMessages=messages.errorMessages
 
@@ -52,6 +52,8 @@ export class SignUpComponent  implements OnInit{
 
 
   CreateGuestUser(){
+    this.booksSvc.currentBooks.next([])
+
     const uniqueEmail ='guest'+ uuidv4()+'@gmail.com';
     const newGuestUser={
       email: uniqueEmail,
@@ -84,7 +86,10 @@ export class SignUpComponent  implements OnInit{
 newUserProcess(newUser:user){
   this.localService.addNewUser(newUser)
   this.userInfoService.updateCurrentUser(newUser)
-  // this.booksService.currentBooks.next(newUser.booksInCart)
+   this.booksSvc.currentBooks.next(newUser.booksInCart)
+
+
+
    if(newUser.typeOfUser!=='guest')
   this.router.navigate([`users/${newUser.email+"/"+(newUser.typeOfUser=='admin'?'admin':'allBooks')}`])
 }
