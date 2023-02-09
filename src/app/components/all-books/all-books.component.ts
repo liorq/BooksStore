@@ -18,7 +18,7 @@ export class AllBooksComponent {
   allBooks: book[] =this.userInfoSvc.allBooks.getValue()||this.localSvc.getLocalProperty('allBooks');
   searchValue: string = '';
   booksToDisplay: book[] = [...this.allBooks];
-  ////  sub
+
   currentCart:book[]=this.booksSvc.currentBooks.getValue();
 
 
@@ -30,20 +30,12 @@ export class AllBooksComponent {
     this.booksToDisplay = [...bookToDisplay];
   }
 
-
   PrepareTheSearchValueForUse() {
     return this.searchValue.trim().toLowerCase().replaceAll(' ', '_');
   }
 
-
   addBooksToCart(book: book) {
-
-    ////allBooks
-    ///currentBooks
-
-       console.log(this.booksSvc.currentBooks.getValue())
-
-
+/////////לנסות לשפר
     const currentCart:any = this.localSvc.getBooksInCarts();
     const Index = currentCart.findIndex((b: book) => b.name == book.name);
     if (Index != -1) currentCart[Index].amount++;
@@ -51,7 +43,6 @@ export class AllBooksComponent {
       book.amount = 1;
       currentCart.push({ ...book });
     }
-
 
     this.localSvc.UpdateBooksCartInUsersData([...currentCart]);
     this.booksSvc.updateCurrentBooks(currentCart)

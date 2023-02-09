@@ -24,9 +24,6 @@ export class MySettingsComponent implements OnInit {
   currentUser?: any;
   isUserLogged?:boolean;
 
-
-
-
   constructor(
     public router: Router,
     public localSvc: LocalService,
@@ -35,7 +32,7 @@ export class MySettingsComponent implements OnInit {
 
   ngOnInit(): void {
     this.userInfoSvc.currentUser.subscribe((currentUser)=>{
-      this.currentUser=currentUser;
+      this.currentUser=currentUser||this.localSvc.getUserObj();
     })
   }
 
@@ -50,7 +47,6 @@ export class MySettingsComponent implements OnInit {
 
     if (isUserConfirmedDelete) {
       this.localSvc.deleteUser();
-      
       this.userInfoSvc.isUserLogged.next(false);
       this.router.navigate(['/SignUp']);
     }
@@ -65,19 +61,12 @@ export class MySettingsComponent implements OnInit {
 
   }
 
-  UpdateUserPassword(currentUser: user, form: any) {
-    currentUser.password = form[2];
-    const index=this.localSvc.getLocalProperty('index')
-    this.localSvc.UpdateUserPassword(currentUser,index)
-  }
-
-
 
   async VerifyAndUpdatePasswordHandler() {
     const form: any = await this.VerifyPassword();
 
     if (form)
-     this.UpdateUserPassword(this.currentUser, form);
+    this.localSvc.UpdateUserPassword(this.currentUser,form)
 
     Swal.fire(messages[form ? 'changeSuccessfully' : 'passwordIncorrect']);
   }

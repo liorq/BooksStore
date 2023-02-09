@@ -77,7 +77,10 @@ export class LocalService {
 
 
 
-  UpdateUserPassword(currentUser: user,index:any) {
+  UpdateUserPassword(currentUser: user,form:any) {
+    
+    currentUser.password = form[2];
+    const index=this.getLocalProperty('index')
     const usersData=this.getLocalProperty('usersData')
     usersData[index]=currentUser;
     this.setLocalProperty('usersData', usersData);

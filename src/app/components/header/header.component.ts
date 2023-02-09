@@ -17,9 +17,7 @@ currentUser?:user;
 constructor(public userInfoSvc:UserInfoService,public localSvc:LocalService,public router:Router,private booksSvc:BooksService){}
 
 ngOnInit(){
-
-
-
+  
   this.userInfoSvc.isUserLogged.subscribe((isUserLogged:any)=>{
    this.isUserLogged=isUserLogged||this.localSvc.isUserLogged();
   })

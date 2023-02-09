@@ -32,16 +32,14 @@ export class MyCartComponent implements OnInit {
 
 
     this.booksSvc.currentBooks.subscribe((updateBooks) => {
+
        if(updateBooks?.length!=0||this.userInfoSvc.isPurchaseValid.getValue()){
        this.localSvc.UpdateBooksCartInUsersData([...updateBooks]);
        this.booksToDisplay = updateBooks;
        this.totalCharge(this.booksToDisplay);
        }
-
-
     });
     this.UpdateCartFromLocalStorage();
-
   }
 
   removeBookFromCart(book: book) {
@@ -56,22 +54,16 @@ export class MyCartComponent implements OnInit {
 
   }
 
-
-
   AddBookQuantity(book: book) {
     book.amount++;
     this.booksSvc.updateCurrentBooks([...this.booksToDisplay]);
   }
 
   UpdateCartFromLocalStorage() {
-    ///getCart
     const data:any = this.localSvc.getBooksInCarts();
      if(data)
     this.booksSvc.updateCurrentBooks([...data])
-
-
   }
-
 
   totalCharge(currentCart: book[]) {
     return currentCart?.reduce((sum, book) => sum + book.price * book.amount, 0);
