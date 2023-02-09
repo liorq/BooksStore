@@ -43,12 +43,10 @@ export class AllBooksComponent {
       book.amount = 1;
       currentCart.push({ ...book });
     }
-    console.log(currentCart)
+
 
     this.localSvc.UpdateBooksCartInUsersData([...currentCart]);
-    /////נוסף
-    this.booksSvc.currentBooks.next(currentCart)
-
+    this.booksSvc.updateCurrentBooks(currentCart)
     Swal.fire(messages.BookAdded);
   }
 

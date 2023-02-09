@@ -36,8 +36,8 @@ export class LocalService {
 
   getBooksInCarts(){
 
-    if(!this.isUserLogged())
-     return
+    // if(!this.isUserLogged())
+    //  return
 
      const usersData=this.getLocalProperty('usersData')
     const currentUserName:any= this.getLocalProperty('currentUserName')
@@ -48,9 +48,7 @@ export class LocalService {
     ////put the cart between the userName and password
     const usersData=this.getLocalProperty('usersData')
     const index:string= this.getLocalProperty('index')
-    console.log(index)
     usersData[index].booksInCart=[...books]
-    console.log(usersData)
     this.setLocalProperty('usersData',[...usersData])
   }
 
@@ -134,5 +132,8 @@ export class LocalService {
     const usersData=this.getLocalProperty('usersData');
     return (usersData.find((user: any) => user.email === newUser.email))==undefined;
   }
+
+
+
 
 }

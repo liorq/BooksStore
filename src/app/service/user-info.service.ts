@@ -27,9 +27,14 @@ allBooks=new BehaviorSubject <book[]|null>(null);
     }
     return
   }
-  // isUserLogged(){
-  //   return this.isUserLogged;
-  // }
+   deleteUserInfo(){
+    this.isPaymentModalClose.next(true)
+    this.isUserLogged.next(null)
+    this.isGuestUser.next(null)
+    this.currentUser.next(null)
+    this.allBooks.next(null)
+
+   }
 
 
 

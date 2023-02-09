@@ -17,13 +17,14 @@ constructor(public userInfoSvc:UserInfoService,public localSvc:LocalService,publ
 
 ngOnInit(){
 
-this.userInfoSvc.currentUser.subscribe((user:any)=>{
-this.currentUser=user;
-})
+
 
   this.userInfoSvc.isUserLogged.subscribe((isUserLogged:any)=>{
-   this.isUserLogged=isUserLogged;
+   this.isUserLogged=isUserLogged||this.localSvc.isUserLogged();
   })
+  this.userInfoSvc.currentUser.subscribe((user:any)=>{
+    this.currentUser=user||this.localSvc.getUserObj()
+    })
 
   if(this.localSvc.isUserLogged())
     this.userInfoSvc.isUserLogged.next(true)
@@ -31,7 +32,7 @@ this.currentUser=user;
 }
 
 deleteUserInfo() {
+  this.userInfoSvc.deleteUserInfo()
   this.localSvc.deleteUserInfo();
-  this.userInfoSvc.isUserLogged.next(false);
 }
 }

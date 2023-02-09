@@ -10,12 +10,13 @@ import { DisplayBookInfoMessage } from '../app.messages';
 })
 
 export class BooksService {
-  currentBooks=new BehaviorSubject<book[]>([]);
+
+  currentBooks= new BehaviorSubject<book[]>([]);
 
   updateCurrentBooks(data:book[]){
     this.currentBooks.next([...data]);
   }
-  
+
   getBookPicture(book:book){
    return {'defaultPic':true,[book.name]:true }
    }
