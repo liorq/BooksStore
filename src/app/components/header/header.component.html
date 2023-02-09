@@ -2,18 +2,18 @@
   <div class="option-container">
 
     <div *ngFor="let item of ['SignIn','SignUp']">
-      <div  *ngIf="!isUserLogged||this.localSvc.getUserObj()?.typeOfUser=='guest'&&isUserLogged" class="{{item}}" routerLink="{{item}}">{{item}}</div>
+      <div  *ngIf="!isUserLogged||this.currentUser?.typeOfUser=='guest'&&isUserLogged" class="{{item}}" routerLink="{{item}}">{{item}}</div>
     </div>
 
 
     <div *ngFor="let item of ['Setting','all_Books']">
-      <div  class="{{item.replaceAll('_','')}}" routerLink="users/{{this.localSvc.getUserObj()?.email}}/{{item.replaceAll('_','')}}"  (click)=" this.userInfoSvc.isGuestUser.next(true)">{{item.toUpperCase().charAt(0)+item.replaceAll('_',' ').slice(1)}}</div>
+      <div  class="{{item.replaceAll('_','')}}" routerLink="users/{{this.currentUser?.email}}/{{item.replaceAll('_','')}}"  (click)=" this.userInfoSvc.isGuestUser.next(true)">{{item.toUpperCase().charAt(0)+item.replaceAll('_',' ').slice(1)}}</div>
     </div>
 
 
 
-  <div *ngIf="isUserLogged&&this.localSvc.getUserObj()?.typeOfUser!='guest'" class="Log-out" (click)="deleteUserInfo()" routerLink="SignIn" >Log-out</div>
-  <!-- [navigationDelay]="250" -->
+  <div *ngIf="isUserLogged&&this.currentUser?.typeOfUser!='guest'" class="Log-out" (click)="deleteUserInfo()" routerLink="SignIn" >Log-out</div>
+
   <span (click)="this.userInfoSvc.isGuestUser.next(true)" id="cart" class=" material-symbols-outlined "  routerLink="users/{{this.localSvc.getUserObj()?.email}}/my-Cart" >
   shopping_cart_checkout
   </span>

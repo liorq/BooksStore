@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { messages } from 'src/app/app.messages';
+import { BooksService } from 'src/app/service/books.service';
 import { LocalService } from 'src/app/service/local.service';
 import { UserInfoService } from 'src/app/service/user-info.service';
 import Swal from 'sweetalert2';
@@ -11,7 +12,7 @@ import { book } from '../../app.interfaces';
   styleUrls: ['./all-books.component.css'],
 })
 export class AllBooksComponent {
-  constructor(private localSvc: LocalService,private userInfoSvc:UserInfoService) {}
+  constructor(private localSvc: LocalService,private userInfoSvc:UserInfoService,private booksSvc:BooksService) {}
 
 
   allBooks: book[] =this.userInfoSvc.allBooks.getValue()||
@@ -42,7 +43,12 @@ export class AllBooksComponent {
       book.amount = 1;
       currentCart.push({ ...book });
     }
+    console.log(currentCart)
+
     this.localSvc.UpdateBooksCartInUsersData([...currentCart]);
+    /////נוסף
+    this.booksSvc.currentBooks.next(currentCart)
+
     Swal.fire(messages.BookAdded);
   }
 

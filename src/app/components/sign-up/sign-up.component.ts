@@ -84,7 +84,7 @@ export class SignUpComponent  implements OnInit{
 newUserProcess(newUser:user){
   this.localService.addNewUser(newUser)
   this.userInfoService.updateCurrentUser(newUser)
-
+  // this.booksService.currentBooks.next(newUser.booksInCart)
    if(newUser.typeOfUser!=='guest')
   this.router.navigate([`users/${newUser.email+"/"+(newUser.typeOfUser=='admin'?'admin':'allBooks')}`])
 }

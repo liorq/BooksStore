@@ -47,8 +47,10 @@ export class LocalService {
    UpdateBooksCartInUsersData(books:book[]){
     ////put the cart between the userName and password
     const usersData=this.getLocalProperty('usersData')
-    const index:any= this.getLocalProperty('index')
+    const index:string= this.getLocalProperty('index')
+    console.log(index)
     usersData[index].booksInCart=[...books]
+    console.log(usersData)
     this.setLocalProperty('usersData',[...usersData])
   }
 
@@ -83,9 +85,10 @@ export class LocalService {
       booksInCart: this.getBooksInCarts()||[],
       typeOfUser:newUser.typeOfUser,
     }
-    this.setLocalProperty('index',usersData.length-1)
     this.setLocalProperty("currentUserName",newUser.email)
     this.setLocalProperty('usersData',[...usersData,newUserAdded]);
+    this.updateIndex(newUserAdded.email)
+
   }
 
   UpdateUserPassword(currentUser: user,index:any) {
