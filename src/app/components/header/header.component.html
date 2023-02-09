@@ -2,7 +2,7 @@
   <div class="option-container">
 
     <div *ngFor="let item of ['SignIn','SignUp']">
-      <div  *ngIf="!isUserLogged||this.currentUser?.typeOfUser=='guest'&&isUserLogged" class="{{item}}" routerLink="{{item}}">{{item}}</div>
+      <div  (click)="this.userInfoSvc.isGuestUser.next(true)" *ngIf="!isUserLogged||this.currentUser?.typeOfUser=='guest'&&isUserLogged" class="{{item}}" routerLink="{{item}}" >{{item}}  </div>
     </div>
 
 
