@@ -35,7 +35,7 @@ export class AdminPanelComponent implements OnInit {
 
   constructor(
     private localSvc: LocalService,
-    public booksSvc: BooksService,
+    private booksSvc: BooksService,
     private userInfoSvc: UserInfoService
   ) {}
 

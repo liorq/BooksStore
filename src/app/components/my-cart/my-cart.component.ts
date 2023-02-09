@@ -27,21 +27,20 @@ export class MyCartComponent implements OnInit {
   ngOnInit() {
     this.userInfoSvc.isPaymentModalClose.subscribe((newStatus) => {
       this.isPaymentModalClose = newStatus;
+      
     });
 
 
     this.booksSvc.currentBooks.subscribe((updateBooks) => {
-      console.log(this.booksSvc.currentBooks.getValue())
+
        if(updateBooks?.length!=0){
        this.localSvc.UpdateBooksCartInUsersData([...updateBooks]);
-
        this.booksToDisplay = updateBooks;
-      this.totalCharge(this.booksToDisplay);
-
+       this.totalCharge(this.booksToDisplay);
        }
 
-    });
 
+    });
     this.UpdateCartFromLocalStorage();
   }
 
@@ -78,6 +77,6 @@ export class MyCartComponent implements OnInit {
 
 
   totalCharge(currentCart: book[]) {
-    return currentCart.reduce((sum, book) => sum + book.price * book.amount, 0);
+    return currentCart?.reduce((sum, book) => sum + book.price * book.amount, 0);
   }
 }

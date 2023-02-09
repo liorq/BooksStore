@@ -52,7 +52,6 @@ export class SignUpComponent  implements OnInit{
 
 
   CreateGuestUser(){
-    this.booksSvc.currentBooks.next([])
 
     const uniqueEmail ='guest'+ uuidv4()+'@gmail.com';
     const newGuestUser={
@@ -61,6 +60,7 @@ export class SignUpComponent  implements OnInit{
       booksInCart: [],
       typeOfUser:'guest',
     }
+    this.booksSvc.updateCurrentBooks([])
     this.newUserProcess(newGuestUser)
 
   }
@@ -86,9 +86,7 @@ export class SignUpComponent  implements OnInit{
 newUserProcess(newUser:user){
   this.localService.addNewUser(newUser)
   this.userInfoService.updateCurrentUser(newUser)
-   this.booksSvc.currentBooks.next(newUser.booksInCart)
-
-
+  this.booksSvc.currentBooks.next(newUser.booksInCart)
 
    if(newUser.typeOfUser!=='guest')
   this.router.navigate([`users/${newUser.email+"/"+(newUser.typeOfUser=='admin'?'admin':'allBooks')}`])

@@ -23,11 +23,11 @@ ngOnInit(){
   this.userInfoSvc.isUserLogged.subscribe((isUserLogged:any)=>{
    this.isUserLogged=isUserLogged||this.localSvc.isUserLogged();
   })
-  this.userInfoSvc.currentUser.subscribe((user:any)=>{
+   this.userInfoSvc.currentUser.subscribe((user:any)=>{
     this.currentUser=user||this.localSvc.getUserObj()
     })
 
-  if(this.localSvc.isUserLogged())
+  if(this.isUserLogged)
     this.userInfoSvc.isUserLogged.next(true)
 
 }
@@ -35,6 +35,7 @@ ngOnInit(){
 deleteUserInfo() {
   this.userInfoSvc.deleteUserInfo()
   this.localSvc.deleteUserInfo();
-  this.booksSvc.currentBooks.next([])
+  this.booksSvc.updateCurrentBooks([])
+
 }
 }
