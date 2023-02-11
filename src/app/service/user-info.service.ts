@@ -51,4 +51,13 @@ isPurchaseValid=new BehaviorSubject <boolean>(false);
  updateIsPurchaseValid(status:boolean){
   this.isPurchaseValid.next(status)
  }
+ isValidCreditCard(isValidCard:boolean,cvv:string,expireDate:string,cardNumber:string) {
+  const cardNumberRegex = new RegExp("^\\d{16}$");
+  const cvvRegex = /^[0-9]{3,4}$/;
+  const today = new Date();
+  const expiry = new Date(expireDate);
+  isValidCard=cvvRegex.test(cvv)&&expiry < today&& cardNumberRegex.test(cardNumber)
+  return  isValidCard
+
+}
 }

@@ -20,7 +20,7 @@ export class SignUpComponent  implements OnInit{
   isUserLogged?:boolean=this.userInfoService.isUserLogged.getValue()||this.localService.isUserLogged()
   ngOnInit(){
     this.initForm()
-    this.localService.deleteUserInfo()
+    // this.localService.deleteUserInfo()
 
     this.userInfoService.isGuestUser.subscribe(()=>{
       if(!this.isUserLogged)
@@ -31,8 +31,6 @@ export class SignUpComponent  implements OnInit{
   constructor(public userInfoService:UserInfoService,private booksSvc:BooksService,private router:Router,public localService:LocalService){}
   subscribeForm!: FormGroup;
   errorMessages=messages.errorMessages
-
-
 
 
   initForm() {
@@ -54,6 +52,7 @@ export class SignUpComponent  implements OnInit{
 
 
   CreateGuestUser(){
+//////////להעביר לסרוויס !
 
     const uniqueEmail ='guest'+ uuidv4()+'@gmail.com';
     const newGuestUser={
@@ -82,28 +81,13 @@ export class SignUpComponent  implements OnInit{
 
 newUserProcess(newUser:user){
 
-  this.addNewUser(newUser)
+  this.localService.addNewUser(newUser)
   this.userInfoService.updateCurrentUser(newUser)
   this.booksSvc.updateCurrentBooks(newUser.booksInCart)
 
    if(newUser.typeOfUser!=='guest')
   this.router.navigate([`users/${newUser.email+"/"+(newUser.typeOfUser=='admin'?'admin':'allBooks')}`])
 }
-addNewUser(newUser:user){
-  ///מידע של יוזרים שלא יהיה חשוף
-  const usersData=this.localService.getLocalProperty('usersData')
 
-  const newUserAdded:user={
-    email: newUser.email,
-    password: newUser.password,
-    booksInCart: this.localService.getBooksInCarts()||[],
-    typeOfUser:newUser.typeOfUser,
-  }
-
-  this.localService.setLocalProperty("currentUserName",newUser.email)
-  this.localService.setLocalProperty('usersData',[...usersData,newUserAdded]);
-  this.localService.updateIndex(newUserAdded.email)
-   
-}
 
 }

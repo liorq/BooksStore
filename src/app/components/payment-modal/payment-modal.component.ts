@@ -19,17 +19,9 @@ export class PaymentModalComponent {
   constructor(private userInfoService:UserInfoService,private booksService:BooksService){}
 
    isValidCreditCard() {
-    const cardNumberRegex = new RegExp("^\\d{16}$");
-    const cvvRegex = /^[0-9]{3,4}$/;
-    const today = new Date();
-    const expiry = new Date(this.expireDate);
-    this.isValidCard=cvvRegex.test(this.cvv)&&expiry < today&& cardNumberRegex.test(this.cardNumber)
-    return  this.isValidCard
-
+    this.isValidCard=this.userInfoService.isValidCreditCard(this.isValidCard,this.cvv,this.expireDate,this.cardNumber)
+    return this.isValidCard
   }
-
-
-
 
   processPaymentHandler(){
     if(this.isValidPayment()){
@@ -42,7 +34,6 @@ export class PaymentModalComponent {
   toggleModalPayment(status:boolean){
     this.userInfoService.toggleModalPayment(status)
   }
-
 
   isValidPayment(){
     Swal.fire(messages[this.isValidCard?'purchasedSuccessfully':'invalidCreditCardDetails'])
