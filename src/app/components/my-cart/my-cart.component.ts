@@ -39,7 +39,7 @@ export class MyCartComponent implements OnInit {
        this.totalCharge(this.booksToDisplay);
        }
     });
-    this.UpdateCartFromLocalStorage();
+    this.getCartFromLocalStorage();
   }
 
   removeBookFromCart(book: book) {
@@ -59,9 +59,9 @@ export class MyCartComponent implements OnInit {
     this.booksSvc.updateCurrentBooks([...this.booksToDisplay]);
   }
 
-  UpdateCartFromLocalStorage() {
+  getCartFromLocalStorage() {
     const data:any = this.localSvc.getBooksInCarts();
-     if(data)
+    if(data)
     this.booksSvc.updateCurrentBooks([...data])
   }
 

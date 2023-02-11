@@ -19,8 +19,6 @@ export class AllBooksComponent {
   searchValue: string = '';
   booksToDisplay: book[] = [...this.allBooks];
 
-  currentCart:book[]=this.booksSvc.currentBooks.getValue();
-
 
   showMatchingBooks() {
     const capitalizedString = this.PrepareTheSearchValueForUse();
@@ -35,7 +33,7 @@ export class AllBooksComponent {
   }
 
   addBooksToCart(book: book) {
-/////////לנסות לשפר
+ 
     const currentCart:any = this.localSvc.getBooksInCarts();
     const Index = currentCart.findIndex((b: book) => b.name == book.name);
     if (Index != -1) currentCart[Index].amount++;

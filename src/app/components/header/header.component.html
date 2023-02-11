@@ -2,17 +2,17 @@
   <div class="option-container">
 
     <div *ngFor="let item of ['SignIn','SignUp']">
-      <div  (click)="this.userInfoSvc.isGuestUser.next(true)" *ngIf="!isUserLogged||this.currentUser?.typeOfUser=='guest'&&isUserLogged" class="{{item}}" routerLink="{{item}}" >{{item}}  </div>
+      <div  (click)="this.updateIsGuestUser()" *ngIf="!isUserLogged||this.currentUser?.typeOfUser=='guest'&&isUserLogged" class="{{item}}" routerLink="{{item}}" >{{item}}  </div>
     </div>
 
 
-      <div  class="{{'all_Books'.replaceAll('_','')}}" routerLink="users/{{this.currentUser?.email}}/{{'all_Books'.replaceAll('_','')}}"  (click)=" this.userInfoSvc.isGuestUser.next(true)">{{'all_Books'.toUpperCase().charAt(0)+'all_Books'.replaceAll('_',' ').slice(1)}}</div>
-      <div *ngIf="isUserLogged&&this.currentUser?.typeOfUser!='guest'" class="{{'Setting'.replaceAll('_','')}}" routerLink="users/{{this.currentUser?.email}}/{{'Setting'}}"  (click)=" this.userInfoSvc.isGuestUser.next(true)">{{'Setting'.toUpperCase().charAt(0)+'Setting'.replaceAll('_',' ').slice(1)}}</div>
+      <div  class="{{'all_Books'.replaceAll('_','')}}" routerLink="users/{{this.currentUser?.email}}/{{'all_Books'.replaceAll('_','')}}"  (click)=" this.updateIsGuestUser()">{{'all_Books'.toUpperCase().charAt(0)+'all_Books'.replaceAll('_',' ').slice(1)}}</div>
+      <div *ngIf="isUserLogged&&this.currentUser?.typeOfUser!='guest'" class="{{'Setting'.replaceAll('_','')}}" routerLink="users/{{this.currentUser?.email}}/{{'Setting'}}"  (click)="this.updateIsGuestUser()">{{'Setting'.toUpperCase().charAt(0)+'Setting'.replaceAll('_',' ').slice(1)}}</div>
 
 
   <div *ngIf="isUserLogged&&this.currentUser?.typeOfUser!='guest'" class="Log-out" (click)="deleteUserInfo()" routerLink="SignUp" >Log-out</div>
 
-  <span (click)="this.userInfoSvc.isGuestUser.next(true)" id="cart" class=" material-symbols-outlined "  routerLink="users/{{this.localSvc.getUserObj()?.email}}/my-Cart" >
+  <span (click)="this.updateIsGuestUser()" id="cart" class=" material-symbols-outlined "  routerLink="users/{{this.localSvc.getUserObj()?.email}}/my-Cart" >
   shopping_cart_checkout
   </span>
 

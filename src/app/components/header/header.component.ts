@@ -12,12 +12,14 @@ import { UserInfoService } from '../../service/user-info.service';
 
 })
 export class HeaderComponent implements OnInit {
-isUserLogged?:boolean;
+  isUserLogged?:boolean=this.userInfoSvc.isUserLogged.getValue()
+  ||this.localSvc.isUserLogged()
+
 currentUser?:user;
 constructor(public userInfoSvc:UserInfoService,public localSvc:LocalService,public router:Router,private booksSvc:BooksService){}
 
 ngOnInit(){
-  
+
   this.userInfoSvc.isUserLogged.subscribe((isUserLogged:any)=>{
    this.isUserLogged=isUserLogged||this.localSvc.isUserLogged();
   })
@@ -30,6 +32,10 @@ deleteUserInfo() {
   this.userInfoSvc.deleteUserInfo()
   this.localSvc.deleteUserInfo();
   this.booksSvc.updateCurrentBooks([])
-
 }
+updateIsGuestUser(){
+  if(!this.isUserLogged)
+  this.userInfoSvc.updateIsGuestUser(true);
+}
+
 }

@@ -33,14 +33,14 @@ export class PaymentModalComponent {
 
   processPaymentHandler(){
     if(this.isValidPayment()){
-      this.userInfoService.isPurchaseValid.next(true)
+      this.userInfoService.updateIsPurchaseValid(true)
       this.booksService.updateCurrentBooks([])
       this.toggleModalPayment(true);
     }
   }
 
   toggleModalPayment(status:boolean){
-    this.userInfoService.isPaymentModalClose.next(status)
+    this.userInfoService.toggleModalPayment(status)
   }
 
 

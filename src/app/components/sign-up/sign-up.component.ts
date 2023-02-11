@@ -16,12 +16,14 @@ import { v4 as uuidv4 } from 'uuid';
   styleUrls: ['./sign-up.component.css','../sign-in/sign-in.component.css']
 })
 export class SignUpComponent  implements OnInit{
+
+  isUserLogged?:boolean=this.userInfoService.isUserLogged.getValue()||this.localService.isUserLogged()
   ngOnInit(){
     this.initForm()
     this.localService.deleteUserInfo()
 
     this.userInfoService.isGuestUser.subscribe(()=>{
-      if(!this.localService.isUserLogged())
+      if(!this.isUserLogged)
         this.CreateGuestUser()
     })
   }
@@ -51,8 +53,6 @@ export class SignUpComponent  implements OnInit{
   get TypeOfUser(){return this.subscribeForm.get('typeOfUser');}
 
 
-
-
   CreateGuestUser(){
 
     const uniqueEmail ='guest'+ uuidv4()+'@gmail.com';
@@ -68,8 +68,6 @@ export class SignUpComponent  implements OnInit{
   }
 
 
-
-
   SignUpHandler(){
   const newUser:any={ ...this.subscribeForm.value };
   const isUserNameAvailable =this.localService.isUserNameAvailable(newUser);
@@ -82,20 +80,17 @@ export class SignUpComponent  implements OnInit{
   this.newUserProcess(newUser)
 }
 
-
-
-
 newUserProcess(newUser:user){
-  console.log(newUser)
+
   this.addNewUser(newUser)
   this.userInfoService.updateCurrentUser(newUser)
   this.booksSvc.updateCurrentBooks(newUser.booksInCart)
-
 
    if(newUser.typeOfUser!=='guest')
   this.router.navigate([`users/${newUser.email+"/"+(newUser.typeOfUser=='admin'?'admin':'allBooks')}`])
 }
 addNewUser(newUser:user){
+  ///מידע של יוזרים שלא יהיה חשוף
   const usersData=this.localService.getLocalProperty('usersData')
 
   const newUserAdded:user={
@@ -108,6 +103,7 @@ addNewUser(newUser:user){
   this.localService.setLocalProperty("currentUserName",newUser.email)
   this.localService.setLocalProperty('usersData',[...usersData,newUserAdded]);
   this.localService.updateIndex(newUserAdded.email)
-
+   
 }
+
 }

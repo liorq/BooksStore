@@ -78,7 +78,7 @@ export class LocalService {
 
 
   UpdateUserPassword(currentUser: user,form:any) {
-    
+
     currentUser.password = form[2];
     const index=this.getLocalProperty('index')
     const usersData=this.getLocalProperty('usersData')
@@ -123,7 +123,22 @@ export class LocalService {
     const usersData=this.getLocalProperty('usersData');
     return (usersData.find((user: any) => user.email === newUser.email))==undefined;
   }
+  addNewUser(newUser:user){
+    ///מידע של יוזרים שלא יהיה חשוף
+    const usersData=this.getLocalProperty('usersData')
 
+    const newUserAdded:user={
+      email: newUser.email,
+      password: newUser.password,
+      booksInCart: this.getBooksInCarts()||[],
+      typeOfUser:newUser.typeOfUser,
+    }
+
+    this.setLocalProperty("currentUserName",newUser.email)
+    this.setLocalProperty('usersData',[...usersData,newUserAdded]);
+    this.updateIndex(newUserAdded.email)
+    return newUserAdded
+  }
 
 
 

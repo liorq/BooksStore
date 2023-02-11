@@ -39,9 +39,16 @@ isPurchaseValid=new BehaviorSubject <boolean>(false);
     this.isUserLogged.next(true)
     this.isGuestUser.next(newUser.typeOfUser=='guest')
     this.currentUser.next(newUser)
-
    }
 
+   updateIsGuestUser(status:boolean){
+    this.isGuestUser.next(status)
+  }
+  toggleModalPayment(status:boolean){
+    this.isPaymentModalClose.next(status)
 
-
+  }
+ updateIsPurchaseValid(status:boolean){
+  this.isPurchaseValid.next(status)
+ }
 }
