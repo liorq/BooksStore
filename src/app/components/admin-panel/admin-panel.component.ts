@@ -40,7 +40,12 @@ export class AdminPanelComponent implements OnInit {
   ) {}
 
   processNewBookAddition() {
-    const newBook: any = this.createNewBook();
+    const newBook: any = this.booksSvc.createNewBook(
+      this.book.Book_Name,
+      this.book.price,
+      this.book.author_Name
+    );
+    
     this.booksToDisplay.push(newBook);
     this.localSvc.setLocalProperty('allBooks', [...this.booksToDisplay]);
     Swal.fire(messages.BookAddedToLocalStorage);
@@ -49,14 +54,6 @@ export class AdminPanelComponent implements OnInit {
 
   resetBookFields() {
     this.book = { Book_Name: '', price: '', author_Name: '', Book_Id: '' };
-  }
-
-  createNewBook() {
-    return {
-      name: this.book.Book_Name,
-      price: parseInt(this.book.price) || 80,
-      author: this.book.author_Name,
-    };
   }
 
   deleteBook(book: book) {

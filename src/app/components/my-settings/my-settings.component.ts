@@ -56,7 +56,6 @@ export class MySettingsComponent implements OnInit {
   async VerifyPassword() {
     const form = getEditUserForm(this.currentUser, 'Edit user details', 'user');
     const { value: formValues } = await Swal.fire(form);
-
     return formValues &&this.localSvc.isPasswordCurrent(formValues)? formValues: false;
 
   }
@@ -64,7 +63,6 @@ export class MySettingsComponent implements OnInit {
 
   async VerifyAndUpdatePasswordHandler() {
     const form: any = await this.VerifyPassword();
-
     if (form)
     this.localSvc.UpdateUserPassword(this.currentUser,form)
 

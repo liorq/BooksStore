@@ -33,5 +33,11 @@ export class BooksService {
   book.price=validForm[1]?parseInt(validForm[1]):book.price;
   book.author=validForm[2]||book.author;
 }
-
+createNewBook(Name:string,Price:string,Author:string) {
+  return {
+    name: Name,
+    price: parseInt(Price) || 80,
+    author:Author,
+  };
+}
 }

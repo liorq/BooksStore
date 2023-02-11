@@ -22,10 +22,10 @@ export class SignUpComponent  implements OnInit{
     this.initForm()
     // this.localService.deleteUserInfo()
 
-    this.userInfoService.isGuestUser.subscribe(()=>{
-      if(!this.isUserLogged)
-        this.CreateGuestUser()
-    })
+    if(!this.isUserLogged)
+    this.CreateGuestUser()
+
+
   }
 
   constructor(public userInfoService:UserInfoService,private booksSvc:BooksService,private router:Router,public localService:LocalService){}
@@ -52,7 +52,6 @@ export class SignUpComponent  implements OnInit{
 
 
   CreateGuestUser(){
-//////////להעביר לסרוויס !
 
     const uniqueEmail ='guest'+ uuidv4()+'@gmail.com';
     const newGuestUser={
