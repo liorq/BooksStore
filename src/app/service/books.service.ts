@@ -26,7 +26,7 @@ export class BooksService {
    }
 
 
- editBook(book:book,validForm:any){
+ editBook(book:book,validForm:string[]){
   book.name=validForm[0]||book.name;
   book.price=validForm[1]?parseInt(validForm[1]):book.price;
   book.author=validForm[2]||book.author;

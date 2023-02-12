@@ -69,7 +69,7 @@ export class LocalService {
     return this.getLocalProperty('currentUserName')!="";
   }
 
-  UpdateUserPassword(currentUser: user,form:any) {
+  UpdateUserPassword(currentUser: user,form:string[]) {
     currentUser.password = form[2];
     const index=this.getLocalProperty('index')
     const usersData=this.getLocalProperty('usersData')
@@ -102,7 +102,7 @@ export class LocalService {
     return usersData.find((user: user) => userName == user.email && password == user.password)
   }
 
-  isPasswordCorrect(formValues:any){
+  isPasswordCorrect(formValues:string[]){
     const currentUser=this.getUserObj()
     return formValues![1] == currentUser?.password;
    }

@@ -25,8 +25,6 @@ export class AdminPanelComponent implements OnInit {
     author_Name: '',
   };
   ngOnInit() {
-    // this.localService.setLocalProperty('allBooks',JSON.stringify(getAllBooks()))
-
     this.booksToDisplay =this.userInfoSvc.allBooks.getValue() ||this.localSvc.getLocalProperty('allBooks');
   }
 
@@ -53,7 +51,7 @@ export class AdminPanelComponent implements OnInit {
     this.book = { Book_Name: '', price: '', author_Name: '', Book_Id: '' };
   }
 
-  deleteBook(book: book) {
+  deleteBookHandler(book: book) {
     this.booksToDisplay = this.booksToDisplay.filter(
       (b) => b.name !== book.name
     );
