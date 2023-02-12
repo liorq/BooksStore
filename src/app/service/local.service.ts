@@ -87,7 +87,7 @@ export class LocalService {
     this.setLocalProperty("currentUserName",userName)
     this.updateIndex(userName)
   }
-  updateIndex(userName:any){
+  updateIndex(userName:string){
     const usersData=this.getLocalProperty('usersData')
     const index = usersData.findIndex((user:user) => user.email == userName);
     this.setLocalProperty("index",index)
@@ -115,7 +115,7 @@ export class LocalService {
     return formValues![1] == currentUser?.password;
    }
 
-  isUserNameAvailable(newUser:any){
+  isUserNameAvailable(newUser:user){
     const usersData=this.getLocalProperty('usersData');
     return (usersData.find((user: any) => user.email === newUser.email))==undefined;
   }
@@ -131,9 +131,6 @@ export class LocalService {
     this.setLocalProperty("currentUserName",newUser.email)
     this.setLocalProperty('usersData',[...usersData,newUserAdded]);
     this.updateIndex(newUserAdded.email)
-    // return newUserAdded
   }
-
-
 
 }

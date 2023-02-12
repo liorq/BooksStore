@@ -4,6 +4,8 @@ import { user } from 'src/app/app.interfaces';
 import { BooksService } from 'src/app/service/books.service';
 import { LocalService } from 'src/app/service/local.service';
 import { UserInfoService } from '../../service/user-info.service';
+import { ConvertToKebabCasePipe } from '../../app.convert-to-kebab-case.pipe'
+import { Pipe, PipeTransform } from '@angular/core';
 
 @Component({
   selector: 'app-header',

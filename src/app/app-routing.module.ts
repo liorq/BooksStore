@@ -9,13 +9,13 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 
 const routes: Routes = [
-  { path: 'SignUp', component: SignUpComponent },
+  { path: 'sign-Up', component: SignUpComponent },
   {path: 'users/:user/Setting', component: MySettingsComponent} ,
   { path: 'users/:user/allBooks', component: AllBooksComponent },
   { path: 'users/:user/my-Cart', component: MyCartComponent },
-  { path: 'SignIn', component: SignInComponent },
+  { path: 'sign-In', component: SignInComponent },
   {path: 'users/:user/admin', component: AdminPanelComponent},
-  { path: '', component: SignInComponent, pathMatch: 'full' },
+  { path: '', component: SignUpComponent, pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },
 ];
 

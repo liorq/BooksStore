@@ -1,16 +1,18 @@
 <div class="header-container">
   <div class="option-container">
 
-    <div *ngFor="let item of ['SignIn','SignUp']">
-      <div  (click)="this.updateIsGuestUser()" *ngIf="!isUserLogged||this.currentUser?.typeOfUser=='guest'&&isUserLogged" class="{{item}}" routerLink="{{item}}" >{{item}}  </div>
-    </div>
+
+      <div  (click)="this.updateIsGuestUser()" *ngIf="!isUserLogged||this.currentUser?.typeOfUser=='guest'&&isUserLogged" class="SignIn" routerLink="sign-In" >{{'SignIn'}}  </div>
+
+      <div  (click)="this.updateIsGuestUser()" *ngIf="!isUserLogged||this.currentUser?.typeOfUser=='guest'&&isUserLogged" class="SignUp" routerLink="sign-Up" >{{'SignUp'}}  </div>
+
 
 
       <div  class="{{'all_Books'.replaceAll('_','')}}" routerLink="users/{{this.currentUser?.email}}/{{'all_Books'.replaceAll('_','')}}"  (click)=" this.updateIsGuestUser()">{{'all_Books'.toUpperCase().charAt(0)+'all_Books'.replaceAll('_',' ').slice(1)}}</div>
       <div *ngIf="isUserLogged&&this.currentUser?.typeOfUser!='guest'" class="{{'Setting'.replaceAll('_','')}}" routerLink="users/{{this.currentUser?.email}}/{{'Setting'}}"  (click)="this.updateIsGuestUser()">{{'Setting'.toUpperCase().charAt(0)+'Setting'.replaceAll('_',' ').slice(1)}}</div>
 
 
-  <div *ngIf="isUserLogged&&this.currentUser?.typeOfUser!='guest'" class="Log-out" (click)="deleteUserInfo()" routerLink="SignUp" >Log-out</div>
+  <div *ngIf="isUserLogged&&this.currentUser?.typeOfUser!='guest'" class="Log-out" (click)="deleteUserInfo()" routerLink="sign-Up" >Log-out</div>
 
   <span (click)="this.updateIsGuestUser()" id="cart" class=" material-symbols-outlined "  routerLink="users/{{this.localSvc.getUserObj()?.email}}/my-Cart" >
   shopping_cart_checkout

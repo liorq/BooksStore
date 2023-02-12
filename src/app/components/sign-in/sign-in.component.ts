@@ -24,7 +24,7 @@ ngOnInit(){
 }
 
 
-signInHandler() {
+SignInHandler() {
    const isValidInfo = this.localService.isValidUserInfo(this.userName,this.Password);
   if (isValidInfo)
   this.signIn()
