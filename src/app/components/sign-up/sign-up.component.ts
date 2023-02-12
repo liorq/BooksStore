@@ -34,8 +34,6 @@ export class SignUpComponent  implements OnInit{
     ,private router:Router,
     public localService:LocalService){}
 
-
-
   initForm() {
     this.subscribeForm = new FormGroup({
       name: new FormControl('', [Validators.required,Validators.minLength(4)]),
@@ -45,8 +43,6 @@ export class SignUpComponent  implements OnInit{
     });
 
   }
-
-
 
   get Name(){return this.subscribeForm.get('name');}
   get Email(){return this.subscribeForm.get('email');}
@@ -68,11 +64,9 @@ export class SignUpComponent  implements OnInit{
 
   }
 
-
   SignUpHandler(){
   const newUser:user={ ...this.subscribeForm.value };
   const isUserNameAvailable =this.localService.isUserNameAvailable(newUser);
-
   Swal.fire(messages[!isUserNameAvailable?'usernameIsntAvailable':'usernameAdded'])
 
   if (!isUserNameAvailable)
@@ -82,7 +76,6 @@ export class SignUpComponent  implements OnInit{
 }
 
 newUserProcess(newUser:user){
-
   this.localService.addNewUser(newUser)
   this.userInfoService.updateCurrentUser(newUser)
   this.booksSvc.updateCurrentBooks(newUser.booksInCart)

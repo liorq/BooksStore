@@ -60,9 +60,7 @@ export class AdminPanelComponent implements OnInit {
 
     this.localSvc.deleteBooksFromCarts(book);
     this.localSvc.setLocalProperty('allBooks', this.booksToDisplay);
-
     this.userInfoSvc.updateSubject(this.userInfoSvc.allBooks,this.booksToDisplay)
-    // this.userInfoSvc.updateAllBooks(this.booksToDisplay)
   }
 
   async editBookHandler(book: book) {

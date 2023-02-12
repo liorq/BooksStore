@@ -16,7 +16,7 @@ export class SignInComponent implements OnInit {
   public userName: string = '';
   public password: string = '';
   private currentUser?:user;
-  
+
   constructor(
     private router: Router,
     private userInfoService: UserInfoService,
@@ -33,6 +33,7 @@ export class SignInComponent implements OnInit {
       this.userName,
       this.password
     );
+    
     if (isValidInfo){
      this.signIn();
      const path =  this.currentUser?.typeOfUser == 'admin' ? 'admin' : 'allBooks';

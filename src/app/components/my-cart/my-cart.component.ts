@@ -70,6 +70,5 @@ export class MyCartComponent implements OnInit {
   }
   toggleModalPayment(status:boolean){
     this.userInfoSvc.updateSubject(this.userInfoSvc.isPaymentModalClose,status)
-    // this.userInfoSvc.toggleModalPayment(status)
   }
 }
