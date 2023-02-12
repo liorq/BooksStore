@@ -42,7 +42,7 @@ export class AllBooksComponent {
   }
 
   addBookToCartHandler(book: book) {
-    const currentCart: any = this.localSvc.getBooksInCarts();
+    const currentCart: book[] = this.localSvc.getBooksInCarts();
     const Index = currentCart.findIndex((b: book) => b.name == book.name);
     if (Index != -1) currentCart[Index].amount++;
     else {

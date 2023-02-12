@@ -22,10 +22,10 @@ constructor(private userInfoSvc:UserInfoService,private localSvc:LocalService,pr
 
 ngOnInit(){
 
-  this.userInfoSvc.isUserLogged.subscribe((isUserLogged:any)=>{
+  this.userInfoSvc.isUserLogged.subscribe((isUserLogged:boolean|null)=>{
    this.isUserLogged=isUserLogged||this.localSvc.isUserLogged();
   })
-   this.userInfoSvc.currentUser.subscribe((user:any)=>{
+   this.userInfoSvc.currentUser.subscribe((user:user|null)=>{
     this.currentUser=user||this.localSvc.getUserObj()
     })
 }

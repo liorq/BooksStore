@@ -27,16 +27,16 @@ export class LocalService {
 
   deleteUser(){
     const usersData=this.getLocalProperty('usersData')
-   const  userName:any= this.getLocalProperty('currentUserName')
-   const filteredData = usersData.filter((user: any) => user?.email !== userName);
+   const  userName:string= this.getLocalProperty('currentUserName')
+   const filteredData = usersData.filter((user: user) => user?.email !== userName);
    this.setLocalProperty('usersData',filteredData)
    this.deleteUserInfo();
   }
 
   getBooksInCarts(){
    const usersData=this.getLocalProperty('usersData')
-    const currentUserName:any= this.getLocalProperty('currentUserName')
-    return usersData.find((user: any) => user.email === currentUserName)?.booksInCart
+    const currentUserName:string= this.getLocalProperty('currentUserName')
+    return usersData.find((user: user) => user.email === currentUserName)?.booksInCart
   }
 
    UpdateBooksCartInUsersData(books:book[]){
@@ -50,7 +50,7 @@ export class LocalService {
   getUserObj(){
     const usersData=this.getLocalProperty('usersData')
     const currentUserName:string= this.getLocalProperty('currentUserName')
-    return usersData.find((user: any) => user?.email === currentUserName)
+    return usersData.find((user: user) => user?.email === currentUserName)
   }
 
   initialLocalProperty(Property:string,value:any){
@@ -99,7 +99,7 @@ export class LocalService {
 
  isValidUserInfo(userName: string, password: string) {
     const usersData=this.getLocalProperty('usersData')
-    return usersData.find((user: any) => userName == user.email && password == user.password)
+    return usersData.find((user: user) => userName == user.email && password == user.password)
   }
 
   isPasswordCorrect(formValues:any){
@@ -109,7 +109,7 @@ export class LocalService {
 
   isUserNameAvailable(newUser:user){
     const usersData=this.getLocalProperty('usersData');
-    return (usersData.find((user: any) => user.email === newUser.email))==undefined;
+    return (usersData.find((user: user) => user.email === newUser.email))==undefined;
   }
   addNewUser(newUser:user){
     const usersData=this.getLocalProperty('usersData')
