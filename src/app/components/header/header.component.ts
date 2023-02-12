@@ -17,7 +17,7 @@ export class HeaderComponent implements OnInit {
   ||this.localSvc.isUserLogged()
 
 currentUser?:user;
-constructor(public userInfoSvc:UserInfoService,public localSvc:LocalService,public router:Router,private booksSvc:BooksService){}
+constructor(private userInfoSvc:UserInfoService,private localSvc:LocalService,private router:Router,private booksSvc:BooksService){}
 
 ngOnInit(){
 
