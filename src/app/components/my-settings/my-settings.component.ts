@@ -40,7 +40,8 @@ export class MySettingsComponent implements OnInit {
   }
 
   async deleteUserHandler() {
-    if (!this.currentUser) return;
+    if (!this.currentUser)
+     return;
 
     const isUserConfirmedDelete: any = await this.isUserConfirmedDelete(
       this.currentUser.password
@@ -54,6 +55,7 @@ export class MySettingsComponent implements OnInit {
   }
 
   async VerifyPasswordHandler() {
+    ///getPassword
     const form = getEditUserForm(this.currentUser, 'Edit user details', 'user');
     const { value: formValues } = await Swal.fire(form);
     return formValues && this.localSvc.isPasswordCorrect(formValues)

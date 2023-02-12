@@ -20,8 +20,6 @@ export class LocalService {
       return localStorage.setItem(`${property}`,JSON.stringify(value));
   }
 
-
-
   deleteUserInfo() {
     this.setLocalProperty('currentUserName','');
     this.setLocalProperty('index','');
@@ -72,7 +70,6 @@ export class LocalService {
   }
 
   UpdateUserPassword(currentUser: user,form:any) {
-
     currentUser.password = form[2];
     const index=this.getLocalProperty('index')
     const usersData=this.getLocalProperty('usersData')
@@ -102,9 +99,6 @@ export class LocalService {
 
  isValidUserInfo(userName: string, password: string) {
     const usersData=this.getLocalProperty('usersData')
-    // console.log(usersData)
-    // console.log(usersData.find((user: any) => userName == user.email && password == user.password))
-
     return usersData.find((user: any) => userName == user.email && password == user.password)
   }
 

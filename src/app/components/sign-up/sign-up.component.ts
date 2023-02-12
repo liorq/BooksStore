@@ -32,7 +32,7 @@ export class SignUpComponent  implements OnInit{
   constructor(public userInfoService:UserInfoService
     ,private booksSvc:BooksService
     ,private router:Router,
-    public localService:LocalService){}
+    private localService:LocalService){}
 
   initForm() {
     this.subscribeForm = new FormGroup({
@@ -72,7 +72,7 @@ export class SignUpComponent  implements OnInit{
     return;
 
   this.newUserProcess(newUser)
-  
+
   const path:string=(newUser.typeOfUser=='admin'?'admin':'allBooks')
   if(newUser.typeOfUser!=='guest')
   this.router.navigate([`users/${newUser.email}/${path}`])

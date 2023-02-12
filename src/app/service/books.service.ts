@@ -13,8 +13,7 @@ export class BooksService {
   currentBooks= new BehaviorSubject<book[]>([]);
 
   updateCurrentBooks(data:book[]){
-
-     if(data)
+    if(data)
     this.currentBooks.next([...data]);
   }
 
