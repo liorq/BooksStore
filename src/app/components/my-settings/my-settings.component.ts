@@ -62,7 +62,7 @@ export class MySettingsComponent implements OnInit {
       : false;
   }
 
-  async VerifyAndUpdatePasswordHandler() {
+  async UpdatePasswordHandler() {
     const form: boolean | string[] = await this.VerifyPasswordHandler();
     if (form && this.currentUser)
       this.localSvc.UpdateUserPassword(this.currentUser, form);
