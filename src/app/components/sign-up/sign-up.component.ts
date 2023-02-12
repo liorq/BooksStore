@@ -26,7 +26,7 @@ export class SignUpComponent  implements OnInit{
   ngOnInit(){
     this.initForm()
     if(!this.isUserLogged)
-    this.CreateGuestUser()
+    this.CreateGuestUserHandler()
   }
 
   constructor(public userInfoService:UserInfoService
@@ -50,7 +50,7 @@ export class SignUpComponent  implements OnInit{
   get TypeOfUser(){return this.subscribeForm.get('typeOfUser');}
 
 
-  CreateGuestUser(){
+  CreateGuestUserHandler(){
 
     const uniqueEmail ='guest'+ uuidv4()+'@gmail.com';
     const newGuestUser={
@@ -61,7 +61,6 @@ export class SignUpComponent  implements OnInit{
     }
     this.booksSvc.updateCurrentBooks([])
     this.newUserProcess(newGuestUser)
-
   }
 
   SignUpHandler(){
@@ -73,15 +72,16 @@ export class SignUpComponent  implements OnInit{
     return;
 
   this.newUserProcess(newUser)
+  
+  const path:string=(newUser.typeOfUser=='admin'?'admin':'allBooks')
+  if(newUser.typeOfUser!=='guest')
+  this.router.navigate([`users/${newUser.email}/${path}`])
 }
 
 newUserProcess(newUser:user){
   this.localService.addNewUser(newUser)
   this.userInfoService.updateCurrentUser(newUser)
   this.booksSvc.updateCurrentBooks(newUser.booksInCart)
-
-  if(newUser.typeOfUser!=='guest')
-  this.router.navigate([`users/${newUser.email+"/"+(newUser.typeOfUser=='admin'?'admin':'allBooks')}`])
 }
 
 

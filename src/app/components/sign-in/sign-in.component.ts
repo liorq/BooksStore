@@ -33,15 +33,20 @@ export class SignInComponent implements OnInit {
       this.userName,
       this.password
     );
-    
-    if (isValidInfo){
+
+
+
+console.log(isValidInfo)
+   if (isValidInfo){
      this.signIn();
      const path =  this.currentUser?.typeOfUser == 'admin' ? 'admin' : 'allBooks';
-     this.router.navigate([`users/${this.userName}'/'${path}`]);
+     this.router.navigate([`users/${this.userName}/${path}`]);
     }
 
     else
     Swal.fire(messages.usernameIncorrect);
+    console.log(this.currentUser)
+
   }
 
   signIn() {

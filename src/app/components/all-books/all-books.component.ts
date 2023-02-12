@@ -29,7 +29,7 @@ export class AllBooksComponent {
   ) {}
 
 
-  showMatchingBooksHandler() {
+  showFilteredBooksHandler() {
     const capitalizedString = this.PrepareTheSearchValueForUse();
     const bookToDisplay = this.allBooks.filter((book) => {
       return book.name.toLowerCase().includes(capitalizedString);

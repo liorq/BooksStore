@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { book, user } from '../app.interfaces';
-import { LocalService } from './local.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,9 +15,9 @@ isPurchaseValid=new BehaviorSubject <boolean>(false);
 
 
   updateCurrentUser(user:user|undefined){
-    if(user)
-   this.currentUser.next(user)
-   this.isUserLogged.next(true);
+  if(user)
+  this.updateSubject(this.currentUser,user)
+  this.updateSubject(this.isUserLogged,true)
   }
 
   getInvalidMessage(errors:any,property:string,error:keyof typeof errors,errorMessage:string){
@@ -31,15 +30,15 @@ isPurchaseValid=new BehaviorSubject <boolean>(false);
     return
   }
    deleteUserInfo(){
-    this.isPaymentModalClose.next(true)
-    this.isUserLogged.next(null)
-    this.isGuestUser.next(null)
-    this.currentUser.next(null)
+    this.updateSubject(this.isPaymentModalClose,true)
+    this.updateSubject(this.isUserLogged,null)
+    this.updateSubject(this.isGuestUser,null)
+    this.updateSubject(this.currentUser,null)
    }
    updateUserSubjects(newUser:user){
-    this.isUserLogged.next(true)
-    this.isGuestUser.next(newUser.typeOfUser=='guest')
-    this.currentUser.next(newUser)
+    this.updateSubject(this.isUserLogged,true)
+    this.updateSubject(this.isGuestUser,(newUser.typeOfUser=='guest'))
+    this.updateSubject(this.currentUser,newUser)
    }
 
  updateSubject(Subject:BehaviorSubject <any>,value:any){

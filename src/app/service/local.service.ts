@@ -101,7 +101,9 @@ export class LocalService {
    }
 
  isValidUserInfo(userName: string, password: string) {
-  const usersData=this.getLocalProperty('usersData')
+    const usersData=this.getLocalProperty('usersData')
+    // console.log(usersData)
+    // console.log(usersData.find((user: any) => userName == user.email && password == user.password))
 
     return usersData.find((user: any) => userName == user.email && password == user.password)
   }
