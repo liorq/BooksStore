@@ -15,6 +15,9 @@ import Swal from 'sweetalert2';
   ],
 })
 export class MyCartComponent implements OnInit {
+  booksToDisplay: book[] = this.booksSvc.currentBooks.getValue();
+  isPaymentModalClose: boolean = true;
+
   constructor(
     private localSvc: LocalService,
     private booksSvc: BooksService,
@@ -22,8 +25,7 @@ export class MyCartComponent implements OnInit {
   ) {}
 
 
-  booksToDisplay: book[] = this.booksSvc.currentBooks.getValue();
-  isPaymentModalClose: boolean = true;
+
 
   ngOnInit() {
     this.userInfoSvc.isPaymentModalClose.subscribe((newStatus) => {

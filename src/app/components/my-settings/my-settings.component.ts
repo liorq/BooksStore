@@ -55,7 +55,6 @@ export class MySettingsComponent implements OnInit {
   }
 
   async VerifyPasswordHandler() {
-    ///getPassword
     const form = getEditUserForm(this.currentUser, 'Edit user details', 'user');
     const { value: formValues } = await Swal.fire(form);
     return formValues && this.localSvc.isPasswordCorrect(formValues)
