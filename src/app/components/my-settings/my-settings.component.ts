@@ -7,7 +7,6 @@ import {
 } from 'src/app/app.forms';
 import { user } from 'src/app/app.interfaces';
 import { messages } from 'src/app/app.messages';
-import { BooksService } from 'src/app/service/books.service';
 import { LocalService } from 'src/app/service/local.service';
 import { UserInfoService } from 'src/app/service/user-info.service';
 import Swal from 'sweetalert2';
@@ -21,19 +20,19 @@ import Swal from 'sweetalert2';
   ],
 })
 export class MySettingsComponent implements OnInit {
-  currentUser?: any;
-  isUserLogged?:boolean;
+  currentUser?: user;
+  isUserLogged?: boolean;
 
   constructor(
     private router: Router,
     private localSvc: LocalService,
-    private userInfoSvc: UserInfoService,
+    private userInfoSvc: UserInfoService
   ) {}
 
   ngOnInit(): void {
-    this.userInfoSvc.currentUser.subscribe((currentUser)=>{
-      this.currentUser=currentUser||this.localSvc.getUserObj();
-    })
+    this.userInfoSvc.currentUser.subscribe((currentUser) => {
+      this.currentUser = currentUser || this.localSvc.getUserObj();
+    });
   }
 
   async isUserConfirmedDelete(userPassword: string) {
@@ -41,30 +40,31 @@ export class MySettingsComponent implements OnInit {
   }
 
   async deleteUserHandler() {
+    if (!this.currentUser) return;
+
     const isUserConfirmedDelete: any = await this.isUserConfirmedDelete(
       this.currentUser.password
     );
 
     if (isUserConfirmedDelete) {
       this.localSvc.deleteUser();
-      this.userInfoSvc.updateIsUserLogged(false)
+      this.userInfoSvc.updateSubject(this.userInfoSvc.isUserLogged,false)
       this.router.navigate(['/sign-Up']);
     }
   }
 
-
-  async VerifyPassword() {
+  async VerifyPasswordHandler() {
     const form = getEditUserForm(this.currentUser, 'Edit user details', 'user');
     const { value: formValues } = await Swal.fire(form);
-    return formValues &&this.localSvc.isPasswordCurrent(formValues)? formValues: false;
-
+    return formValues && this.localSvc.isPasswordCorrect(formValues)
+      ? formValues
+      : false;
   }
 
-
   async VerifyAndUpdatePasswordHandler() {
-    const form: any = await this.VerifyPassword();
-    if (form)
-    this.localSvc.UpdateUserPassword(this.currentUser,form)
+    const form: boolean | string[] = await this.VerifyPasswordHandler();
+    if (form && this.currentUser)
+      this.localSvc.UpdateUserPassword(this.currentUser, form);
 
     Swal.fire(messages[form ? 'changeSuccessfully' : 'passwordIncorrect']);
   }

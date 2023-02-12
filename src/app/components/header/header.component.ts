@@ -13,7 +13,8 @@ import { UserInfoService } from '../../service/user-info.service';
 
 })
 export class HeaderComponent implements OnInit {
-  isUserLogged?:boolean=this.userInfoSvc.isUserLogged.getValue()
+  isUserLogged?:boolean=
+   this.userInfoSvc.isUserLogged.getValue()
   ||this.localSvc.isUserLogged()
 
 currentUser?:user;
@@ -36,7 +37,7 @@ deleteUserInfo() {
 }
 updateIsGuestUser(){
   if(!this.isUserLogged)
-  this.userInfoSvc.updateIsGuestUser(true);
+ this.userInfoSvc.updateSubject(this.userInfoSvc.isGuestUser,true)
 }
 
 }

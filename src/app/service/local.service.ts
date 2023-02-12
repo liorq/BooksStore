@@ -71,8 +71,6 @@ export class LocalService {
     return this.getLocalProperty('currentUserName')!="";
   }
 
-
-
   UpdateUserPassword(currentUser: user,form:any) {
 
     currentUser.password = form[2];
@@ -81,7 +79,6 @@ export class LocalService {
     usersData[index]=currentUser;
     this.setLocalProperty('usersData', usersData);
   }
-
 
   signIn(userName:string){
     this.setLocalProperty("currentUserName",userName)
@@ -92,7 +89,6 @@ export class LocalService {
     const index = usersData.findIndex((user:user) => user.email == userName);
     this.setLocalProperty("index",index)
   }
-
 
   deleteBooksFromCarts(book:book){
     const usersData=this.getLocalProperty('usersData')
@@ -110,7 +106,7 @@ export class LocalService {
     return usersData.find((user: any) => userName == user.email && password == user.password)
   }
 
-  isPasswordCurrent(formValues:any){
+  isPasswordCorrect(formValues:any){
     const currentUser=this.getUserObj()
     return formValues![1] == currentUser?.password;
    }

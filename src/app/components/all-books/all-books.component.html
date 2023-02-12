@@ -1,6 +1,6 @@
 <div id="cover">
     <div class="tb">
-      <div class="td"><input type="text" placeholder="Search" required [(ngModel)]="searchValue" (keyup)="showMatchingBooks()"></div>
+      <div class="td"><input type="text" placeholder="Search" required [(ngModel)]="searchValue" (keyup)="showMatchingBooksHandler()"></div>
       <div class="td" id="s-cover">
         <button type="submit">
           <div id="s-circle"></div>
@@ -9,4 +9,4 @@
       </div>
     </div>
 </div>
-<app-books-list [booksToDisplay]="booksToDisplay" [allBooks]="allBooks" [clickHandler]="addBooksToCart" [btnTitle]="'Add to cart'"></app-books-list>
+<app-books-list [booksToDisplay]="booksToDisplay" [allBooks]="allBooks" [clickHandler]="addBookToCartHandler" [btnTitle]="'Add to cart'"></app-books-list>

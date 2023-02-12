@@ -31,18 +31,18 @@ export class MyCartComponent implements OnInit {
     });
 
 
-    this.booksSvc.currentBooks.subscribe((updateBooks) => {
+    this.booksSvc.currentBooks.subscribe((updatedBooks) => {
 
-       if(updateBooks?.length!=0||this.userInfoSvc.isPurchaseValid.getValue()){
-       this.localSvc.UpdateBooksCartInUsersData([...updateBooks]);
-       this.booksToDisplay = updateBooks;
+       if(updatedBooks?.length!=0||this.userInfoSvc.isPurchaseValid.getValue()){
+       this.localSvc.UpdateBooksCartInUsersData([...updatedBooks]);
+       this.booksToDisplay = updatedBooks;
        this.totalCharge(this.booksToDisplay);
        }
     });
-    this.getCartFromLocalStorage();
+    this.updateCurrentBooks();
   }
 
-  removeBookFromCart(book: book) {
+  removeBookFromCartHandler(book: book) {
     const index = this.booksToDisplay.findIndex((b) => b == book);
     if( this.booksToDisplay[index].amount == 1)
     this.booksToDisplay.splice(index, 1)
@@ -59,8 +59,8 @@ export class MyCartComponent implements OnInit {
     this.booksSvc.updateCurrentBooks([...this.booksToDisplay]);
   }
 
-  getCartFromLocalStorage() {
-    const data:any = this.localSvc.getBooksInCarts();
+  updateCurrentBooks() {
+    const data:book[] = this.localSvc.getBooksInCarts();
     if(data)
     this.booksSvc.updateCurrentBooks([...data])
   }
@@ -69,6 +69,7 @@ export class MyCartComponent implements OnInit {
     return currentCart?.reduce((sum, book) => sum + book.price * book.amount, 0);
   }
   toggleModalPayment(status:boolean){
-    this.userInfoSvc.toggleModalPayment(status)
+    this.userInfoSvc.updateSubject(this.userInfoSvc.isPaymentModalClose,status)
+    // this.userInfoSvc.toggleModalPayment(status)
   }
 }

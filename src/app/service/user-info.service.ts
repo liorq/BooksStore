@@ -15,7 +15,8 @@ allBooks=new BehaviorSubject <book[]|null>(null);
 isPurchaseValid=new BehaviorSubject <boolean>(false);
 
 
-  updateCurrentUser(user:user){
+  updateCurrentUser(user:user|undefined){
+    if(user)
    this.currentUser.next(user)
    this.isUserLogged.next(true);
   }
@@ -41,22 +42,8 @@ isPurchaseValid=new BehaviorSubject <boolean>(false);
     this.currentUser.next(newUser)
    }
 
-   updateIsGuestUser(status:boolean){
-    this.isGuestUser.next(status)
-  }
-  toggleModalPayment(status:boolean){
-    this.isPaymentModalClose.next(status)
-
-  }
- updateIsPurchaseValid(status:boolean){
-  this.isPurchaseValid.next(status)
- }
- updateIsUserLogged(status:boolean){
-  this.isUserLogged.next(status);
-
- }
- updateAllBooks(books:book[]){
-  this.allBooks.next(books)
+ updateSubject(Subject:BehaviorSubject <any>,value:any){
+  Subject.next(value)
  }
 
  isValidCreditCard(isValidCard:boolean,cvv:string,expireDate:string,cardNumber:string) {
@@ -68,4 +55,5 @@ isPurchaseValid=new BehaviorSubject <boolean>(false);
   return  isValidCard
 
 }
+
 }

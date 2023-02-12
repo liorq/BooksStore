@@ -37,6 +37,7 @@ createNewBook(Name:string,Price:string,Author:string) {
     name: Name,
     price: parseInt(Price) || 80,
     author:Author,
+    amount:0,
   };
 }
 }

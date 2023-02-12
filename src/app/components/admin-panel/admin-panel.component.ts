@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { getAllBooks } from 'src/app/app.books';
 import { getEditBookForm } from 'src/app/app.forms';
-import { book, user } from 'src/app/app.interfaces';
+import { book } from 'src/app/app.interfaces';
 import { messages } from 'src/app/app.messages';
 import { BooksService } from 'src/app/service/books.service';
 import { LocalService } from 'src/app/service/local.service';
@@ -28,9 +27,7 @@ export class AdminPanelComponent implements OnInit {
   ngOnInit() {
     // this.localService.setLocalProperty('allBooks',JSON.stringify(getAllBooks()))
 
-    this.booksToDisplay =
-      this.userInfoSvc.allBooks.getValue() ||
-      this.localSvc.getLocalProperty('allBooks');
+    this.booksToDisplay =this.userInfoSvc.allBooks.getValue() ||this.localSvc.getLocalProperty('allBooks');
   }
 
   constructor(
@@ -40,10 +37,10 @@ export class AdminPanelComponent implements OnInit {
   ) {}
 
   processNewBookAddition() {
-    const newBook: any = this.booksSvc.createNewBook(
+    const newBook: book = this.booksSvc.createNewBook(
       this.book.Book_Name,
       this.book.price,
-      this.book.author_Name
+      this.book.author_Name,
     );
 
     this.booksToDisplay.push(newBook);
@@ -60,9 +57,12 @@ export class AdminPanelComponent implements OnInit {
     this.booksToDisplay = this.booksToDisplay.filter(
       (b) => b.name !== book.name
     );
+
     this.localSvc.deleteBooksFromCarts(book);
-    this.userInfoSvc.updateAllBooks(this.booksToDisplay)
     this.localSvc.setLocalProperty('allBooks', this.booksToDisplay);
+
+    this.userInfoSvc.updateSubject(this.userInfoSvc.allBooks,this.booksToDisplay)
+    // this.userInfoSvc.updateAllBooks(this.booksToDisplay)
   }
 
   async editBookHandler(book: book) {

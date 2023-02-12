@@ -18,19 +18,22 @@ import { v4 as uuidv4 } from 'uuid';
 export class SignUpComponent  implements OnInit{
 
   isUserLogged?:boolean=this.userInfoService.isUserLogged.getValue()||this.localService.isUserLogged()
+   currentUser?:user;
+  subscribeForm!: FormGroup;
+  errorMessages=messages.errorMessages;
+
+
   ngOnInit(){
     this.initForm()
-    // this.localService.deleteUserInfo()
-
     if(!this.isUserLogged)
     this.CreateGuestUser()
-
-
   }
 
-  constructor(public userInfoService:UserInfoService,private booksSvc:BooksService,private router:Router,public localService:LocalService){}
-  subscribeForm!: FormGroup;
-  errorMessages=messages.errorMessages
+  constructor(public userInfoService:UserInfoService
+    ,private booksSvc:BooksService
+    ,private router:Router,
+    public localService:LocalService){}
+
 
 
   initForm() {
@@ -67,7 +70,7 @@ export class SignUpComponent  implements OnInit{
 
 
   SignUpHandler(){
-  const newUser:any={ ...this.subscribeForm.value };
+  const newUser:user={ ...this.subscribeForm.value };
   const isUserNameAvailable =this.localService.isUserNameAvailable(newUser);
 
   Swal.fire(messages[!isUserNameAvailable?'usernameIsntAvailable':'usernameAdded'])
@@ -84,7 +87,7 @@ newUserProcess(newUser:user){
   this.userInfoService.updateCurrentUser(newUser)
   this.booksSvc.updateCurrentBooks(newUser.booksInCart)
 
-   if(newUser.typeOfUser!=='guest')
+  if(newUser.typeOfUser!=='guest')
   this.router.navigate([`users/${newUser.email+"/"+(newUser.typeOfUser=='admin'?'admin':'allBooks')}`])
 }
 
