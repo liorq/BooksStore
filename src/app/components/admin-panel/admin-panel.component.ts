@@ -45,7 +45,7 @@ export class AdminPanelComponent implements OnInit {
       this.book.price,
       this.book.author_Name
     );
-    
+
     this.booksToDisplay.push(newBook);
     this.localSvc.setLocalProperty('allBooks', [...this.booksToDisplay]);
     Swal.fire(messages.BookAddedToLocalStorage);
@@ -60,7 +60,9 @@ export class AdminPanelComponent implements OnInit {
     this.booksToDisplay = this.booksToDisplay.filter(
       (b) => b.name !== book.name
     );
+    console.log(this.booksToDisplay)
     this.localSvc.deleteBooksFromCarts(book);
+    this.userInfoSvc.updateAllBooks(this.booksToDisplay)
     this.localSvc.setLocalProperty('allBooks', this.booksToDisplay);
   }
 

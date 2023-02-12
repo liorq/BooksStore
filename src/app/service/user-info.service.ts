@@ -55,7 +55,9 @@ isPurchaseValid=new BehaviorSubject <boolean>(false);
   this.isUserLogged.next(status);
 
  }
-
+ updateAllBooks(books:book[]){
+  this.allBooks.next(books)
+ }
 
  isValidCreditCard(isValidCard:boolean,cvv:string,expireDate:string,cardNumber:string) {
   const cardNumberRegex = new RegExp("^\\d{16}$");

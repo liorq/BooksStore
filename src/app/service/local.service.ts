@@ -98,7 +98,7 @@ export class LocalService {
     const usersData=this.getLocalProperty('usersData')
 
     usersData.forEach((u:user) => {
-       return (u.booksInCart = u.booksInCart.filter(
+       return (u.booksInCart = u.booksInCart?.filter(
          (b:book) => b.name !== book.name));
      });
      this.setLocalProperty('usersData', usersData);
