@@ -33,7 +33,7 @@ export class AllBooksComponent {
   }
 
   addBooksToCart(book: book) {
- 
+
     const currentCart:any = this.localSvc.getBooksInCarts();
     const Index = currentCart.findIndex((b: book) => b.name == book.name);
     if (Index != -1) currentCart[Index].amount++;
@@ -43,6 +43,7 @@ export class AllBooksComponent {
     }
 
     this.localSvc.UpdateBooksCartInUsersData([...currentCart]);
+
     this.booksSvc.updateCurrentBooks(currentCart)
     Swal.fire(messages.BookAdded);
   }

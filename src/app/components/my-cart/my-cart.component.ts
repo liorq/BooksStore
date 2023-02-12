@@ -18,7 +18,7 @@ export class MyCartComponent implements OnInit {
   constructor(
     private localSvc: LocalService,
     private booksSvc: BooksService,
-    public userInfoSvc: UserInfoService
+    private userInfoSvc: UserInfoService
   ) {}
 
 
@@ -67,5 +67,8 @@ export class MyCartComponent implements OnInit {
 
   totalCharge(currentCart: book[]) {
     return currentCart?.reduce((sum, book) => sum + book.price * book.amount, 0);
+  }
+  toggleModalPayment(status:boolean){
+    this.userInfoSvc.toggleModalPayment(status)
   }
 }

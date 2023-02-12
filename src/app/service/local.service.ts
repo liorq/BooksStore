@@ -36,11 +36,7 @@ export class LocalService {
   }
 
   getBooksInCarts(){
-
-    // if(!this.isUserLogged())
-    //  return
-
-     const usersData=this.getLocalProperty('usersData')
+   const usersData=this.getLocalProperty('usersData')
     const currentUserName:any= this.getLocalProperty('currentUserName')
     return usersData.find((user: any) => user.email === currentUserName)?.booksInCart
   }
@@ -124,9 +120,7 @@ export class LocalService {
     return (usersData.find((user: any) => user.email === newUser.email))==undefined;
   }
   addNewUser(newUser:user){
-    ///מידע של יוזרים שלא יהיה חשוף
     const usersData=this.getLocalProperty('usersData')
-
     const newUserAdded:user={
       email: newUser.email,
       password: newUser.password,
@@ -137,7 +131,7 @@ export class LocalService {
     this.setLocalProperty("currentUserName",newUser.email)
     this.setLocalProperty('usersData',[...usersData,newUserAdded]);
     this.updateIndex(newUserAdded.email)
-    return newUserAdded
+    // return newUserAdded
   }
 
 

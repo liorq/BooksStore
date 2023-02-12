@@ -13,7 +13,7 @@ isGuestUser=new BehaviorSubject<boolean|null>(null);
 currentUser=new BehaviorSubject <user|null>(null);
 allBooks=new BehaviorSubject <book[]|null>(null);
 isPurchaseValid=new BehaviorSubject <boolean>(false);
-//use this
+
 
   updateCurrentUser(user:user){
    this.currentUser.next(user)
@@ -55,6 +55,8 @@ isPurchaseValid=new BehaviorSubject <boolean>(false);
   this.isUserLogged.next(status);
 
  }
+
+
  isValidCreditCard(isValidCard:boolean,cvv:string,expireDate:string,cardNumber:string) {
   const cardNumberRegex = new RegExp("^\\d{16}$");
   const cvvRegex = /^[0-9]{3,4}$/;

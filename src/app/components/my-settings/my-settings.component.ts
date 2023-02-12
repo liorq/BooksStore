@@ -25,8 +25,8 @@ export class MySettingsComponent implements OnInit {
   isUserLogged?:boolean;
 
   constructor(
-    public router: Router,
-    public localSvc: LocalService,
+    private router: Router,
+    private localSvc: LocalService,
     private userInfoSvc: UserInfoService,
   ) {}
 
@@ -47,7 +47,8 @@ export class MySettingsComponent implements OnInit {
 
     if (isUserConfirmedDelete) {
       this.localSvc.deleteUser();
-      this.userInfoSvc.updateIsUserLogged(false)
+
+    this.userInfoSvc.updateIsUserLogged(false)
       this.router.navigate(['/SignUp']);
     }
   }
