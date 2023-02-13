@@ -111,6 +111,7 @@ export class LocalService {
     const usersData=this.getLocalProperty('usersData');
     return (usersData.find((user: user) => user.email === newUser.email))==undefined;
   }
+  
   addNewUser(newUser:user){
     const usersData=this.getLocalProperty('usersData')
     const newUserAdded:user={

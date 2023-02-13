@@ -18,8 +18,14 @@ import { v4 as uuidv4 } from 'uuid';
 export class SignUpComponent  implements OnInit{
 
   isUserLogged?:boolean=this.userInfoService.isUserLogged.getValue()||this.localService.isUserLogged()
-   currentUser?:user;
+
+  currentUser?:user=
+  this.userInfoService.currentUser.getValue()
+  ||this.localService.getUserObj();
+
+
   subscribeForm!: FormGroup;
+  
   errorMessages=messages.errorMessages;
 
 

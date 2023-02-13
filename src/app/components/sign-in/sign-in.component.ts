@@ -34,9 +34,6 @@ export class SignInComponent implements OnInit {
       this.password
     );
 
-
-
-console.log(isValidInfo)
    if (isValidInfo){
      this.signIn();
      const path =  this.currentUser?.typeOfUser == 'admin' ? 'admin' : 'allBooks';
